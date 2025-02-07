@@ -1,0 +1,242 @@
+<header>
+  <div
+    class="fixed w-[100%] h-[88px] bg-white border-b border-[#CCCCCC] top-0 right-0 self-stretch overflow-hidden opacity-1 z-[10]">
+    <div class="flex items-center justify-between h-full px-4">
+      <!-- Logo Section -->
+      <div *ngIf="accessBy =='admin'">
+        <button class="bg-red-500 text-white text-[20px] p-2 px-4 border rounded-md" (click)="backToAdmin()">
+          Back To Admin Panel
+        </button>
+      </div>
+      <div *ngIf="accessBy !=='admin'"
+        class="flex items-center max-sm:gap-2 gap-3 max-sm:w-[15%] w-[25%] cursor-pointer"
+        >
+        <div class="lg:hidden" (click)="toggleModal2()">
+          <svg width="35px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path d="M6 8H18" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+              <path d="M6 12H18" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+              </path>
+              <path d="M6 16H18" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+              </path>
+            </g>
+          </svg>
+        </div>
+        <img class="max-sm:w-5 max-sm:h-5 w-8 z-[1]" (click)="redirectToDashboard()" loading="lazy" [alt]="avatarAlt" [src]="avatarSrc" />
+
+        <span class="self-center sm-max:text-[10px]  md-max:text-[14px]  lg-max:text-[16px] text-[20px] font-semibold whitespace-nowrap text-black">
+          Skyline Academic
+        </span>
+      </div>
+
+      <!-- Search Bar Section -->
+      <!-- <div class="hidden sm:flex items-center w-[40%] h-[52px]">
+        <input type="search" name="search" placeholder="Type of Search" class="w-full h-[52px] border border-[#E2E2E2] rounded-md outline-none px-4 text-sm" />
+        <button class="w-[58px] h-[52px] rounded-md bg-[#FF565F] flex justify-center items-center">
+          <img class="m-auto" loading="lazy" [alt]="searchAlt" [src]="searchSrc" />
+        </button>
+      </div> -->
+
+      <!-- Icons Section -->
+      <div class="flex items-center justify-end max-sm:gap-5 gap-8  md-max:w-[30%] w-[15%]">
+        <div *ngIf="accountType === 'user'" class="icon cursor-pointer" (click)="toogleModal3()">
+          <img class="w-[22.5px] h-[21px]" loading="lazy" [alt]="mailAlt" [src]="mailSrc" />
+          <div class="txt">{{ notificationUnSeen }}</div>
+        </div>
+
+        <div routerLink="/user/myNotifications" class="icon cursor-pointer">
+          <img class="w-[22.5px] h-[23px]" loading="lazy" [alt]="notifAlt" [src]="notifSrc" />
+          <div class="txt">{{ unreadMsg }}</div>
+        </div>
+
+        <button (click)="toggleModal1()">
+          <img *ngIf="userImage === ''" class="w-[43px] h-[42px] rounded-full" loading="lazy" [alt]="headerAlt"
+            [src]="headerSrc" />
+          <img *ngIf="userImage !== ''" class="w-[43px] h-[42px] rounded-full" loading="lazy" [alt]="headerAlt"
+            [src]="userImage" />
+        </button>
+
+        <div *ngIf="showModal1" class="fixed inset-0 z-50 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+          <div
+            class="relative  min-w-[300px] mr-[2%] mt-[90px] mx-auto pt-3 pb-5 border h-auto max-sm:w-[50%] w-[25%] shadow-lg rounded-xl bg-white"
+            (click)="$event.stopPropagation()">
+            <div class="w-full  px-5 py-2 items-center flex justify-between border-b border-gray-200">
+              <img *ngIf="userImage === ''" class="w-[43px] h-[42px] rounded-full" loading="lazy" [alt]="headerAlt"
+                [src]="headerSrc" />
+              <img *ngIf="userImage !== ''" class="w-[43px] h-[42px] rounded-full" loading="lazy" [alt]="headerAlt"
+                [src]="userImage" />
+
+              <div class="mt-4" (click)="toggleModal1()" class=" cursor-pointer ">
+                <svg width="35px" height="35px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path
+                      d="M6.96967 16.4697C6.67678 16.7626 6.67678 17.2374 6.96967 17.5303C7.26256 17.8232 7.73744 17.8232 8.03033 17.5303L6.96967 16.4697ZM13.0303 12.5303C13.3232 12.2374 13.3232 11.7626 13.0303 11.4697C12.7374 11.1768 12.2626 11.1768 11.9697 11.4697L13.0303 12.5303ZM11.9697 11.4697C11.6768 11.7626 11.6768 12.2374 11.9697 12.5303C12.2626 12.8232 12.7374 12.8232 13.0303 12.5303L11.9697 11.4697ZM18.0303 7.53033C18.3232 7.23744 18.3232 6.76256 18.0303 6.46967C17.7374 6.17678 17.2626 6.17678 16.9697 6.46967L18.0303 7.53033ZM13.0303 11.4697C12.7374 11.1768 12.2626 11.1768 11.9697 11.4697C11.6768 11.7626 11.6768 12.2374 11.9697 12.5303L13.0303 11.4697ZM16.9697 17.5303C17.2626 17.8232 17.7374 17.8232 18.0303 17.5303C18.3232 17.2374 18.3232 16.7626 18.0303 16.4697L16.9697 17.5303ZM11.9697 12.5303C12.2626 12.8232 12.7374 12.8232 13.0303 12.5303C13.3232 12.2374 13.3232 11.7626 13.0303 11.4697L11.9697 12.5303ZM8.03033 6.46967C7.73744 6.17678 7.26256 6.17678 6.96967 6.46967C6.67678 6.76256 6.67678 7.23744 6.96967 7.53033L8.03033 6.46967ZM8.03033 17.5303L13.0303 12.5303L11.9697 11.4697L6.96967 16.4697L8.03033 17.5303ZM13.0303 12.5303L18.0303 7.53033L16.9697 6.46967L11.9697 11.4697L13.0303 12.5303ZM11.9697 12.5303L16.9697 17.5303L18.0303 16.4697L13.0303 11.4697L11.9697 12.5303ZM13.0303 11.4697L8.03033 6.46967L6.96967 7.53033L11.9697 12.5303L13.0303 11.4697Z"
+                      fill="#000000"></path>
+                  </g>
+                </svg>
+              </div>
+            </div>
+
+            <div routerLink="/profile" class="py-3 px-5 flex gap-3 cursor-pointer">
+              <p>
+                <svg width="34px" height="30px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <title>profile [#1341]</title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g id="Dribbble-Light-Preview" transform="translate(-180.000000, -2159.000000)" fill="#000000">
+                        <g id="icons" transform="translate(56.000000, 160.000000)">
+                          <path
+                            d="M134,2008.99998 C131.783496,2008.99998 129.980955,2007.20598 129.980955,2004.99998 C129.980955,2002.79398 131.783496,2000.99998 134,2000.99998 C136.216504,2000.99998 138.019045,2002.79398 138.019045,2004.99998 C138.019045,2007.20598 136.216504,2008.99998 134,2008.99998 M137.775893,2009.67298 C139.370449,2008.39598 140.299854,2006.33098 139.958235,2004.06998 C139.561354,2001.44698 137.368965,1999.34798 134.722423,1999.04198 C131.070116,1998.61898 127.971432,2001.44898 127.971432,2004.99998 C127.971432,2006.88998 128.851603,2008.57398 130.224107,2009.67298 C126.852128,2010.93398 124.390463,2013.89498 124.004634,2017.89098 C123.948368,2018.48198 124.411563,2018.99998 125.008391,2018.99998 C125.519814,2018.99998 125.955881,2018.61598 126.001095,2018.10898 C126.404004,2013.64598 129.837274,2010.99998 134,2010.99998 C138.162726,2010.99998 141.595996,2013.64598 141.998905,2018.10898 C142.044119,2018.61598 142.480186,2018.99998 142.991609,2018.99998 C143.588437,2018.99998 144.051632,2018.48198 143.995366,2017.89098 C143.609537,2013.89498 141.147872,2010.93398 137.775893,2009.67298"
+                            id="profile-[#1341]"></path>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </p>
+              <h3 class="text-lg leading-6 font-medium text-gray-900">
+                Profile
+              </h3>
+            </div>
+            <!-- <div
+              routerLink="/user/subscriptions"
+              class="py-3 px-5 flex gap-3 cursor-pointer"
+            >
+              <p>
+                <svg
+                  width="34px"
+                  height="30px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path
+                      d="M3 1H1v18h18V1H3zm14 2v14H3V3h14zm4 18H5v2h18V5h-2v16zM15 5H5v2h10V5zM5 9h10v2H5V9zm7 4H5v2h7v-2z"
+                      fill="#000000"
+                    ></path>
+                  </g>
+                </svg>
+              </p>
+              <h3 class="text-lg leading-6 font-medium text-gray-900">
+                Payment Information
+              </h3>
+            </div> -->
+
+            <!-- <div *ngIf = "accountType == 'user'"
+              routerLink="/user/billinginfo"
+              class="py-3 px-5 flex gap-3 cursor-pointer"
+            >
+              <p>
+                <svg
+                  width="34px"
+                  height="34px"
+                  viewBox="0 0 64 64"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  aria-hidden="true"
+                  role="img"
+                  class="iconify iconify--medical-icon"
+                  preserveAspectRatio="xMidYMid meet"
+                  fill="#000000"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path
+                      d="M14.551 11.92a4.837 4.837 0 0 0 4.837-4.839a4.837 4.837 0 1 0-9.674 0a4.84 4.84 0 0 0 4.837 4.839z"
+                      fill="#000000"
+                    ></path>
+                    <path
+                      d="M50.853 11.852a4.916 4.916 0 0 0 4.915-4.914a4.913 4.913 0 1 0-9.827 0a4.912 4.912 0 0 0 4.912 4.914z"
+                      fill="#000000"
+                    ></path>
+                    <path
+                      d="M12.764 39.458c-6.36 0-11.516 5.155-11.516 11.515s5.156 11.516 11.516 11.516S24.28 57.333 24.28 50.973c0-6.359-5.156-11.515-11.516-11.515zm1.365 18.825v1.84h-2.753v-1.84c-2.936-.336-4.809-3.131-4.809-4.958h2.935c0 .821.633 1.912 1.901 2.173v-3.45c-.633-.122-.987-.222-1.666-.408c-1.735-.479-2.936-1.94-2.936-3.802c0-1.845 1.801-3.915 4.576-4.282v-1.719h2.753v1.719c2.943.379 4.753 2.553 4.753 4.726l-2.875-.001c-.002-.95-.792-1.813-1.878-1.919v3.236c.799.176.799.156 1.533.356c2.738.745 3.355 2.537 3.355 4.04c-.001 2.308-1.846 3.892-4.889 4.29z"
+                      fill="#000000"
+                    ></path>
+                    <path
+                      d="M11.376 49.092c-1.23-.219-1.571-.745-1.571-1.313c0-.663.834-1.302 1.571-1.388v2.701zm2.786 6.393v-2.916c1.215.174 1.985.697 1.985 1.448c0 .664-.717 1.42-1.985 1.468z"
+                      fill="#000000"
+                    ></path>
+                    <path
+                      d="M8.238 20.3h1.907l-2.204 8.203H21.16L18.956 20.3h1.907l2.259 8.203h4.253l-2.729-9.95c-.728-2.406-3.109-4.959-6.229-4.959h-7.736c-3.123 0-5.503 2.552-6.232 4.959l-2.726 9.95h4.253L8.237 20.3z"
+                      fill="#000000"
+                    ></path>
+                    <path
+                      d="M56.104 13.545a4.372 4.372 0 0 1 4.373 4.369l-.007 13.414h2.815v5.499l-5.696.003v22.774c0 1.592-1.306 2.883-2.899 2.883a2.884 2.884 0 0 1-2.881-2.883V36.832h-1.837v22.772a2.885 2.885 0 0 1-2.886 2.883a2.894 2.894 0 0 1-2.895-2.883v-22.77l-42.945.013v-5.519h42.945V18.413l-9.174 10.862c-1.93 2.229-5.367-.555-3.43-2.939l9.506-11.421c.615-.612 1.166-1.37 3.436-1.37h11.573z"
+                      fill="#000000"
+                    ></path>
+                  </g>
+                </svg>
+              </p>
+              <h3 class="text-lg leading-6 font-medium text-gray-900">
+                Billing Information
+              </h3>
+            </div> -->
+
+            <button class="py-3 w-full px-7 flex gap-3 border-t border-gray-200" (click)="toggleModal1(); logout()">
+              <p>
+                <img class="w-6 my-auto h-6" loading="lazy" [alt]="headerAlt" [src]="s3Src" />
+              </p>
+              <h3 class="text-lg leading-6 font-medium text-red-500">
+                Log out
+              </h3>
+            </button>
+          </div>
+        </div>
+
+        <!-- Modal 3 -->
+        <!-- <div
+                        *ngIf="showModal3"
+                        class="fixed inset-0 z-50 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
+                        (click)="toogleModal3()"
+                      >
+                        <div
+                          class="relative mx-auto p-5 border ml-[74%] mt-[80px] pt-3 pb-5  max-sm:w-[50%] w-[25%] max-sm:ml-[50%] shadow-lg rounded-xl bg-white"
+                          (click)="$event.stopPropagation()"
+                        >
+                          <div class="mt-3 text-center">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">
+                             Mails
+                            </h3>
+                            <div class="mt-2 px-7 py-3">
+
+                            </div>
+                            <div class="items-center px-4 py-3">
+
+
+                            </div>
+                          </div>
+                        </div>
+                      </div> -->
+
+        <div *ngIf="sidebarmodel" class="fixed inset-0 z-50  h-full w-full"
+          (click)="toggleModal2()">
+          <div class=" shadow-lg  w-full mt-[88px] rounded-md" (click)="$event.stopPropagation()">
+            <app-sidebar [sidebarmodel]="sidebarmodel"></app-sidebar>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

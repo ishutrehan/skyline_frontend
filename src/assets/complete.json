@@ -1,0 +1,116 @@
+{
+  "scannedDocument": {
+    "scanId": "scan34223212",
+    "totalWords": 249,
+    "totalExcluded": 0,
+    "credits": 1,
+    "expectedCredits": 1,
+    "creationTime": "2024-06-13T11:57:26.455142Z",
+    "metadata": {
+      "creationDate": "2024-06-08T05:29:56.0000000Z",
+      "lastModificationDate": "2024-06-08T02:29:57.0000000Z",
+      "filename": "oxibridge.pdf"
+    },
+    "enabled": {
+      "plagiarismDetection": true,
+      "aiDetection": false,
+      "writingFeedback": false,
+      "pdfReport": true,
+      "cheatDetection": false
+    }
+  },
+  "results": {
+    "score": {
+      "identicalWords": 119,
+      "minorChangedWords": 13,
+      "relatedMeaningWords": 0,
+      "aggregatedScore": 53
+    },
+    "internet": [
+      {
+        "url": "https://thermoscreens.com/the-thermoscreens-he-air-curtain-your-robust-ip66-rated-solution-for-harsh-environments/",
+        "id": "0277f2f682",
+        "title": "Air Curtains for Abattoirs and Food Processing facilities - Thermoscreens",
+        "introduction": "Support ...",
+        "matchedWords": 10,
+        "identicalWords": 10,
+        "similarWords": 0,
+        "paraphrasedWords": 0,
+        "totalWords": 879,
+        "metadata": {},
+        "tags": []
+      },
+      {
+        "url": "https://www.oxbridgeessays.com/become-a-writer/",
+        "id": "1d662f08e5",
+        "title": "Become a writer | Oxbridge Essays",
+        "introduction": "...",
+        "matchedWords": 108,
+        "identicalWords": 108,
+        "similarWords": 0,
+        "paraphrasedWords": 0,
+        "totalWords": 431,
+        "metadata": {},
+        "tags": []
+      },
+      {
+        "url": "https://thermoscreens.com/air-curtains-for-large-warehouse-spaces/",
+        "id": "44d979c401",
+        "title": "Air Curtains for large warehouse spaces - Thermoscreens",
+        "introduction": "Support ...",
+        "matchedWords": 10,
+        "identicalWords": 10,
+        "similarWords": 0,
+        "paraphrasedWords": 0,
+        "totalWords": 784,
+        "metadata": {},
+        "tags": []
+      },
+      {
+        "url": "https://nailyourwriting.com/",
+        "id": "486f140f47",
+        "title": "Homepage | Nail your Writing",
+        "introduction": "Academic editing and Writing support ...",
+        "matchedWords": 24,
+        "identicalWords": 11,
+        "similarWords": 13,
+        "paraphrasedWords": 0,
+        "totalWords": 2797,
+        "metadata": {},
+        "tags": []
+      },
+      {
+        "url": "https://www.oxbridgeessays.com/",
+        "id": "d805772bc8",
+        "title": "Essay Writing, Editing & Proofreading Services From Professional Academics | ...",
+        "introduction": "...",
+        "matchedWords": 107,
+        "identicalWords": 107,
+        "similarWords": 0,
+        "paraphrasedWords": 0,
+        "totalWords": 799,
+        "metadata": {},
+        "tags": []
+      },
+      {
+        "url": "https://www.oxbridgeessays.com/blog/how-to-dissertation-secondary-research-4-steps/",
+        "id": "f1f3923e42",
+        "title": "How to do your dissertation secondary research in 4 steps | Oxbridge Essays",
+        "introduction": "...",
+        "matchedWords": 108,
+        "identicalWords": 108,
+        "similarWords": 0,
+        "paraphrasedWords": 0,
+        "totalWords": 7549,
+        "metadata": {},
+        "tags": []
+      }
+    ],
+    "database": [],
+    "batch": [],
+    "repositories": []
+  },
+  "notifications": { "alerts": [] },
+  "status": 0,
+  "developerPayload": ""
+}

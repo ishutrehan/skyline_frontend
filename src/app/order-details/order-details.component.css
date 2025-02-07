@@ -1,0 +1,12 @@
+@media screen and (max-width:980px) {
+    .order-main-container{
+      flex-direction: column;
+    }
+    .order-section1{
+      width: 100%;
+    }
+    .order-section2{
+      width: 100%;
+    }
+  }
+  

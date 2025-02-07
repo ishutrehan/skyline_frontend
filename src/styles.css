@@ -1,0 +1,44 @@
+@import '~ngx-toastr/toastr.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.toast-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    z-index: 9999;
+  }
+
+  .result-height{
+    height: 2.5rem !important;
+    border: 1px solid rgb(255, 165, 165);
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(0, 0, 0);
+    padding-left: 8px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+  }
+  .result-height-content{
+    border: 1px solid rgb(255, 165, 165);
+  }
+  .size14text{
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .auth-body{
+    height: 100dvh;
+    min-height: fit-content;
+  }
+  @media screen and (max-height:650px) {
+      .auth-body{
+        height: 45rem;
+      }
+  }
+

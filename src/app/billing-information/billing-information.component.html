@@ -1,0 +1,153 @@
+<div class="w-full">
+  <app-header ></app-header>
+  <div class="max-sm:hidden">
+    <app-sidebar></app-sidebar>
+  </div>
+
+  <div class="w-[80%] max-sm:w-[100%] mt-[88px] h-auto  md:ml-[20%] overflow-hidden ">
+
+ <div class="w-[98%] mx-auto border-stroke px-4 py-4 dark:border-strokedark sm:px-6 xl:px-9">
+  <a
+  href="user/dashboard"
+  class="text-red-500  my-6 flex gap-2 text-bold text-base"
+>
+  <img
+    class="w-5 mt-2 h-5"
+    loading="lazy"
+    [alt]="avatarAlt"
+    [src]="cs0Src"
+  /><b class="text-[#FF565F] font-bold font-satoshi mt-1"
+    >Dashboard</b
+  >
+</a>
+  </div>
+  <div class="w-[95%] mx-auto bg-gray-100 border-stroke px-4 my-4 py-4 dark:border-strokedark sm:px-6 xl:px-9">
+    <div class="justify-between flex">
+      <h3 class="font-bold dark:text-black">My Plan : {{subscriptionDetails?.planType}} ({{subscriptionDetails?.credit}} Credits)</h3>
+        <select
+          class="text-[#000000] outline-none font-bold ml-6 border rounded-md px-2 py-2 bg-slate-200"
+          [(ngModel)]="Subscription"
+          (ngModelChange)="onSelectionChange($event)"
+        >
+          <option disabled value="">Option</option>
+          <option value="Cancel Subscription" (click)="toggleModal1()">Cancel Subscription</option>
+        </select>
+      </div>
+
+      <!-- Modal -->
+      <div *ngIf="showModal1" class="fixed inset-0 z-50 bg-gray-600 bg-opacity-50 flex items-center justify-center">
+        <div class="relative bg-white p-6 w-[35%] mx-[30%] mt-[-20%] rounded-lg shadow-lg">
+          <p>Are you sure you want to cancel your subscription?</p>
+          <div class="mt-4 flex w-[40%] mx-auto ">
+            <button class="bg-red-500 text-white px-4 py-2 rounded-md mr-2" (click)="deleteSubscription()">OK</button>
+            <button class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md" (click)="toggleModal1();Canceledcancellation()"
+            >Cancel</button>
+          </div>
+        </div>
+      </div>
+
+
+    <div class="w-[96%] mx-auto mt-[3rem] mb-3">
+      <div class=" flex my-8 gap-[10%]">
+        <div class="text-base">
+      <h3 class="font-bold my-4 text-gray-600 dark:text-black">Plan </h3>
+      <div class="bg-slate-50 mt-1 text-red-400 px-3 py-4 border rounded-md border-red-400">
+       {{subscriptionDetails.message?subscriptionDetails.message:'My Active Plan'}}
+      </div></div>
+      <div class=" text-base">
+        <h3 class="font-bold my-4 text-gray-600 dark:text-black">Prices </h3>
+        <p class="bg-slate-50 px-3 py-2 font-semibold rounded-md ">
+          <span class="">{{subscriptionDetails?.amount}}/<span class=" text-sm ">month</span></span><br/>
+          <span class="">
+            <!-- <u>Save 20% with an annual plan
+            </u> -->
+          </span>
+        </p></div>
+        <div class=" text-base">
+          <h3 class="font-bold my-4 text-gray-600 dark:text-black">Next Payment</h3>
+          <p class="bg-slate-50 px-3 py-2 font-semibold rounded-md ">
+            <span class="">
+              <!-- Jul 21, 2024  -->
+              {{nextPayment!=='Invalid Date'?nextPayment:''}}</span>
+
+          </p></div>
+    </div>
+    <mat-progress-bar
+    class="h-6 mt-[2rem] rounded-lg bg-red-100"
+    color="warn"
+    style="height: 10px; background-color: #f59fa4;"
+      mode="determinate"
+      value="{{subscriptionDetails?.credit}}"></mat-progress-bar>
+      <div class="mt-3 flex gap-[5%]">
+        <h3 class="leading-6 font-medium text-gray-900">{{subscriptionDetails?.credit || 0}} Credits Available</h3>
+        <!-- <h3 class=" leading-6 font-medium text-gray-900">Up to 12500 Words
+        </h3> -->
+      </div>
+      <!-- <div class="flex text-base font-semibold justify-end w-[80%] mx-auto">
+        <button class="bg-red-300 border rounded-md py-2 px-4">
+          Purchases More Credits
+        </button>
+      </div> -->
+    </div>
+  </div>
+  <div class="w-[95%] mx-auto bg-gray-100 border-stroke my-4 px-4 py-4 dark:border-strokedark sm:px-6 xl:px-9">
+    <h3 class="font-bold dark:text-black">Payment History</h3>
+    <div class="w-[99%] mx-auto mt-[3rem] mb-3">
+      <table class="table-auto w-full rounded-md ">
+        <thead class="w-full">
+
+          <tr
+            class="flex text-left justify-between text-slate-400 font-Satoshi text-base font-semibold leading-6  "
+          >
+            <th class="w-[55%]">Paid For </th>
+            <th class="w-[15%]">Date</th>
+            <th class="w-[15%]">Paid</th>
+            <!-- <th class="w-[15%]"></th> -->
+          </tr>
+        </thead>
+        <tbody class="w-full ">
+          <ng-container *ngFor="let item of items; let i = index">
+      <tr class="flex text-left justify-between font-medium text-sm">
+        <td class="w-[55%]">
+          {{ item?.paidfor }}
+        </td>
+        <td class="w-[15%]">
+          {{ item?.date }}
+        </td>
+        <td class="w-[15%]">
+          {{ item?.paid }}
+        </td>
+        <!-- <td class="w-[15%]">
+          {{ item.export }}
+        </td> -->
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- <div class="w-[95%] mx-auto bg-gray-100 border-stroke px-4 my-4 py-4 dark:border-strokedark sm:px-6 xl:px-9">
+    <div class=" flex justify-between">
+    <h3 class="font-bold dark:text-black">Payment Method</h3>
+    <button class="font-bold rounded-md text-red-400 dark:text-red-400">Update Card</button></div>
+    <div class="w-[96%] mx-auto mt-[3rem] mb-3">
+
+      <div class=" flex my-4 gap-[10%]">
+        <div class="text-base">
+          <img [alt]="" [src]="creditSrc" class=" h-10 w-12" />
+        </div>
+      <div class="mt-[-0.30rem] text-base">
+        <h3 class="font-bold ml-[4%]  text-gray-600 dark:text-black">Unknown </h3>
+        <p class="bg-slate-50 px-3 font-semibold rounded-md ">
+          <span class="">Ends with 6032 | Expired 08/26</span>
+        </p></div>
+
+
+
+      </div>
+      </div>
+
+</div> -->
+</div>
+</div>

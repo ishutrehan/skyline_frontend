@@ -1,0 +1,339 @@
+<div class="w-[100%]">
+    <app-header></app-header>
+    <div class="max-sm:hidden">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="w-[80%] mt-[88px] bg-gray-100 ml-[20%] ">
+      <div
+        class="w-full h-auto border-t border-r border-l rounded-md border-gray-300"
+      >
+        <p class="text-red-500 ml-9 my-6 text-bold font-medium text-base">
+          <a href="admin/assignments" class="flex gap-2">
+            <img
+              class="w-5 mt-1 h-5"
+              loading="lazy"
+              [alt]="avatarAlt"
+              [src]="cs0Src"
+            />
+            Back</a
+          >
+        </p>
+        <div
+          class="w-[95%] mx-6 h-auto mt-[1rem] bg-white border rounded-md border-gray-300"
+        >
+          <div class="my-[1rem] h-auto">
+            <div>
+              <div class="w-[90%] h-auto mx-auto bg-white">
+                <div
+                  class="w-full h-[6rem] mt-6 border rounded-md font-medium bg-[#E4E4E7] border-gray-300"
+                >
+                  <div class="my-4 ml-4 text-white gap-3 flex">
+                    <p
+                      class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+                    >
+                      1
+                    </p>
+                    <span
+                      class="text-[#000000] font-satoshi font-semibold w-full"
+                    >
+                      Study Level</span
+                    >
+                  </div>
+
+                  <div class="my-4 ml-[6%]">
+                    <h1 class="text-[#000000]">{{ selectedLevel }}</h1>
+                  </div>
+                </div>
+
+                <div
+                  class="w-full h-[6rem] mt-6 border rounded-md font-medium bg-[#E4E4E7] border-gray-300"
+                >
+                  <div class="my-4 ml-4 text-white gap-3 flex">
+                    <p
+                      class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+                    >
+                      2
+                    </p>
+                    <span
+                      class="text-[#000000] font-satoshi font-semibold w-full"
+                    >
+                      Which Subject?</span
+                    >
+                  </div>
+
+                  <div class="my-4 ml-[6%]">
+                    <h1 class="text-[#000000]">{{ subject }}</h1>
+                  </div>
+                </div>
+
+                <!-- <div
+                    class="w-full h-[6rem] mt-6 border rounded-md font-medium bg-[#E4E4E7] border-gray-300"
+                  >
+                    <div class="my-4 ml-4 text-white gap-3 flex">
+                      <p
+                        class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+                      >
+                        3
+                      </p>
+                      <span class="text-[#000000] font-satoshi font-semibold w-full"
+                        >EditorId</span
+                      >
+                    </div>
+
+                    <div class="my-4 ml-[6%]">
+                      <h1 class="text-[#000000]">{{ ediotrs }}</h1>
+                    </div>
+                  </div> -->
+
+                <div
+                  class="w-full h-[6rem] mt-6 rounded-md border bg-[#E4E4E7] border-gray-300"
+                >
+                  <div class="my-4 ml-4 text-white gap-3 flex">
+                    <p
+                      class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+                    >
+                      3
+                    </p>
+                    <span
+                      class="text-[#000000] font-satoshi font-semibold w-full"
+                    >
+                      Work Required</span
+                    >
+                  </div>
+
+                  <div class="my-4 ml-[6%]">
+                    <h1 class="text-[#000000] font-medium">
+                      {{ workRequired }}
+                    </h1>
+                  </div>
+                </div>
+
+                <div
+                  class="w-full h-auto mt-6 border rounded-md font-medium bg-[#E4E4E7] border-gray-300"
+                >
+                  <div class="my-4 ml-4 text-white gap-3 flex">
+                    <p
+                      class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+                    >
+                      4
+                    </p>
+                    <span
+                      class="text-[#000000] font-satoshi font-semibold w-full"
+                      name="calendar"
+                      (change)="workRequiredChanged()"
+                    >
+                      Delivery
+                    </span>
+                  </div>
+
+                  <div class="ml-6 mb-2">
+                    <!-- <app-google-calender
+                             name="calendar"
+                            [(ngModel)]="calendar"
+                            (change)="workRequiredChanged()">
+                          </app-google-calender> -->
+                    <h1 class="text-[#000000] ml-8">{{ calendar }}</h1>
+                  </div>
+                </div>
+
+                <div
+                  class="w-full h-auto mt-6 rounded-md border bg-[#E4E4E7] border-gray-300"
+                >
+                  <div class="my-4 ml-4 text-white gap-3 flex">
+                    <p
+                      class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+                    >
+                      5
+                    </p>
+                    <span
+                      class="text-[#000000] font-satoshi font-semibold w-full"
+                    >
+                      Project Descripiton
+                    </span>
+                  </div>
+
+                  <div class="my-4 ml-[6%] w-[95%] h-auto">
+                    <label class="text-[#000000] font-satoshi font-medium my-4"
+                      >Title of Project</label
+                    >
+                    <div class="my-2 mx-3">
+                      <h1 class="text-[#000000]">{{ tellUs }}</h1>
+                    </div>
+
+                    <label class="text-[#000000] font-satoshi font-medium my-4"
+                      >Additional Information</label
+                    >
+                    <div class="my-2 mx-3">
+                      <h1 class="text-[#000000]">{{ additionalInfo }}</h1>
+                    </div>
+
+                    <label class="text-[#000000] font-satoshi font-medium my-4"
+                      >Refrence</label
+                    >
+                    <div class="my-2 mx-3">
+                      <h1 class="text-[#000000]">{{ referenceStyle }}</h1>
+                    </div>
+
+                    <label class="text-[#000000] font-satoshi font-medium my-4"
+                      >Structure</label
+                    >
+                    <div class="my-2 mx-3">
+                      <h1 class="text-[#000000]">{{ structure }}</h1>
+                    </div>
+
+                    <label class="text-[#000000] font-satoshi font-medium my-4"
+                      >Module / Course</label
+                    >
+                    <div class="my-2 mx-3">
+                      <h1 class="text-[#000000]">{{ moduleCourse }}</h1>
+                    </div>
+
+                    <label class="text-[#000000] font-satoshi font-medium my-4"
+                      >Style / Approach</label
+                    >
+                    <div class="my-2 mx-3">
+                      <h1 class="text-[#000000]">{{ styleApproach }}</h1>
+                    </div>
+
+                    <label class="text-[#000000] font-satoshi font-medium my-4"
+                      >Essential Sources</label
+                    >
+                    <div class="my-2 mx-3">
+                      <h1 class="text-[#000000]">{{ essentialSources }}</h1>
+                    </div>
+
+                    <label class="text-[#000000] font-satoshi font-medium my-4"
+                      >Preferred Sources</label
+                    >
+                    <div class="my-2 mx-3">
+                      <h1 class="text-[#000000]">{{ preferredSources }}</h1>
+                    </div>
+
+                    <label class="text-[#000000] font-satoshi font-medium my-4"
+                      >Other information</label
+                    >
+                    <div class="my-2 mx-3">
+                      <h1 class="text-[#000000]">{{ otherInformation }}</h1>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="w-full h-auto mt-6 border rounded-md font-medium bg-[#E4E4E7] border-gray-300"
+                >
+                  <div class="my-4 ml-4 text-white gap-3 flex">
+                    <p
+                      class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+                    >
+                      6
+                    </p>
+                    <span class="text-[#000000] font-satoshi font-semibold w-full"
+                      >Your Contact details</span
+                    >
+                  </div>
+                  <div
+                    class="my-6 ml-[6%] w-[90%] h-auto bg-[#E4E4E7] rounded-md border border-gray-300"
+                  >
+                    <div class="my-4 mx-2 w-[95%] h-auto text-white">
+                      <div class="flex gap-8">
+                        <div class="w-[30%] my-6">
+                          <label
+                            class="text-[#000000] font-satoshi font-medium w-full my-4"
+                            >First Name</label
+                          >
+
+                          <h1 class="text-[#000000]">{{ firstName }}</h1>
+                        </div>
+                        <div class="w-[30%] my-6">
+                          <label
+                            class="text-[#000000] font-satoshi font-medium w-full my-4"
+                            >Last Name</label
+                          >
+
+                          <h1 class="text-[#000000]">{{ lastName }}</h1>
+                        </div>
+                      </div>
+
+                      <div class="flex gap-8">
+                        <div class="w-[30%] my-6">
+                          <label
+                            class="text-[#000000] font-satoshi font-medium w-full my-4"
+                            >Email address</label
+                          >
+                          <h1 class="text-[#000000]">{{ email }}</h1>
+                        </div>
+
+                        <div class="w-[30%] my-6">
+                          <label
+                            class="text-[#000000] font-satoshi font-medium w-full my-4"
+                            >Phone number</label
+                          >
+
+                          <h1 class="text-[#000000]">{{ phoneNumber }}</h1>
+
+                          <hr />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="my-4 mt-4 gap-3 mx-2 w-[60%] border-t border-gray-300 h-auto text-white"
+                    >
+                      <h1 class="text-[#000000] font-satoshi font-medium">
+                        Status of order
+                      </h1>
+
+                      <div class="mt-3">
+                        <h1 class="text-[#000000]">{{ Status }}</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="w-full h-[11rem] mt-6 border rounded-md font-medium bg-[#E4E4E7] border-gray-300"
+                >
+                  <div class="my-4 ml-4 text-white gap-3 flex">
+                    <p
+                      class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+                    >
+                      7
+                    </p>
+                    <span class="text-[#000000] font-satoshi font-semibold w-full"
+                      >Assign Editor</span
+                    >
+                  </div>
+
+                  <div
+                    class="my-2 w-[10rem] mx-3 ml-[6%] text-[#000000] font-satoshi font-semibold"
+                  >
+                    <select
+                      id="editor"
+                      [(ngModel)]="selectedEditors"
+                      name="editor"
+                      class="bg-[#F7F7F8] border rounded-md border-gray-300 text-gray-900 text-sm focus:border-gray-300 block w-full p-2.5 dark:placeholder-gray-300"
+                    >
+                      <ng-container *ngFor="let item of items; let i = index">
+                        <option [value]="item.userId">{{ item.name }}</option>
+                      </ng-container>
+                    </select>
+                  </div>
+                  <div
+                    class="my-4 mx-2 w-[60%] border-t border-gray-300 h-auto text-white"
+                  >
+                    <button
+                      type="submit"
+                      class="mt-6 w-[24%] ml-[9%] h-8 rounded-md mb-2 text-white text-sm bg-red-500"
+                      (click)="handleUpdate()"
+                    >
+                      Submit
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,14 @@
+
+
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+.scrollable-container {
+    height: 700px; /* Set the desired height */
+    overflow-y: scroll; /* Enable vertical scrolling */
+}
+
+@media screen and (max-width:765px) {
+    .adjust-width{
+      width: 100%;
+    }
+}

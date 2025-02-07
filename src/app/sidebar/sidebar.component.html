@@ -1,0 +1,918 @@
+<div
+  class=" lg-max:hidden w-[20%] h-[auto] max-h-[100dvh]  fixed  bg-white flex flex-col border-r border-gray-300 items-start justify-start  text-[18px] max-lg:text-[18px]">
+  <!-- user div -->
+  <div *ngIf="accountType === 'user'">
+    <div class="w-full h-[auto] min-h-[14] border-b border-gray-300">
+      <button label="Button"
+        class="w-[89%] max-sm:w-[95%] max-sm:ml-[3px] h-12 my-1  ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('user/dashboard')"
+        [class.bg-red-500]="isActive('user/dashboard') || isActive('user/subscriptions') || isActive('user/billinginfo')"
+        [class.text-white]="isActive('user/dashboard') || isActive('user/subscriptions') || isActive('user/billinginfo')"
+        [class.rounded-md]="isActive('user/dashboard') || isActive('user/subscriptions') || isActive('user/billinginfo')">
+
+        <img *ngIf="isActive('user/dashboard')" class="max-sm:w-4 max-sm:h-4 w-6 my-auto h-6" loading="lazy"
+          [alt]="avatarAlt" [src]="s7Src" />
+
+        <img *ngIf="isActive('user/billinginfo') " class="max-sm:w-4 max-sm:h-4 w-6 my-auto h-6" loading="lazy"
+          [alt]="avatarAlt" [src]="s7Src" />
+
+        <img *ngIf="isActive('user/subscriptions') " class="max-sm:w-4 max-sm:h-4 w-6 my-auto h-6" loading="lazy"
+          [alt]="avatarAlt" [src]="s7Src" />
+        <img *ngIf="!isActive('user/dashboard') && !isActive('user/billinginfo')  && !isActive('user/subscriptions')"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy" [alt]="avatarAlt" [src]="s1Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">Dashboard</a>
+      </button>
+    </div>
+
+    <div class="w-full h-[auto] min-h-[14] border-b border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%] max-sm:ml-[3px] h-[auto] min-h-[14] my-1 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('user/plagiarism')" [class.bg-red-500]="isActive('user/plagiarism')"
+        [class.text-white]="isActive('user/plagiarism')" [class.rounded-md]="isActive('user/plagiarism')">
+        <img *ngIf="isActive('user/plagiarism')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s13Src" />
+        <img *ngIf="!isActive('user/plagiarism')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s2Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">Plagiarism and AI Detection</a>
+      </button>
+    </div>
+
+    <!-- <div class="w-full  h-[auto] min-h-[14] border-b border-gray-300">
+      <button
+      class="w-[89%] max-sm:w-[95%] max-sm:ml-[3px] h-12 my-1 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+      (click)="navigateTo('user/ai-writing')"
+        [class.bg-red-500]="isActive('user/ai-writing')"
+        [class.text-white]="isActive('user/ai-writing')"
+        [class.rounded-md]="isActive('user/ai-writing')"
+      >
+        <img
+          *ngIf="isActive('user/ai-writting')"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy"
+          [alt]="avatarAlt"
+          [src]="s13Src"
+        />
+        <img
+          *ngIf="!isActive('user/ai-writting')"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy"
+          [alt]="avatarAlt"
+          [src]="s2Src"
+        />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">AI Writing</a>
+      </button>
+    </div> -->
+
+    <div class="w-full  h-[auto] min-h-[14]  border-b border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%] max-sm:ml-[3px] h-[auto] my-1 ml-3 max-sm:px-2 px-3 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('user/proofReading&Editing')" [class.bg-red-500]="isActive('user/proofReading&Editing')"
+        [class.text-white]="isActive('user/proofReading&Editing')"
+        [class.rounded-md]="isActive('user/proofReading&Editing')">
+        <img *ngIf="isActive('user/proofReading&Editing')" class="w-6 my-auto h-[auto] max-sm:w-4 " loading="lazy"
+          [alt]="avatarAlt" [src]="s10Src" />
+        <img *ngIf="!isActive('user/proofReading&Editing')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s3Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">Proofreading and Editing</a>
+      </button>
+    </div>
+    <!--
+    <div class="w-full h-12 border-b border-gray-300">
+      <button
+      class="w-[89%] max-sm:w-[95%]  max-sm:ml-[3px] h-[2.75rem] mt-1 lg:h-10 lg:my-1  ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+      (click)="navigateTo('user/academicToolkit')"
+        [class.bg-red-500]="isActive('user/academicToolkit')"
+        [class.text-white]="isActive('user/academicToolkit')"
+        [class.rounded-md]="isActive('user/academicToolkit')"
+      >
+        <img
+          *ngIf="isActive('user/academicToolkit')"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy"
+          [alt]="avatarAlt"
+          [src]="s9Src"
+        />
+        <img
+          *ngIf="!isActive('user/academicToolkit')"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy"
+          [alt]="avatarAlt"
+          [src]="s4Src"
+        />
+        <a class="my-auto  max-sm:text-sm  max-lg:text-base text-xl">Academic Toolkit</a>
+      </button>
+    </div> -->
+
+    <div class="w-full  h-[auto] min-h-[14]  border-b border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%] max-sm:ml-[3px] h-[auto] min-h-[14] py-2 my-1 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('user/assignmentAid')" [class.bg-red-500]="
+          isActive('user/assignmentAid') || isActive('user/assignment-clarity')  || isActive('user/assignment-feedback')
+        " [class.text-white]="
+          isActive('user/assignmentAid') || isActive('user/assignment-clarity') || isActive('user/assignment-feedback')
+        " [class.rounded-md]="
+          isActive('user/assignmentAid') || isActive('user/assignment-clarity')  || isActive('user/assignment-feedback')
+        ">
+        <img *ngIf="isActive('user/assignmentAid')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s11Src" />
+        <img *ngIf="isActive('user/assignment-clarity')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s11Src" />
+        <img *ngIf="isActive('user/assignment-feedback')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s11Src" />
+        <img
+          *ngIf="!isActive('user/assignmentAid') && !isActive('user/assignment-clarity') && !isActive('user/assignment-feedback')"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy" [alt]="avatarAlt" [src]="s5Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">Assignment Aid</a>
+      </button>
+    </div>
+
+    <!-- <div class="w-full h-10 border-b border-gray-300">
+      <button
+      class="w-[89%] max-sm:w-[95%]  max-sm:ml-[3px] h-9 my-1  ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+      (click)="navigateTo('user/showeditor')"
+        [class.bg-red-500]="isActive('user/showeditor')"
+        [class.text-white]="isActive('user/showeditor')"
+        [class.rounded-md]="isActive('user/showeditor')"
+      >
+        <img
+          *ngIf="isActive('user/showeditor')"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy"
+          [alt]="avatarAlt"
+          [src]="sa61Src"
+        />
+        <img
+          *ngIf="!isActive('user/showeditor')"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy"
+          [alt]="avatarAlt"
+          [src]="sa6Src"
+        />
+        <a class="my-auto  max-sm:text-sm  max-lg:text-base text-xl">Editors</a>
+      </button>
+    </div> -->
+
+    <div class="w-full  h-[auto] min-h-[14]  border-b border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%] max-sm:ml-[3px] h-12 my-1 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('user/myscans')"
+        [class.bg-red-500]="isActive('user/myscans') || isActive('user/scanreport/' + scanId)"
+        [class.text-white]="isActive('user/myscans') || isActive('user/scanreport/' + scanId)"
+        [class.rounded-md]="isActive('user/myscans') || isActive('user/scanreport/' + scanId)">
+
+        <img *ngIf="isActive('user/myscans')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="sa51Src" />
+
+        <img *ngIf="isActive('user/scanreport/' + scanId)" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="sa51Src" />
+
+        <img *ngIf="!isActive('user/myscans') && !isActive('user/scanreport/' + scanId)"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy" [alt]="avatarAlt" [src]="sa5Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">My Scans</a>
+      </button>
+    </div>
+
+
+    <!-- <div class="w-full h-12 border-b border-gray-300">
+      <button
+      class="w-[89%] max-sm:w-[95%]  max-sm:ml-[3px] h-[2.75rem] mt-1 lg:h-10 lg:my-1  ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+      (click)="navigateTo('user/dataAnalysis')"
+        [class.bg-red-500]="
+          isActive('user/dataAnalysis') || isActive('user/dataAnalysisPricing')
+        "
+        [class.text-white]="
+          isActive('user/dataAnalysis') || isActive('user/dataAnalysisPricing')
+        "
+        [class.rounded-md]="
+          isActive('user/dataAnalysis') || isActive('user/dataAnalysisPricing')
+        "
+      >
+        <img
+          *ngIf="isActive('user/dataAnalysis')"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy"
+          [alt]="avatarAlt"
+          [src]="s10Src"
+        />
+        <img
+        *ngIf="isActive('user/dataAnalysisPricing')"
+        class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+        loading="lazy"
+        [alt]="avatarAlt"
+        [src]="s10Src"
+      />
+        <img
+          *ngIf="!isActive('user/dataAnalysis') && !isActive('user/dataAnalysisPricing')"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy"
+          [alt]="avatarAlt"
+          [src]="s3Src"
+        />
+        <a class="my-auto  max-sm:text-sm  max-lg:text-base text-xl">Data Analysis</a>
+      </button>
+    </div> -->
+
+    <div class="w-full  h-[auto] min-h-[14]   border-b border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%] max-sm:ml-[3px] h-auto my-1 ml-3 py-2 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('user/showorder')"
+        [class.bg-red-500]="isActive('user/showorder') || isActive('user/assignmentorder') || isActive('user/show-proofReading-details/' + scanId) || isActive('user/assignment-feedback/' + scanId) || isActive('user/assignment-clarity/' + scanId)"
+        [class.text-white]="isActive('user/showorder') || isActive('user/assignmentorder') || isActive('user/show-proofReading-details/' + scanId) || isActive('user/assignment-feedback/' + scanId) || isActive('user/assignment-clarity/' + scanId)"
+        [class.rounded-md]="isActive('user/showorder') || isActive('user/assignmentorder') || isActive('user/show-proofReading-details/' + scanId) || isActive('user/assignment-feedback/' + scanId) || isActive('user/assignment-clarity/' + scanId)">
+        <img *ngIf="isActive('user/showorder')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="sa41Src" />
+
+        <img *ngIf="isActive('user/show-proofReading-details/' + scanId)" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy" [alt]="avatarAlt" [src]="sa41Src" />
+        <img *ngIf="isActive('user/assignment-feedback/' + scanId)" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy" [alt]="avatarAlt" [src]="sa41Src" />
+        <img *ngIf="isActive('user/assignment-clarity/' + scanId)" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy" [alt]="avatarAlt" [src]="sa41Src" />
+
+        <img *ngIf="isActive('user/assignmentorder')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="sa41Src" />
+        <img
+          *ngIf="!isActive('user/showorder') && !isActive('user/show-proofReading-details/' + scanId) && !isActive('user/assignment-feedback/' + scanId) && !isActive('user/assignment-clarity/' + scanId) && !isActive('user/assignmentorder')"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy" [alt]="avatarAlt" [src]="sa4Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">My Assignments</a>
+      </button>
+    </div>
+
+    <div class="w-full  h-[auto] min-h-[14]   border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%] max-sm:ml-[3px] h-12 my-1 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        [class.bg-red-500]="isActive('/logout')" [class.text-white]="isActive('/logout')"
+        [class.rounded-md]="isActive('/logout')">
+        <img *ngIf="isActive('/logout')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy" [alt]="avatarAlt"
+          [src]="slSrc" />
+        <img *ngIf="!isActive('/logout')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy" [alt]="avatarAlt"
+          [src]="slSrc" />
+        <a (click)="logout()" class="my-auto max-sm:text-sm max-lg:text-base text-xl">Logout</a>
+      </button>
+    </div>
+  </div>
+
+
+  <!-- admin div -->
+
+  <div class="w-full" *ngIf="accountType === 'admin'">
+
+    <div class="w-full h-[auto] min-h-[14] border-b border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%] max-sm:ml-[3px] h-12 my-1 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('admin/dashboard')" [class.bg-red-500]="isActive('admin/dashboard')"
+        [class.text-white]="isActive('admin/dashboard')" [class.rounded-md]="isActive('admin/dashboard')">
+        <img *ngIf="isActive('admin/dashboard')" class="max-sm:w-4 max-sm:h-4 w-6 my-auto h-6" loading="lazy"
+          [alt]="avatarAlt" [src]="s7Src" />
+        <img *ngIf="!isActive('admin/dashboard')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s1Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">Dashboard</a>
+      </button>
+    </div>
+
+    <div class="w-full h-[auto] min-h-[14] border-b border-gray-300">
+      <button class="w-[89%] h-12 my-1 max-sm:ml-2 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('admin/showeditor')" [class.bg-red-500]="isActive('admin/showeditor')"
+        [class.text-white]="isActive('admin/showeditor')" [class.rounded-md]="isActive('admin/showeditor')">
+        <img *ngIf="isActive('admin/showeditor')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="sa61Src" />
+        <img *ngIf="!isActive('admin/showeditor')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="sa6Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">Editors</a>
+      </button>
+    </div>
+
+
+    <div class="w-full h-[auto] min-h-[14] border-b border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[90%] h-12 my-1 max-sm:ml-2 ml-3 max-sm:px-1 px-2 text-left flex max-sm:gap-1 rounded-md max-lg:gap-3 gap-6"
+        (click)="navigateTo('admin/assignments')"
+        [class.bg-red-500]="isActive('admin/assignments') || isActive('admin/orderdetails/' + scanId) || isActive('admin/assignment-feedback/' + scanId) || isActive('admin/assignment-clarity/' + scanId)"
+        [class.text-white]="isActive('admin/assignments') || isActive('admin/orderdetails/' + scanId) || isActive('admin/assignment-feedback/' + scanId) || isActive('admin/assignment-clarity/' + scanId)"
+        [class.rounded-md]="isActive('admin/assignments') || isActive('admin/orderdetails/' + scanId) || isActive('admin/assignment-feedback/' + scanId) || isActive('admin/assignment-clarity/' + scanId)">
+        <img *ngIf="isActive('admin/assignments')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s10Src" />
+        <img *ngIf="isActive('admin/orderdetails/' + scanId)" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy" [alt]="avatarAlt" [src]="s10Src" />
+        <img *ngIf="isActive('admin/assignment-feedback/' + scanId)" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy" [alt]="avatarAlt" [src]="s10Src" />
+        <img *ngIf="isActive('admin/assignment-clarity/' + scanId)" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy" [alt]="avatarAlt" [src]="s10Src" />
+        <img
+          *ngIf="!isActive('admin/assignments') && !isActive('admin/orderdetails/' + scanId) && !isActive('admin/assignment-feedback/' + scanId) && !isActive('admin/assignment-clarity/' + scanId)"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy" [alt]="avatarAlt" [src]="s3Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">Assignments</a>
+      </button>
+    </div>
+
+
+    <div class="w-full h-[auto] min-h-[14] border-b border-gray-300">
+      <button class="w-[89%] h-12 my-1 max-sm:ml-2 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('admin/feedbacks')" [class.bg-red-500]="
+        isActive('admin/feedbacks') || isActive('admin/feedbacks')
+      " [class.text-white]="
+        isActive('admin/feedbacks') || isActive('admin/feedbacks')
+      " [class.rounded-md]="
+        isActive('admin/feedbacks') || isActive('admin/feedbacks')
+      ">
+        <img *ngIf="isActive('admin/feedbacks')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="sa21Src" />
+        <img *ngIf="!isActive('admin/feedbacks')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="sa2Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">Feedbacks</a>
+      </button>
+    </div>
+
+    <div class="w-full h-[auto] min-h-[14] border-b border-gray-300">
+      <button class="w-[89%] h-12 my-1 max-sm:ml-2 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('admin/admin-coupons')" [class.bg-red-500]="
+        isActive('admin/admin-coupons') || isActive('admin/admin-coupons')
+      " [class.text-white]="
+        isActive('admin/admin-coupons') || isActive('admin/admin-coupons')
+      " [class.rounded-md]="
+        isActive('admin/admin-coupons') || isActive('admin/admin-coupons')
+      ">
+        <img *ngIf="isActive('admin/admin-coupons')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="c2Src" />
+        <img *ngIf="!isActive('admin/admin-coupons')" class="w-6 my-auto h-7 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="c1Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">Coupons</a>
+      </button>
+    </div>
+
+    <div class="w-full h-auto border-b border-gray-300">
+      <button class="w-[90%] h-[auto] min-h-[14] py-2  max-sm:ml-2 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-2 gap-6"
+        (click)="navigateTo('admin/usermanagement')" [class.bg-red-500]="
+        isActive('admin/usermanagement') || isActive('admin/usermanagement')
+      " [class.text-white]="
+        isActive('admin/usermanagement') || isActive('admin/usermanagement')
+      " [class.rounded-md]="
+        isActive('admin/usermanagement') || isActive('admin/usermanagement')
+      ">
+        <img *ngIf="isActive('admin/usermanagement')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="sa31Src" />
+        <img *ngIf="!isActive('admin/usermanagement')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="sa3Src" />
+        <a class="my-auto max-sm:text-[12px] max-lg:text-base text-xl">User Management</a>
+      </button>
+    </div>
+
+    <div class="w-full h-[auto] min-h-[14] border-b border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%]  max-sm:ml-[3px] h-auto min-h-14 py-2 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('admin/financialreport')" [class.bg-red-500]="
+    isActive('admin/financialreport') || isActive('admin/financialreport')
+  " [class.text-white]="
+    isActive('admin/financialreport') || isActive('admin/financialreport')
+  " [class.rounded-md]="
+    isActive('admin/financialreport') || isActive('admin/financialreport')
+  ">
+        <img *ngIf="isActive('admin/financialreport')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="sa1Src" />
+        <img *ngIf="!isActive('admin/financialreport')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="saSrc" />
+        <a class="my-auto  max-sm:text-sm  max-lg:text-base text-xl">Financial Reports</a>
+      </button>
+    </div>
+
+    <div class="w-full h-auto border-b border-gray-300">
+      <button class="w-[90%] h-[auto] min-h-[14] mt-1 max-sm:ml-2 ml-3 py-3 max-sm:px-2 px-2 text-left flex max-lg:gap-2 gap-6"
+        (click)="navigateTo('admin/proofReading')" [class.bg-red-500]="
+    isActive('admin/proofReading') || isActive('admin/proofReadingdetails/'+ scanId)
+  " [class.text-white]="
+    isActive('admin/proofReading') || isActive('admin/proofReadingdetails/' + scanId)
+  " [class.rounded-md]="
+    isActive('admin/proofReading') || isActive('admin/proofReadingdetails/'+ scanId)
+  ">
+        <img *ngIf="isActive('admin/proofReading')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s11Src" />
+        <img *ngIf="isActive('admin/proofReadingdetails/'+ scanId)" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy" [alt]="avatarAlt" [src]="s11Src" />
+        <img *ngIf="!isActive('admin/proofReading') && !isActive('admin/proofReadingdetails/'+ scanId)"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy" [alt]="avatarAlt" [src]="s5Src" />
+        <a class="my-auto max-sm:text-[12px] max-lg:text-base text-xl">Proofreading and Editing</a>
+      </button>
+    </div>
+
+    <div class="w-full h-[auto] min-h-[14] border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%]  max-sm:ml-[3px] h-12 my-1  ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('/logout')" [class.bg-red-500]="isActive('/logout')"
+        [class.text-white]="isActive('/logout')" [class.rounded-md]="isActive('/logout')">
+        <img *ngIf="isActive('/logout')" class="w-6 my-auto h-6" loading="lazy" [alt]="avatarAlt" [src]="slSrc" />
+        <img *ngIf="!isActive('/logout')" class="w-6 my-auto h-6" loading="lazy" [alt]="avatarAlt" [src]="slSrc" />
+        <a (click)="logout()" class="my-auto  max-sm:text-sm  max-lg:text-base text-xl">Logout</a>
+      </button>
+    </div>
+  </div>
+
+  <!-- editors div -->
+
+  <div class="w-full" *ngIf="accountType === 'editor'">
+
+    <div class="w-full h-13 border-b border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%]  max-sm:ml-[3px] h-[auto] min-h-[14] my-1 py-2 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('editor/dashboard')" [class.bg-red-500]="isActive('editor/dashboard')"
+        [class.text-white]="isActive('editor/dashboard')" [class.rounded-md]="isActive('editor/dashboard')">
+        <img *ngIf="isActive('editor/dashboard')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s7Src" />
+        <img *ngIf="!isActive('editor/dashboard')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s1Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">Dashboard</a>
+      </button>
+    </div>
+
+
+    <div class="w-full h-13 border-b border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%] max-sm:ml-[2px] h-[auto] py-2 min-h-[14] my-1 ml-3 max-sm:px-1 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('editor/assignments')" [class.bg-red-500]="
+        isActive('editor/assignments') || isActive('editor/orderdetails/'+ scanId) || isActive('editor/assignment-feedback/'+ scanId) || isActive('editor/assignment-clarity/'+ scanId)
+      " [class.text-white]="
+        isActive('editor/assignments') || isActive('editor/orderdetails/'+ scanId) || isActive('editor/assignment-feedback/'+ scanId) || isActive('editor/assignment-clarity/'+ scanId)
+      " [class.rounded-md]="
+        isActive('editor/assignments') || isActive('editor/orderdetails/' + scanId) || isActive('editor/assignment-feedback/'+ scanId) || isActive('editor/assignment-clarity/'+ scanId)
+      ">
+        <img *ngIf="isActive('editor/assignments')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="sa71Src" />
+        <img *ngIf="isActive('editor/orderdetails/' + scanId)" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy" [alt]="avatarAlt" [src]="sa71Src" />
+        <img *ngIf="isActive('editor/assignment-feedback/' + scanId)" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy" [alt]="avatarAlt" [src]="sa71Src" />
+        <img *ngIf="isActive('editor/assignment-clarity/' + scanId)" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy" [alt]="avatarAlt" [src]="sa71Src" />
+        <img
+          *ngIf="!isActive('editor/assignments') && !isActive('editor/orderdetails/' + scanId) && !isActive('editor/assignment-feedback/' + scanId) && !isActive('editor/assignment-clarity/' + scanId)"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy" [alt]="avatarAlt" [src]="sa7Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">Assignments</a>
+      </button>
+    </div>
+
+    <div class="w-full h-13 border-b border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%] max-sm:ml-[2px] h-[auto] min-h-[14] my-1 ml-3 max-sm:px-1 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('editor/proofReading')"
+        [class.bg-red-500]="isActive('editor/proofReading') || isActive('editor/proofReadingEditordetails/'+ scanId)"
+        [class.text-white]="isActive('editor/proofReading') || isActive('editor/proofReadingEditordetails/'+ scanId)"
+        [class.rounded-md]="isActive('editor/proofReading') || isActive('editor/proofReadingEditordetails/'+ scanId)">
+        <img *ngIf="isActive('editor/proofReading')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s10Src" />
+        <img *ngIf="isActive('editor/proofReadingEditordetails/'+ scanId)" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy" [alt]="avatarAlt" [src]="s10Src" />
+        <img *ngIf="!isActive('editor/proofReading') && !isActive('editor/proofReadingEditordetails/'+ scanId)"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy" [alt]="avatarAlt" [src]="s3Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">Proofreading and Editing</a>
+      </button>
+    </div>
+
+    <div class="w-full h-13 border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%]  max-sm:ml-[3px] h-[auto] min-h-[14] my-1 py-2  ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('/logout')" [class.bg-red-500]="isActive('/logout')"
+        [class.text-white]="isActive('/logout')" [class.rounded-md]="isActive('/logout')">
+        <img *ngIf="isActive('/logout')" class="w-6 my-auto h-6" loading="lazy" [alt]="avatarAlt" [src]="slSrc" />
+        <img *ngIf="!isActive('/logout')" class="w-6 my-auto h-6" loading="lazy" [alt]="avatarAlt" [src]="slSrc" />
+        <a (click)="logout()" class="my-auto  max-sm:text-sm  max-lg:text-base text-xl">Logout</a>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+
+<div
+*ngIf="sidebarmodel"
+  class="lg:hidden w-[250px] max-h-[100dvh]  h-full fixed  bg-white flex flex-col border-r border-gray-300 items-start justify-start  text-[18px]">
+  <!-- user div -->
+  <div *ngIf="accountType === 'user'">
+    <div class="w-full h-10 border-b border-gray-300">
+      <button label="Button" pTooltip="Confirm to proceed" tooltipPosition="top" (click)="toggleModal2()"
+        class="w-[89%] max-sm:w-[95%] max-sm:ml-[3px] h-8 my-1 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('user/dashboard')"
+        [class.bg-red-500]="isActive('user/dashboard') || isActive('user/subscriptions')"
+        [class.text-white]="isActive('user/dashboard') || isActive('user/subscriptions')"
+        [class.rounded-md]="isActive('user/dashboard') || isActive('user/subscriptions')">
+
+        <img *ngIf="isActive('user/dashboard')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s7Src" />
+
+        <img *ngIf="!isActive('user/dashboard')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s1Src" />
+
+        <a class="my-auto max-sm:text-sm   max-lg:text-base text-xl">Dashboard</a>
+      </button>
+    </div>
+
+    <div class="w-full max-lg:h-20 h-[auto] min-h-[14] border-b border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%] h-18  max-sm:ml-[3px] lg:h-[3.20rem] mt-1 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="toggleModal2()" (click)="navigateTo('user/plagiarism')"
+        [class.bg-red-500]="isActive('user/plagiarism')" [class.text-white]="isActive('user/plagiarism')"
+        [class.rounded-md]="isActive('user/plagiarism')">
+        <img *ngIf="isActive('user/plagiarism')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s13Src" />
+        <img *ngIf="!isActive('user/plagiarism')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s2Src" />
+        <a class="my-auto  max-sm:text-sm  max-lg:text-base text-xl">Plagiarism and AI Detection</a>
+      </button>
+    </div>
+
+    <!-- <div class="w-full  h-[auto] min-h-[14] border-b border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%] max-sm:ml-[3px] h-12 my-1 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('user/ai-writing')" [class.bg-red-500]="isActive('user/ai-writing')"
+        [class.text-white]="isActive('user/ai-writing')" [class.rounded-md]="isActive('user/ai-writing')">
+        <img *ngIf="isActive('user/ai-writting')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s13Src" />
+        <img *ngIf="!isActive('user/ai-writting')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s2Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-black text-xl">AI Writing</a>
+      </button>
+    </div> -->
+
+    <div class="w-full h-16 border-b border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%]  max-sm:ml-[2px] h-[auto] min-h-[14] my-1  ml-3 max-sm:px-1 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('user/proofReading&Editing')" [class.bg-red-500]="isActive('user/proofReading&Editing')"
+        [class.text-white]="isActive('user/proofReading&Editing')"
+        [class.rounded-md]="isActive('user/proofReading&Editing')">
+        <img *ngIf="isActive('user/proofReading&Editing')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s10Src" />
+        <img *ngIf="!isActive('user/proofReading&Editing')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s3Src" />
+        <a class="my-auto  max-sm:text-sm  max-lg:text-base text-xl">Proofreading and Editing</a>
+      </button>
+    </div>
+    <!--
+    <div class="w-full h-12 border-b border-gray-300">
+      <button
+      class="w-[89%] max-sm:w-[95%]  max-sm:ml-[3px] h-[2.75rem] mt-1 lg:h-10 lg:my-1  ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+      (click)="navigateTo('user/academicToolkit')"
+        [class.bg-red-500]="isActive('user/academicToolkit')"
+        [class.text-white]="isActive('user/academicToolkit')"
+        [class.rounded-md]="isActive('user/academicToolkit')"
+      >
+        <img
+          *ngIf="isActive('user/academicToolkit')"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy"
+          [alt]="avatarAlt"
+          [src]="s9Src"
+        />
+        <img
+          *ngIf="!isActive('user/academicToolkit')"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy"
+          [alt]="avatarAlt"
+          [src]="s4Src"
+        />
+        <a class="my-auto  max-sm:text-sm  max-lg:text-base text-xl">Academic Toolkit</a>
+      </button>
+    </div> -->
+
+    <div class="w-full h-12 border-b border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%]  max-sm:ml-[3px] h-[2.75rem] mt-1 lg:h-10 lg:my-1  ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('user/assignmentAid')" [class.bg-red-500]="
+          isActive('user/assignmentAid') || isActive('user/expandedOrder')
+        " [class.text-white]="
+          isActive('user/assignmentAid') || isActive('user/expandedOrder')
+        " [class.rounded-md]="
+          isActive('user/assignmentAid') || isActive('user/expandedOrder')
+        ">
+        <img *ngIf="isActive('user/assignmentAid')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s11Src" />
+        <img *ngIf="isActive('user/expandedOrder')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s11Src" />
+        <img *ngIf="!isActive('user/assignmentAid') && !isActive('user/expandedOrder')"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy" [alt]="avatarAlt" [src]="s5Src" />
+        <a class="my-auto  max-sm:text-sm  max-lg:text-base text-xl">Assignment Aid</a>
+      </button>
+    </div>
+    <!-- <div class="w-full h-10 border-b border-gray-300">
+      <button
+      class="w-[89%] max-sm:w-[95%]  max-sm:ml-[3px] h-9 my-1  ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+      (click)="navigateTo('user/showeditor')"
+        [class.bg-red-500]="isActive('user/showeditor')"
+        [class.text-white]="isActive('user/showeditor')"
+        [class.rounded-md]="isActive('user/showeditor')"
+      >
+        <img
+          *ngIf="isActive('user/showeditor')"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy"
+          [alt]="avatarAlt"
+          [src]="sa61Src"
+        />
+        <img
+          *ngIf="!isActive('user/showeditor')"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy"
+          [alt]="avatarAlt"
+          [src]="sa6Src"
+        />
+        <a class="my-auto  max-sm:text-sm  max-lg:text-base text-xl">Editors</a>
+      </button>
+    </div> -->
+    <div class="w-full h-10 border-b border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%] max-sm:ml-[3px] h-9 my-1 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('user/myscans')"
+        [class.bg-red-500]="isActive('user/myscans') || isActive('user/scanreport/' + scanId)"
+        [class.text-white]="isActive('user/myscans') || isActive('user/scanreport/' + scanId)"
+        [class.rounded-md]="isActive('user/myscans') || isActive('user/scanreport/' + scanId)">
+
+        <img *ngIf="isActive('user/myscans')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="sa51Src" />
+
+        <img *ngIf="isActive('user/scanreport/' + scanId)" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="sa51Src" />
+
+        <img *ngIf="!isActive('user/myscans') && !isActive('user/scanreport/' + scanId)"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy" [alt]="avatarAlt" [src]="sa5Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">My Scans</a>
+      </button>
+    </div>
+
+
+    <!-- <div class="w-full h-12 border-b border-gray-300">
+      <button
+      class="w-[89%] max-sm:w-[95%]  max-sm:ml-[3px] h-[2.75rem] mt-1 lg:h-10 lg:my-1  ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+      (click)="navigateTo('user/dataAnalysis')"
+        [class.bg-red-500]="
+          isActive('user/dataAnalysis') || isActive('user/dataAnalysisPricing')
+        "
+        [class.text-white]="
+          isActive('user/dataAnalysis') || isActive('user/dataAnalysisPricing')
+        "
+        [class.rounded-md]="
+          isActive('user/dataAnalysis') || isActive('user/dataAnalysisPricing')
+        "
+      >
+        <img
+          *ngIf="isActive('user/dataAnalysis')"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy"
+          [alt]="avatarAlt"
+          [src]="s10Src"
+        />
+        <img
+          *ngIf="!isActive('user/dataAnalysis')"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy"
+          [alt]="avatarAlt"
+          [src]="s3Src"
+        />
+        <a class="my-auto  max-sm:text-sm  max-lg:text-base text-xl">Data Analysis</a>
+      </button>
+    </div> -->
+    <div class="w-full h-10 border-b border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%]  max-sm:ml-[3px] h-9 my-1  ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('user/showorder')" [class.bg-red-500]="
+          isActive('user/showorder') || isActive('user/orderdetails/' + scanId)
+        " [class.text-white]="
+          isActive('user/showorder') || isActive('user/orderdetails/' + scanId)
+        " [class.rounded-md]="
+          isActive('user/showorder') || isActive('user/orderdetails/' + scanId)
+        ">
+        <img *ngIf="isActive('user/showorder')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="sa41Src" />
+
+        <img *ngIf="isActive('user/orderdetails/' + scanId)" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy" [alt]="avatarAlt" [src]="sa41Src" />
+        <img *ngIf="!isActive('user/showorder') && !isActive('user/orderdetails/' + scanId)"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy" [alt]="avatarAlt" [src]="sa4Src" />
+        <a class="my-auto  max-sm:text-sm  max-lg:text-base text-xl">My Orders</a>
+      </button>
+    </div>
+    <div class="w-full h-10 border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%]  max-sm:ml-[3px] h-9 my-1  ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('/logout')" [class.bg-red-500]="isActive('/logout')"
+        [class.text-white]="isActive('/logout')" [class.rounded-md]="isActive('/logout')">
+        <img *ngIf="isActive('/logout')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy" [alt]="avatarAlt"
+          [src]="slSrc" />
+        <img *ngIf="!isActive('/logout')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy" [alt]="avatarAlt"
+          [src]="slSrc" />
+        <a (click)="logout()"
+          class="my-auto max-sm:text-sm max-lg:text-base text-xl font-Satoshi font-medium leading-6 text-left">Logout</a>
+      </button>
+    </div>
+  </div>
+  <!-- admin div -->
+
+  <div class="w-full" *ngIf="accountType === 'admin'">
+    <div class="w-full h-[auto] min-h-[14] border-b border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%] max-sm:ml-[3px] h-12 my-1 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('admin/dashboard')" [class.bg-red-500]="isActive('admin/dashboard')"
+        [class.text-white]="isActive('admin/dashboard')" [class.rounded-md]="isActive('admin/dashboard')">
+        <img *ngIf="isActive('admin/dashboard')" class="max-sm:w-4 max-sm:h-4 w-6 my-auto h-6" loading="lazy"
+          [alt]="avatarAlt" [src]="s7Src" />
+        <img *ngIf="!isActive('admin/dashboard')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s1Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">Dashboard</a>
+      </button>
+    </div>
+
+    <div class="w-full h-[auto] min-h-[14] border-b border-gray-300">
+      <button class="w-[89%] h-12 my-1 max-sm:ml-2 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('admin/showeditor')" [class.bg-red-500]="isActive('admin/showeditor')"
+        [class.text-white]="isActive('admin/showeditor')" [class.rounded-md]="isActive('admin/showeditor')">
+        <img *ngIf="isActive('admin/showeditor')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="sa61Src" />
+        <img *ngIf="!isActive('admin/showeditor')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="sa6Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">Editors</a>
+      </button>
+    </div>
+
+
+    <div class="w-full h-[auto] min-h-[14] border-b border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[90%] h-12 my-1 max-sm:ml-2 ml-3 max-sm:px-1 px-2 text-left flex max-sm:gap-1 rounded-md max-lg:gap-3 gap-6"
+        (click)="navigateTo('admin/assignments')"
+        [class.bg-red-500]="isActive('admin/assignments') || isActive('admin/orderdetails/' + scanId)"
+        [class.text-white]="isActive('admin/assignments') || isActive('admin/orderdetails/' + scanId)"
+        [class.rounded-md]="isActive('admin/assignments') || isActive('admin/orderdetails/' + scanId)">
+        <img *ngIf="isActive('admin/assignments')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s10Src" />
+        <img *ngIf="isActive('admin/orderdetails/' + scanId)" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy" [alt]="avatarAlt" [src]="s10Src" />
+        <img *ngIf="!isActive('admin/assignments') && !isActive('admin/orderdetails/' + scanId)"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy" [alt]="avatarAlt" [src]="s3Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">Assignments</a>
+      </button>
+    </div>
+
+
+    <div class="w-full h-[auto] min-h-[14] border-b border-gray-300">
+      <button class="w-[89%] h-12 my-1 max-sm:ml-2 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('admin/feedbacks')" [class.bg-red-500]="
+        isActive('admin/feedbacks') || isActive('admin/feedbacks')
+      " [class.text-white]="
+        isActive('admin/feedbacks') || isActive('admin/feedbacks')
+      " [class.rounded-md]="
+        isActive('admin/feedbacks') || isActive('admin/feedbacks')
+      ">
+        <img *ngIf="isActive('admin/feedbacks')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="sa21Src" />
+        <img *ngIf="!isActive('admin/feedbacks')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="sa2Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">Feedbacks</a>
+      </button>
+    </div>
+
+    <div class="w-full h-[auto] min-h-[14] border-b border-gray-300">
+      <button class="w-[89%] h-12 my-1 max-sm:ml-2 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('admin/admin-coupons')" [class.bg-red-500]="
+            isActive('admin/admin-coupons') || isActive('admin/admin-coupons')
+          " [class.text-white]="
+            isActive('admin/admin-coupons') || isActive('admin/admin-coupons')
+          " [class.rounded-md]="
+            isActive('admin/admin-coupons') || isActive('admin/admin-coupons')
+          ">
+        <img *ngIf="isActive('admin/admin-coupons')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="c2Src" />
+        <img *ngIf="!isActive('admin/admin-coupons')" class="w-7 my-auto h-7 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="c1Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">Coupons</a>
+      </button>
+    </div>
+
+    <div class="w-full h-[auto] min-h-[14] border-b border-gray-300">
+      <button class="w-[90%] h-[auto] min-h-[14] py-2 max-sm:ml-2 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-2 gap-6"
+        (click)="navigateTo('admin/usermanagement')" [class.bg-red-500]="
+        isActive('admin/usermanagement') || isActive('admin/usermanagement')
+      " [class.text-white]="
+        isActive('admin/usermanagement') || isActive('admin/usermanagement')
+      " [class.rounded-md]="
+        isActive('admin/usermanagement') || isActive('admin/usermanagement')
+      ">
+        <img *ngIf="isActive('admin/usermanagement')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="sa31Src" />
+        <img *ngIf="!isActive('admin/usermanagement')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="sa3Src" />
+        <a class="my-auto max-sm:text-[12px] max-lg:text-base text-xl">User Management</a>
+      </button>
+    </div>
+
+    <div class="w-full h-[auto] min-h-[14] border-b border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%]  max-sm:ml-[3px] h-12 my-1  ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('admin/financialreport')" [class.bg-red-500]="
+    isActive('admin/financialreport') || isActive('admin/financialreport')
+  " [class.text-white]="
+    isActive('admin/financialreport') || isActive('admin/financialreport')
+  " [class.rounded-md]="
+    isActive('admin/financialreport') || isActive('admin/financialreport')
+  ">
+        <img *ngIf="isActive('admin/financialreport')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="sa1Src" />
+        <img *ngIf="!isActive('admin/financialreport')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="saSrc" />
+        <a class="my-auto  max-sm:text-sm  max-lg:text-base text-xl">Financial Reports</a>
+      </button>
+    </div>
+
+    <div class="w-full h-[auto] min-h-[14] border-b border-gray-300">
+      <button class="w-[90%] h-[auto] min-h-[14] py-2 max-sm:ml-2 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-2 gap-6"
+        (click)="navigateTo('admin/proofReading')" [class.bg-red-500]="
+    isActive('admin/proofReading') || isActive('admin/proofReadingdetails/'+ scanId)
+  " [class.text-white]="
+    isActive('admin/proofReading') || isActive('admin/proofReadingdetails/' + scanId)
+  " [class.rounded-md]="
+    isActive('admin/proofReading') || isActive('admin/proofReadingdetails/'+ scanId)
+  ">
+        <img *ngIf="isActive('admin/proofReading')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s11Src" />
+        <img *ngIf="isActive('admin/proofReadingdetails/'+ scanId)" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy" [alt]="avatarAlt" [src]="s11Src" />
+        <img *ngIf="!isActive('admin/proofReading') && !isActive('admin/proofReadingdetails/'+ scanId)"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy" [alt]="avatarAlt" [src]="s5Src" />
+        <a class="my-auto max-sm:text-[12px] max-lg:text-base text-xl">Proofreading and Editing</a>
+      </button>
+    </div>
+
+    <div class="w-full h-[auto] min-h-[14] border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%]  max-sm:ml-[3px] h-12 my-1  ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('/logout')" [class.bg-red-500]="isActive('/logout')"
+        [class.text-white]="isActive('/logout')" [class.rounded-md]="isActive('/logout')">
+        <img *ngIf="isActive('/logout')" class="w-6 my-auto h-6" loading="lazy" [alt]="avatarAlt" [src]="slSrc" />
+        <img *ngIf="!isActive('/logout')" class="w-6 my-auto h-6" loading="lazy" [alt]="avatarAlt" [src]="slSrc" />
+        <a (click)="logout()" class="my-auto  max-sm:text-sm  max-lg:text-base text-xl">Logout</a>
+      </button>
+    </div>
+  </div>
+
+  <!-- editors div -->
+
+  <div class="w-full" *ngIf="accountType === 'editor'">
+
+    <div class="w-full h-13 border-b border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%]  max-sm:ml-[3px] h-[auto] min-h-[14] my-1  py-2 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('editor/dashboard')" [class.bg-red-500]="isActive('editor/dashboard')"
+        [class.text-white]="isActive('editor/dashboard')" [class.rounded-md]="isActive('editor/dashboard')">
+        <img *ngIf="isActive('editor/dashboard')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s7Src" />
+        <img *ngIf="!isActive('editor/dashboard')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s1Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">Dashboard</a>
+      </button>
+    </div>
+
+
+    <div class="w-full h-13 border-b border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%] max-sm:ml-[2px] h-[auto] min-h-[14] my-1 ml-3 py-2 max-sm:px-1 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('editor/assignments')" [class.bg-red-500]="
+        isActive('editor/assignments') || isActive('editor/orderdetails/'+ scanId)
+      " [class.text-white]="
+        isActive('editor/assignments') || isActive('editor/orderdetails/'+ scanId)
+      " [class.rounded-md]="
+        isActive('editor/assignments') || isActive('editor/orderdetails/' + scanId)
+      ">
+        <img *ngIf="isActive('editor/assignments')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="sa71Src" />
+        <img *ngIf="isActive('editor/orderdetails/' + scanId)" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy" [alt]="avatarAlt" [src]="sa71Src" />
+        <img *ngIf="!isActive('editor/assignments') && !isActive('editor/orderdetails/' + scanId)"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy" [alt]="avatarAlt" [src]="sa7Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">Assignments</a>
+      </button>
+    </div>
+
+    <div class="w-full h-13 border-b border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%] max-sm:ml-[2px] h-[auto] min-h-[14] my-1 ml-3 py-2 max-sm:px-1 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('editor/proofReading')"
+        [class.bg-red-500]="isActive('editor/proofReading') || isActive('editor/proofReadingEditordetails/'+ scanId)"
+        [class.text-white]="isActive('editor/proofReading') || isActive('editor/proofReadingEditordetails/'+ scanId)"
+        [class.rounded-md]="isActive('editor/proofReading') || isActive('editor/proofReadingEditordetails/'+ scanId)">
+        <img *ngIf="isActive('editor/proofReading')" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy"
+          [alt]="avatarAlt" [src]="s10Src" />
+        <img *ngIf="isActive('editor/proofReadingEditordetails/'+ scanId)" class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4"
+          loading="lazy" [alt]="avatarAlt" [src]="s10Src" />
+        <img *ngIf="!isActive('editor/proofReading') && !isActive('editor/proofReadingEditordetails/'+ scanId)"
+          class="w-6 my-auto h-6 max-sm:w-4 max-sm:h-4" loading="lazy" [alt]="avatarAlt" [src]="s3Src" />
+        <a class="my-auto max-sm:text-sm max-lg:text-base text-xl">Proofreading and Editing</a>
+      </button>
+    </div>
+
+    <div class="w-full h-13 border-gray-300">
+      <button
+        class="w-[89%] max-sm:w-[95%]  max-sm:ml-[3px] h-[auto] min-h-[14] my-1 py-2 ml-3 max-sm:px-2 px-2 text-left flex max-lg:gap-3 gap-6"
+        (click)="navigateTo('/logout')" [class.bg-red-500]="isActive('/logout')"
+        [class.text-white]="isActive('/logout')" [class.rounded-md]="isActive('/logout')">
+        <img *ngIf="isActive('/logout')" class="w-6 my-auto h-6" loading="lazy" [alt]="avatarAlt" [src]="slSrc" />
+        <img *ngIf="!isActive('/logout')" class="w-6 my-auto h-6" loading="lazy" [alt]="avatarAlt" [src]="slSrc" />
+        <a (click)="logout()" class="my-auto  max-sm:text-sm  max-lg:text-base text-xl">Logout</a>
+      </button>
+    </div>
+
+  </div>
+</div>

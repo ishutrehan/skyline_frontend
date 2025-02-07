@@ -1,0 +1,564 @@
+<div class="w-[100%]">
+  <app-header></app-header>
+  <div class="max-sm:hidden">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="w-[80%] lg-max:w-[100%] mt-[88px] h-auto lg:ml-[20%] overflow-hidden">
+    <div class="w-[98%] mx-auto">
+      <div class="w-full h-auto  lg:h-[5rem] lg-max:h-[5rem]  flex justify-between items-center">
+        <!-- only heading -->
+
+        <div class="w-[98%] md:w-[50%]">
+          <div class="flex justify-between pl-4  w-[100%]">
+            <h1 class="text-[#FF565F] w-[90%] max-sm:w-[90%] font-bold font-satoshi text-lg">
+              Detection Modes -{{
+              aiContentDetection && plagiarismDetection
+              ? "AI Content & Plagiarism Detection"
+              : aiContentDetection === true
+              ? "AI Content Detection"
+              : plagiarismDetection === true
+              ? "Plagiarism Detection"
+              : "None"
+              }}
+            </h1>
+          </div>
+        </div>
+
+        <div class="flex w-[90%] md:w-[45%]  pr-2 items-center  justify-end ">
+          <h1 [ngClass]="{
+                'text-blue-400': !plagiarismDetection && checkvalid
+              }" class="font-bold text-lg font-satoshi text-center mr-4 text-[#000000]">
+            Plagiarism & AI Detection
+          </h1>
+          <div class="flex h-6">
+            <input type="checkbox" id="toggle2" class="hidden" (change)="reflectPriceOnToggle(noOFWord)"
+              [(ngModel)]="plagiarismDetection" />
+            <label for="toggle2" class="flex items-center cursor-pointer w-[30px]">
+              <div class="relative">
+                <div class="w-[30px] h-3 rounded-full shadow-inner" [ngClass]="{
+                      'bg-red-200': plagiarismDetection,
+                      'bg-gray-300': !plagiarismDetection
+                    }"></div>
+                <div
+                  class="dot absolute w-3 h-3 rounded-full shadow-md top-0  transition-transform transform duration-4000"
+                  [ngClass]="{
+                      'bg-red-500 right-0': plagiarismDetection,
+                      'bg-gray-500 left-0': !plagiarismDetection
+                    }"></div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+      </div>
+      <!-- second div -->
+      <ng-container *ngIf="isLoading">
+        <app-loader></app-loader>
+      </ng-container>
+
+      <div class="w-[100%] mx-auto md:flex mt-[2%] justify-between">
+        <!-- first box -->
+        <div
+          class="border-2 border-gray-200 max-sm:my-2 max-md:h-[32rem] h-[auto] min-h-[24rem] rounded-lg w-full md:w-[35%]">
+          <div class="m-4 mx-auto border-dashed border-2 rounded-lg border-red-300 h-[92%]  w-[90%] relative">
+            <p class="w-[100%] my-4 text-center flex items-center justify-center">
+              Supported Files
+              <img (mouseover)="handleToogleTooltip()" (mouseleave)="handleTooltipDisable()" class="h-4 w-4 mx-2 my-1"
+                [src]="infoSrc" alt="" />
+            </p>
+            <div *ngIf="toggle_tooltip"
+              class="absolute z-10 top-[12%] right-[15%] border bg-gray-50 border-red-300 h-auto w-auto p-4 rounded-md">
+              <ul class="ml-4 p-0 whitespace-nowrap list-disc text-gray-600">
+                <li class="my-1">.pdf</li>
+                <li class="my-1">.docx</li>
+                <li class="my-1">.doc</li>
+                <li class="my-1">.txt</li>
+                <li class="my-1">.xlsx</li>
+                <li class="my-1">.png</li>
+                <li class="my-1">.jpg</li>
+                <li class="my-1">.jpeg</li>
+                <li class="my-1">.ms-word</li>
+                <li class="my-1">.spreadsheet</li>
+              </ul>
+            </div>
+
+            <div class="mt-[10%] md-max:mt-[0%] ">
+              <!-- drag and drop -->
+              <!-- <div class=" max-sm:mx-[20%] items-center">
+                <div>
+                  <input
+                    type="file"
+                    style="display: none"
+                    (change)="handleFileInput($event)"
+                    accept=".pdf,.docx,.doc,.txt,.xlsx"
+                    id="fileInput"
+                    [disabled]="false"
+                  />
+                  <div class="">
+                    <button
+                      (click)="browseFiles($event); onChange($event)"
+                      class="text-primary xl:ml-[20%] lg:ml-[11%]"
+                      [ngClass]="{
+                        'text-red-500':
+                          aiContentDetection || plagiarismDetection,
+                        'text-gray-500':
+                          !aiContentDetection && !plagiarismDetection
+                      }"
+                    >
+                      <div
+                        class="rounded-lg h-14 w-18"
+                        [ngClass]="{
+                          'bg-red-200':
+                            aiContentDetection || plagiarismDetection,
+                          'bg-gray-300':
+                            !aiContentDetection && !plagiarismDetection
+                        }"
+                      >
+                        <svg
+                          class="rounded-lg ml-[24%] h-12 w-16"
+                          width="64px"
+                          height="64px"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          stroke="#D1D5DB"
+                        >
+                          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                          <g
+                            id="SVGRepo_tracerCarrier"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          ></g>
+                          <g id="SVGRepo_iconCarrier">
+                            <path
+                              d="M7 10V9C7 6.23858 9.23858 4 12 4C14.7614 4 17 6.23858 17 9V10C19.2091 10 21 11.7909 21 14C21 15.4806 20.1956 16.8084 19 17.5M7 10C4.79086 10 3 11.7909 3 14C3 15.4806 3.8044 16.8084 5 17.5M7 10C7.43285 10 7.84965 10.0688 8.24006 10.1959M12 12V21M12 12L15 15M12 12L9 15"
+                              stroke="#6d6d6f"
+                              stroke-width="1.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            ></path>
+                          </g>
+                        </svg>
+                      </div>
+                      <p class="text-[20px]">Drag and Drop</p>
+                    </button>
+                  </div>
+                </div>
+              </div> -->
+
+              <div class=" w-full  items-center">
+                <div class="w-full">
+                  <input type="file" style="display: none" (change)="handleFileInput1($event)"
+                    accept=".pdf,.docx,.doc,.txt,.xlsx" id="fileInput" />
+                  <div class="drag-drop-zone" (dragover)="handleDragOver($event)" (dragleave)="handleDragLeave($event)"
+                    (drop)="handleFileDrop($event)">
+                    <div class="flex justify-center">
+                      <button class="text-primary" [ngClass]="{
+                          'text-red-500':
+                            aiContentDetection || plagiarismDetection,
+                          'text-gray-500':
+                            !aiContentDetection && !plagiarismDetection
+                        }">
+                        <div
+                          class="rounded-lg h-14 w-18 md-max:w-[200px] md-max:h-[6rem] flex items-center justify-center mx-auto"
+                          [ngClass]="{
+                            ' bg-blue-400 text-white': checkvalid && !fileName
+                          }" [ngClass]="{
+                            'bg-red-200':
+                              aiContentDetection || plagiarismDetection,
+                            'bg-gray-300':
+                              !aiContentDetection && !plagiarismDetection
+                          }">
+                          <svg class="  rounded-lg h-12 w-16 " width="64px" height="64px" viewBox="0 0 24 24"
+                            fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#D1D5DB">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                              <path
+                                d="M7 10V9C7 6.23858 9.23858 4 12 4C14.7614 4 17 6.23858 17 9V10C19.2091 10 21 11.7909 21 14C21 15.4806 20.1956 16.8084 19 17.5M7 10C4.79086 10 3 11.7909 3 14C3 15.4806 3.8044 16.8084 5 17.5M7 10C7.43285 10 7.84965 10.0688 8.24006 10.1959M12 12V21M12 12L15 15M12 12L9 15"
+                                stroke="#6d6d6f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                              </path>
+                            </g>
+                          </svg>
+                        </div>
+                        <p class="text-[20px]">Drag and Drop</p>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p class="font-semibold max-lg:my-3 flex justify-center">or</p>
+            </div>
+
+            <div class="flex justify-evenly items-center h-[5rem] mt-2 w-full">
+              <!-- Button to trigger modal -->
+              <div class="relative">
+                <button class="py-2 px-4 rounded  h-[100%] w-[100%]"
+                  (click)="toggleModal()" [ngClass]="{
+                    ' bg-blue-400 text-white': checkvalid && !fileName
+                  }" [ngClass]="{
+                    'bg-red-200': aiContentDetection || plagiarismDetection,
+                    'bg-gray-300': !aiContentDetection && !plagiarismDetection
+                  }">
+                  Text
+                </button>
+              </div>
+
+              <!-- Modal -->
+              <div *ngIf="showModal" class="fixed inset-0 z-50 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
+                (click)="toggleModal()">
+                <div
+                  class="relative top-20 mx-auto p-5 border max-sm:w-[70%] md:w-[40%] w-[25%] shadow-lg rounded-md bg-white"
+                  (click)="$event.stopPropagation()">
+                  <div class="mt-3 text-center">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                      Add Your Text
+                    </h3>
+                    <div class="mt-2 px-7 py-3">
+                      <textarea [(ngModel)]="textValue" class="w-full h-36 p-2 border rounded resize-none"
+                        placeholder="Must Enter Valid Text !"></textarea>
+                    </div>
+                    <div class="items-center px-4 py-3">
+                      <button class="bg-red-500 text-white px-4 z-50 py-2 rounded hover:bg-red-700" (click)="
+                          handlePlainTextInput(); toggleModal(); onClick()
+                        ">
+                        Submit
+                      </button>
+                      <button class="ml-4 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"
+                        (click)="toggleModal()">
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="relative">
+                <button
+                  class="py-2 px-4  rounded cursor-pointer h-[100%] w-[100%] max-sm:mx-[5.5rem] max-sm:w-[50%]"
+                  [ngClass]="{
+                  'bg-blue-400 text-white': checkvalid && !fileName,
+                  'bg-red-200': aiContentDetection || plagiarismDetection,
+                  'bg-gray-300': !aiContentDetection && !plagiarismDetection
+                }">
+                  Files
+                </button>
+                <input #fileInput class="absolute inset-0 opacity-0 cursor-pointer" type="file"
+                  accept=".pdf,.docx,.doc,.txt,.xlsx" (change)="handleFileInput($event)" [disabled]="false"
+                  (click)="onChange($event)" />
+              </div>
+
+              <div *ngIf="showModal1"
+                class="fixed inset-0 z-50 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+                <div
+                  class="relative top-20 mx-auto px-5 pt-3 pb-5 border h-[15rem] max-sm:w-[70%] md:w-[40%] w-[50%] shadow-lg rounded-xl bg-white">
+                  <span class="text-red-600 font-extrabold cursor-pointer" (click)="closeProgressBar()">X</span>
+
+                  <div class="mt-[3rem]">
+                    <div class="mt-[2rem] flex justify-center">
+                      <h3 class="text-lg max-sm:text-sm mt-3 leading-6 font-medium text-black">
+                        {{ progressValue }}% Completed
+                      </h3>
+                    </div>
+
+                    <mat-progress-bar class="h-6 mt-[2rem] rounded-lg bg-red-100" color="warn"
+                      style="height: 20px; background-color: #f59fa4" mode="determinate" *ngIf="isUploading"
+                      [value]="uploadProgress">
+                    </mat-progress-bar>
+                    <div class="mt-3 flex justify-between">
+                      <h3 class="text-lg leading-6 font-medium text-gray-900">
+                        File Name -{{ fileName }}
+                      </h3>
+                      <h3 class="text-lg max-sm:text-sm leading-6 font-medium text-gray-900">
+                        Word Count-
+                        {{ noOFWord }}
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="relative">
+                <button
+                  class="py-2 px-4 rounded cursor-pointer h-[100%] w-[100%] max-sm:mx-[5.5rem] max-sm:w-[50%]"
+                  (click)="toggleModalOcr()" [ngClass]="{
+                    ' bg-blue-400 text-white': checkvalid && !fileName
+                  }" [ngClass]="{
+                    'bg-red-200': aiContentDetection || plagiarismDetection,
+                    'bg-gray-300': !aiContentDetection && !plagiarismDetection
+                  }">
+                  OCR
+                </button>
+
+                <!-- Modal -->
+                <div *ngIf="showOcr"
+                  class="fixed inset-0 z-50 bg-gray-600 bg-opacity-50 overflow-y-auto pt-20 h-full w-full"
+                  (click)="toggleModalOcr()">
+                  <div class="top-20 mx-auto p-5 border max-sm:w-[70%] md:w-[40%] w-[20%] shadow-lg rounded-md bg-white"
+                    (click)="$event.stopPropagation()">
+                    <div class="mt-3 text-center">
+                      <div class="flex justify-center">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                          Select language that present in image
+                        </h3>
+                      </div>
+
+                      <div class="flex justify-center gap-9 max-sm:gap-2 mt-5">
+                        <select name="language" id="language" class="max-sm:text-sm text-lg md:text-[12px] rounded px-5"
+                          (change)="onLanguageSelect($event)">
+                          <option *ngFor="let language of Language" [value]="language.language">
+                            {{ language.language }}
+                          </option>
+                        </select>
+
+                        <div class="relative">
+                          <button class="py-2 px-8 rounded cursor-pointer h-[100%] w-[40%]" [ngClass]="{
+                              'bg-gray-300': !selectedLanguageValue,
+                              'bg-red-200': selectedLanguageValue
+                            }" [disabled]="!selectedLanguageValue">
+                            <p class="ml-[-1rem]">OCR</p>
+                          </button>
+                          <input class="absolute inset-0 opacity-0 cursor-pointer" type="file" accept=".jpg,.jpeg,.png"
+                            [disabled]="!selectedLanguageValue" (click)="onChange($event)"
+                            (change)="handleFileInput($event)" />
+                        </div>
+                      </div>
+                      <div class="items-center px-3 py-3">
+                        <button class="ml-4 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"
+                          (click)="toggleModalOcr()">
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 mb-8">
+              <h1
+                class="text-[#FF565F] w-[100%] font-bold font-satoshi justify-center flex text-lg items-center max-lg:text-sm">
+                Word Count Counter - {{ noOFWord }}
+              </h1>
+            </div>
+          </div>
+        </div>
+
+        <!-- second box -->
+        <div class="border-2 w-full md:w-[63%] border-gray-200 rounded-lg py-1">
+          <div class="w-[98%] mt-2">
+            <h1 class="text-center text-[#FF565F] font-bold font-satoshi">
+              Price Per Document
+            </h1>
+          </div>
+
+          <div class="md:flex w-[98%] md:w-[100%]">
+            <div *ngIf="!showCommentedCode" class="w-full md:w-[100%]">
+              <div class="flex w-[98%] md:w-[90%] mx-auto justify-between items-center md-max:px-4  mt-3">
+                <h1 class="text-[#8A9399] ">Current Currency</h1>
+                <p class="bg-gray-100 font-semibold text-gray-500 rounded-md py-1 px-2">$USD</p>
+              </div>
+              <div class="w-[90%] rounded mx-auto mt-3 h-auto bg-gray-100">
+                <div class="flex justify-between  items-center py-2 px-2">
+                  <p class="font-normal font-satoshi text-[#000000]">
+                    Small Document <br />
+                    <span class="text-[#8A9399] font-satoshi">
+                      0 - 3,500 words</span>
+                  </p>
+                  <p class="text-[#FF565F] px-2 font-semibold">
+                    $9.99
+                  </p>
+                </div>
+              </div>
+              <div class="w-[90%] rounded mx-auto mt-3 h-auto bg-gray-100">
+                <div class="flex justify-between  items-center py-2 px-2">
+                  <p class="font-normal font-satoshi text-[#000000]">
+                    Regular Document <br />
+                    <span class="text-[#8A9399] font-satoshi"> 3,501 - 15,000 words</span>
+                  </p>
+                  <p class="text-[#FF565F] pr-2 font-semibold">
+                    $19.99
+                  </p>
+                </div>
+              </div>
+              <div class="w-[90%] rounded mx-auto mt-3 h-auto bg-gray-100">
+                <div class="flex justify-between items-center py-2 px-2">
+                  <p class="font-normal font-satoshi text-[#000000]">
+                    Large Document <br />
+                    <span class="text-[#8A9399] font-satoshi"> 15,000 + words</span>
+                  </p>
+                  <p class="text-[#FF565F] pr-2 font-semibold">
+                    $29.99
+                  </p>
+                </div>
+              </div>
+              <div class="text-center my-2">
+                <p class="text-[#8A9399] text-[16px]">
+                  Price per check, not a subscription
+                </p>
+              </div>
+            </div>
+
+            <div *ngIf="showCommentedCode" class="w-full mx-auto flex justify-center items-center md:w-[100%]">
+              <!-- <h1 class="font-medium font-satoshi text-[#000000] text-center">
+                After Document Upload
+              </h1> -->
+
+              <div class="mt-1 rounded-md h-auto mx-[3rem] px-[4rem]  w-[96%] border-2 border-gray-200">
+                <div class="mt-2 h-[14rem] pt-4  ">
+                  <h1 class="font-medium px-2 font-satoshi my-2 text-[#000000]">
+                    Premim Plagiarism Check
+                  </h1>
+                  <p class="px-2 flex items-start justify-between text-[#8A9399]">
+                    {{ fileName }}
+                    <button *ngIf="fileName" class="" (click)="clearFileName()">
+                      <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                          <path d="M10 12V17" stroke="#FF565F" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                          <path d="M14 12V17" stroke="#FF565F" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                          <path d="M4 7H20" stroke="#FF565F" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                          <path d="M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10"
+                            stroke="#FF565F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#FF565F"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </g>
+                      </svg>
+                    </button>
+                  </p>
+                </div>
+                <hr class="mb-2 font-bold" />
+                <div class="flex justify-between px-2 my-1 ">
+                  <h1 class="font-medium font-satoshi text-[#000000]">Costs</h1>
+                  <h1 class="font-medium">${{ pay }}</h1>
+                </div>
+                <div class="flex justify-between px-2 mb-2 ">
+                  <h1 class="font-medium font-satoshi text-[#000000]">
+                    Total costs
+                  </h1>
+                  <div>
+                    <h1 class="text-red-400 font-medium">
+                      ${{ pay }}
+                    </h1>
+                  </div>
+                </div>
+                <!-- <p class="my-2 text-end mx-2">Change Currency</p>
+                <p class="my-2 text-end mx-2">Coupon</p> -->
+              </div>
+
+              <!-- <div class="text-center">
+                <p class="text-[#8A9399] mt-[2rem] text-[14px]">
+                  Price are per check, not a subscription
+                </p>
+              </div> -->
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- payment cards -->
+
+      <div class="md:flex border-2 gap-[4%] px-2 mb-3 border-gray-200 rounded-lg py-[3%]  h-auto w-[100%] mt-5">
+        <!-- All cards -->
+        <div class="w-[100%]  md:pl-[2rem] md-max:px-[1rem] md:w-[48%]">
+          <div class=" mt-[1%]">
+            <h1 class=" text-[#FF565F] font-bold font-satoshi">
+              Select a payment method
+            </h1>
+            <p class=" mt-2">
+              By proceeding, you agree to our
+              <span class="text-[#FF565F]">terms of use.</span>
+            </p>
+
+
+            <p class="my-2 ">Coupon Code?</p>
+
+            <div class="mt-1  w-full flex justify-between">
+              <div class="w-[70%] whitespace-nowrap py-1 text-[#000000]">
+                <input class="rounded py-3 w-full bg-slate-200  text-[#000000] outline-none border-spacing-0 px-4"
+                  [(ngModel)]="couponCode" type="text" placeholder="Coupon code" />
+              </div>
+              <div class="pl-3 whitespace-nowrap py-1">
+                <button class="bg-red-500  text-white px-5 py-3 rounded" (click)="validateCoupon()">
+                  Apply Code
+                </button>
+              </div>
+            </div>
+            <span *ngIf="CouponValidator">
+              <p *ngIf="applied ==true" class="text-green-400 text-[18px] font-medium">Coupon is Applied </p>
+              <p *ngIf="applied==false" class="text-red-400 text-[18px] font-medium">Coupon is Invalid </p>
+            </span>
+            <div
+              class="bg-gray-200 h-12 items-center  pl-3 max-md:w-[60%] md:w-[100%]  mt-7 rounded-md flex gap-2 lg:gap-[4%]">
+              <input type="radio" class="lg:ml-[4%] " name="radio" checked />
+              <img [alt]="" [src]="creditSrc" class="h-6 w-8" />
+              <p class="font-satoshi font-normal text-[#000000]">
+                Credit or debit card
+              </p>
+            </div>
+          </div>
+          <form action="#">
+            <div class="w-[100%]  mb-1">
+              <button class="mt-6 text-white bg-red-500 w-40 border-2 h-12 rounded-md" (click)="handlePayment()">
+                Pay Now
+              </button>
+              <!-- (click)="
+              subscriptionTaken
+                ? handleSubscriptionPayment()
+                : handlePayment()
+            " -->
+            </div>
+          </form>
+        </div>
+
+        <!-- verical line -->
+        <div class="md-max:hidden sm:block md:h-0 lg:ml-[5%]" style="border-left: 1px solid rgb(210, 205, 205); height: 350px">
+        </div>
+
+        <!-- One card-->
+        <div class="w-[48%] flex flex-col md-max:w-[100%] justify-center items-center max-w-4xl">
+          <p class="text-[18px] leading-5">Powered By Stripe</p>
+          <div>
+            <img [src]="debitSrc" alt="" class="rounded-md mt-4 h-60 w-[25rem]" />
+          </div>
+
+          <!-- Modal -->
+
+          <div class="fixed inset-0 z-50 bg-opacity-50  overflow-y-auto w-full pointer-events-none" *ngIf="isModalOpen">
+            <div
+              class="fixed bottom-0  right-0 mb-4 mr-8 p-5 w-[25%] min-w-[300px] border shadow-lg rounded-md bg-white pointer-events-auto"
+              style="width: 25%">
+              <div class="flex justify-end items-center">
+                <svg (click)="closeModal()" class="w-6 h-6 cursor-pointer" fill="none" stroke="currentColor"
+                  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-medium max-sm:text-[16px] flex justify-center text-blue-400">
+                Don't Know what to scan yet?
+              </h3>
+              <div class="flex max-sm:flex-col gap-6 mt-6 justify-center">
+                <h3 class="text-lg max-sm:text-sm font-medium text-gray-900">
+                  See tutorial
+                </h3>
+                <p class="text-lg max-sm:text-sm leading-6 font-medium text-gray-900">
+                  or
+                </p>
+                <a class="text-lg leading-6 max-sm:text-sm font-medium text-blue-500 underline" href="{{ reportLink }}"
+                  target="_blank" rel="noopener noreferrer">Scan report</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,187 @@
+<div class="w-[100%]">
+  <app-header  ></app-header>
+  <div class="">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div
+    class="w-[80%] lg-max:w-[100%] lg:ml-[20%] mt-[88px] h-auto  overflow-hidden"
+  >
+    <div class="w-full">
+      <div class="w-[95%] mx-auto">
+        <div class="w-[100%] mx-auto rounded-md bg-white">
+          <div
+            class="w-full my-5 pt-3.5  bg-white h-[26rem] overflow-y-auto"
+          >
+            <table
+              class="table-auto w-full font-satoshi text-[#000000] rounded-md border border-gray-200"
+            >
+              <thead
+                class="w-[100%] max-sm:[98%] border rounded-md border-gray-200"
+              >
+                <tr
+                  class="h-auto flex justify-between py-4 max-sm:px-1 px-2 border-gray-100"
+                >
+                  <th
+                    class="text-red-500 py-1 font-Satoshi max-sm:text-base text-lg font-semibold leading-6"
+                  >
+                    Last 5 Completed Order
+                  </th>
+
+                </tr>
+                <tr
+                  class="flex py-2 w-full text-center items-center max-sm:px-0  text-[#000000] font-Satoshi max-sm:text-[12px] text-sm font-medium leading-6 border-gray-300 h-14 "
+                >
+                  <th class="w-[15%]">Order ID</th>
+                  <th class="w-[25%]">Order Type</th>
+                  <th class="w-[30%]">Created Date</th>
+                  <th class="w-[30%]">Status</th>
+                  <!-- <th>Download Link</th> -->
+                </tr>
+              </thead>
+              <tbody class="w-full text-center  font-satoshi items-start ">
+                <ng-container
+                  *ngFor="let item of lastFiveOrders; let i = index"
+                >
+                  <tr
+                    class="flex font-satoshi max-sm:text-xs text-base items-center  border-gray-300"
+                  >
+                    <td
+                      class="text-[#71717A] font-Satoshi font-medium leading-6 w-[15%] h-14  py-4"
+                    >
+                      {{ item.orderId }}
+                    </td>
+                    <td
+                      class="w-[25%] h-14  font-Satoshi font-normal leading-5"
+                    >
+                      {{ item.type }}
+                    </td>
+                    <td
+                      class="w-[30%] h-14  py-4 text-[#71717A] font-Satoshi font-normal leading-5"
+                    >
+                      {{ item.created_at }}
+                    </td>
+                    <td class="w-[30%] h-14">
+                      <div class="h-14 py-2 px-1">
+                        <p
+                          class="flex py-2 px-1 font-Satoshi sm-max:text-[10px] text-center  text-xs font-medium leading-5 border rounded-md"
+                          [ngClass]="getStatusClasses(item)"
+                        >
+                          <img
+                            [src]="getStatusImage(item.status)"
+                            alt="Image"
+                            class="w-3 mx-1 my-1 h-3"
+                          />
+                          {{ item.status }}
+                        </p>
+                      </div>
+                    </td>
+
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full lg:flex  mt-4">
+        <div class="mb-6 mx-auto w-[95%] border border-gray-200">
+          <div class="mx-0">
+            <div class="">
+              <th class="text-red-500 mt-3 pl-4 py-3 md:hidden font-Satoshi text-xl font-semibold leading-6">
+                Queued Order Status
+              </th>
+              <table class="table-auto w-full">
+                <thead class="top-0 ">
+                  <tr class="h-[4rem] p-4  flex justify-between items-center">
+                    <th class="text-red-500  md-max:hidden font-Satoshi text-xl font-semibold leading-6">
+                      Queued Order Status
+                    </th>
+                    <div class="flex h-10   items-center">
+                      <select
+                      (change)="hanlesearchtext($event)"
+                        class="px-4 bg-red-100 h-[2rem] text-center rounded-md  whitespace-nowrap"
+                      >
+                        <option value="">Filter By Status</option>
+                        <option value="Completed" class="bg-green-100">Completed</option>
+                        <option value="PendingAcceptance" class="text-red-500 bg-red-100">
+                          Pending
+                        </option>
+                        <option value="workInProgress" class="bg-blue-100">
+                          Work in Progress
+                        </option>
+                        <option value="UnderQAReview" class="bg-yellow-100">
+                          Under Q&A Review
+                        </option>
+                        <option value="Rejected" class="text-red-500 bg-red-100">
+                          Rejected
+                        </option>
+                      </select>
+                    </div>
+                    <button
+                      class="text-red-500 font-Satoshi text-lg md-max:text-[14px] font-semibold leading-6"
+                      (click)="toggleData()"
+                    >
+                      {{ showAlls ? 'Show Less' : 'View All' }}
+                    </button>
+                  </tr>
+                  <tr
+                    class="flex py-2 w-full max-sm:px-0 items-center text-center text-[#000000] font-Satoshi max-sm:text-[12px] text-sm font-medium leading-6 border-gray-300 min-h-14 h-auto  "
+                  >
+                    <th class="w-[15%]">Order ID</th>
+                    <th class="w-[25%]">Order Type</th>
+                    <th class="w-[25%]">Estimated Completion Time</th>
+                    <th class="w-[35%]">Status</th>
+                  </tr>
+                </thead>
+              </table>
+              <div [ngClass]="{'h-[24rem] overflow-y-auto': showAlls, 'h-[25rem] overflow-y-none': !showAlls}" class="">
+                <table class="table-auto w-full">
+                  <tbody class="w-full font-satoshi text-center items-center">
+                    <ng-container *ngFor="let item of View; let i = index">
+                      <tr class="flex font-satoshi max-sm:text-xs text-base px-4 border-gray-300">
+                        <td
+                          class="text-[#71717A] font-Satoshi font-medium leading-6 w-[15%] h-14 px-2 py-4"
+                        >
+                          {{ item.orderId }}
+                        </td>
+                        <td
+                          class="w-[25%] h-14 font-Satoshi  font-normal leading-5"
+                        >
+                          {{ item.type }}
+                        </td>
+                        <td
+                          class="w-[25%] h-14  text-[#71717A] font-Satoshi sm-max:text-[12px]  font-normal leading-5"
+                        >
+                        <!-- {{getUkBasedTime(item.deliveryDate)}} -->
+                         {{item.deliveryDate}}
+                        </td>
+                        <td class="w-[35%] h-14 ">
+                          <div class="h-14 py-2 px-1">
+                            <p
+                              class="flex py-2 px-1 font-Satoshi sm-max:text-[10px] text-xs font-medium leading-5 border rounded-md"
+                              [ngClass]="getStatusClasses(item)"
+                            >
+                              <img
+                                [src]="getStatusImage(item.status)"
+                                alt="Image"
+                                class="w-3 mx-1 my-1 h-3"
+                              />
+                              {{ item.status }}
+                            </p>
+                          </div>
+                        </td>
+                      </tr>
+                    </ng-container>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+    </div>
+  </div>
+</div>

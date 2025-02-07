@@ -1,0 +1,67 @@
+<div class="w-full">
+  <app-header ></app-header>
+  <div class="max-sm:hidden">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div
+    class="w-[80%] max-sm:w-[100%] mt-[88px] h-auto md:ml-[20%] overflow-hidden"
+  >
+    <div class="w-full h-full rounded-md">
+      <div class="w-[95%] mx-auto mt-[1rem] bg-white">
+        <div class="w-[100%] my-[1rem]">
+          <table
+            class="table-auto w-[99%] border-collapse border border-gray-300 font-satoshi text-[#000000] rounded-md"
+          >
+            <thead class="w-full bg-gray-100">
+              <tr
+                class="w-full flex py-2 text-[#000000] font-Satoshi max-sm:text-[10px] max-lg:text-xs text-base md:font-semibold leading-6 h-11 text-center"
+              >
+                <th class="w-[20%]">Editor ID</th>
+                <th class="w-[20%]">Name</th>
+                <th class="w-[20%]">Email</th>
+                <th class="w-[20%]">Expertise</th>
+                <th class="w-[20%]">CreatedAt</th>
+              </tr>
+            </thead>
+            <ng-container *ngIf="isLoading">
+              <app-loader></app-loader>
+            </ng-container>
+            <tbody class="w-full font-satoshi text-center">
+              <ng-container *ngFor="let item of visibleItems2; let i = index">
+                <tr
+                  class="w-full flex border text-[#000000] font-Satoshi max-sm:text-[9px] max-lg:text-xs text-base md:font-semibold leading-6 text-center"
+                >
+                  <td
+                    class="w-[20%] h-14 py-4 text-[#71717A] font-Satoshi font-normal leading-5"
+                  >
+                    {{ item.userId }}
+                  </td>
+                  <td
+                    class="w-[20%] h-14 py-4 text-[#71717A] font-Satoshi font-normal leading-5"
+                  >
+                    {{ item.name }}
+                  </td>
+                  <td
+                    class="w-[20%] h-14 py-4 text-[#71717A] font-Satoshi font-normal leading-5"
+                  >
+                    {{ item.email }}
+                  </td>
+                  <td
+                    class="w-[20%] h-14 py-4 text-[#71717A] font-Satoshi font-normal leading-5"
+                  >
+                    {{ item.expertise }}
+                  </td>
+                  <td
+                    class="w-[20%] h-14 py-4 text-[#71717A] font-Satoshi font-normal leading-5"
+                  >
+                    {{ item.created_at }}
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

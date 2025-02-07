@@ -1,0 +1,18 @@
+.scrollable-table-body {
+    display: block;
+    max-height: 400px; /* Set the desired max height */
+    overflow-y: auto; /* Enable vertical scrollbar */
+  }
+  
+  .scrollable-table-body tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  thead, tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+  

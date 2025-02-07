@@ -1,0 +1,261 @@
+<div class="w-[100%] ">
+  <app-header ></app-header>
+  <div class="">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div
+    class="w-[80%] lg-max:w-[100%] lg:ml-[20%] mt-[88px] h-auto overflow-hidden"
+  >
+    <div class="w-full lg:flex">
+      <div class="lg:w-[100%] w-[100%]">
+        <!-- <div
+                class="w-full bg-white border rounded-md border-gray-100 h-auto my-3 mx-2 pt-3.5 px-0 pb-0 text-left text-gray-700"
+              > -->
+        <div class="w-full my-2 px-2 pt-3.5 rounded-md bg-white">
+          <!-- <p class="text-red-500 font-Satoshi text-lg font-semibold leading-6">
+            Account Management
+          </p> -->
+          <!-- <div class="flex mt-3 gap-[15%]">
+            <button
+              class="py-2 px-2 rounded-md font-Satoshi text-sm bg-gray-200 font-medium leading-[27.01px]"
+              (click)="toggleButton(2)"
+              [class.bg-red-300]="isButtonActivated === 2"
+              [class.text-black]="isButtonActivated === 2"
+              [class.border-red-300]="isButtonActivated === 2"
+            >
+              <a href="user/subscriptions">Subscription Details</a>
+            </button>
+            <button
+              class="py-2 px-2 rounded-md font-Satoshi bg-gray-200 text-sm font-medium leading-[27.01px]"
+              (click)="toggleButton(3)"
+              [class.bg-red-300]="isButtonActivated === 3"
+              [class.text-black]="isButtonActivated === 3"
+            >
+              <a href="user/billinginfo">Billing Information</a>
+            </button>
+          </div> -->
+
+          <div class="w-full my-2 pt-3.5 px-0 pb-0 bg-white h-[auto] min-h-[25rem] ">
+            <table
+              class="table-auto w-full font-satoshi text-[#000000] rounded-lg border-l border-r border-gray-200"
+            >
+              <thead
+                class="w-[100%] border rounded-lg border-gray-200"
+              >
+                <tr
+                  class="h-10 px-4 flex justify-between py-4 border-gray-100"
+                >
+                  <th
+                    class="text-red-500 max-sm:text-base font-Satoshi text-lg font-semibold leading-6"
+                  >
+                    Last 5 complete Order
+                  </th>
+                  <th
+                    class="text-red-500 font-Satoshi max-sm:text-base text-lg font-semibold leading-6"
+                  >
+                    <!-- <button class="flex" (click)="showAll1()">
+                    See all
+                    <img
+                      class="w-5 h-5"
+                      loading="lazy"
+                      [alt]="avatarAlt"
+                      [src]="cs3Src"
+                    />
+                  </button> -->
+                  </th>
+                </tr>
+                <tr
+                  class="flex py-2 w-full max-sm:px-0 items-center justify-center text-center  text-[#000000] font-Satoshi max-sm:text-[12px] text-sm font-medium leading-6 border-gray-300 h-14"
+                >
+                  <th class="w-[15%] pl-3">Order ID</th>
+                  <th class="w-[25%]">Order Type</th>
+                  <th class="w-[30%] ">Created Date</th>
+                  <th class="w-[30%]">Status</th>
+                  <!-- <th>Download Link</th> -->
+                </tr>
+              </thead>
+              <tbody class="w-full px-4 font-satoshi text-center items-center">
+                <ng-container
+                  *ngFor="let item of lastFiveOrders; let i = index"
+                >
+                  <tr
+                    class="flex font-satoshi max-sm:text-xs  text-base border-b border-gray-300 px-4"
+                  >
+                    <td
+                      class="text-[#71717A] font-Satoshi font-medium leading-6 w-[15%] h-14 px-4 py-4"
+                    >
+                      {{ item.orderId }}
+                    </td>
+                    <td
+                      class="w-[25%] h-14  font-Satoshi font-normal leading-5"
+                    >
+                      {{ item.type }}
+                    </td>
+                    <td
+                      class="w-[30%] h-14 px-2  text-[#71717A] font-Satoshi font-normal leading-5"
+                    >
+                      {{ item.created_at }}
+                    </td>
+                    <td class="w-[30%] h-14">
+                      <div class="h-14 py-2 text-center flex items-center justify-center ">
+                        <p
+                          class="flex py-2 md-max:px-[1.5rem] px-[2.5rem] font-Satoshi max-sm:text-[10px] text-xs text-center font-medium leading-5 border rounded-md"
+                          [ngClass]="getStatusClasses(item)"
+                        >
+                          <img
+                            [src]="getStatusImage(item.status)"
+                            alt="Image"
+                            class="w-4 mr-1 my-1 h-4"
+                          />
+                          {{ item.status }}
+                        </p>
+                      </div>
+                    </td>
+                    <!-- <td class="w-1/5 h-14">
+                    <p
+                      class="h-14 py-4 font-Satoshi text-base font-medium leading-6 border-b border-gray-300"
+                      [ngClass]="downloadColors[i % downloadColors.length].text"
+                    >
+                      {{ item.password }}
+                    </p>
+                  </td> -->
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="w-[100%] lg:w-2/5 ml-6">
+          <div class="max-lg:w-[97%] w-[95%] mx-auto mt-[1rem ] lg:mt-[7rem]">
+            <div
+              class="w-full  border border-gray-200 bg-white my-3 px-auto h-[24.4rem]"
+            >
+               <app-userdoughntchart></app-userdoughntchart>
+
+            </div>
+          </div>
+        </div> -->
+    </div>
+    <div class="w-full lg:flex mt-4">
+      <div class="md:ml-2 mb-6 mx-auto max-sm:mx-auto w-[97%]  lg:w-2/5">
+        <div class="w-full bg-white border border-gray-200 h-[32rem] ">
+          <!-- <img
+              class="w-full h-96 relative z-[1]"
+              loading="lazy"
+              [alt]="avatarAlt"
+              [src]="cs2Src"
+            /> -->
+          <!-- <app-my-charts></app-my-charts> -->
+          <app-userbarchart></app-userbarchart>
+        </div>
+      </div>
+
+      <div class="md:ml-2 lg:ml-2 mb-6 mx-auto w-[96%]  lg:w-[58%]">
+        <div class="mx-auto bg-white border border-collapse md:h-[32rem]">
+          <table class="table-auto w-full">
+            <thead class="w-5/6 rounded-md">
+              <tr class="flex py-3 px-2 justify-between items-center">
+                <th
+                  class="text-red-500 font-Satoshi text-lg font-semibold leading-6"
+                >
+                  Queued Order Status
+                </th>
+                <div class="flex ml-[2.5%] h-10 px-2 items-center">
+                  <select
+                    (change)="hanlesearchtext($event)"
+                    class="px-4 h-[2.5rem] rounded-lg w-auto whitespace-nowrap"
+                  >
+                    <option value="">None</option>
+                    <option value="Completed" class="bg-green-100">
+                      Completed
+                    </option>
+                    <option
+                      value="PendingAcceptance"
+                      class="text-red-500 bg-red-100"
+                    >
+                      Pending
+                    </option>
+                    <option value="workInProgress" class="bg-blue-100">
+                      Work in Progress
+                    </option>
+                    <option value="UnderQAReview" class="bg-yellow-100">
+                      Under Q&A Review
+                    </option>
+                  </select>
+                </div>
+                <button
+                  class="text-red-500 font-Satoshi text-lg font-semibold leading-6"
+                  (click)="toggleData()"
+                >
+                  {{ showAlls ? "Show Less" : "View All" }}
+                </button>
+              </tr>
+              <tr
+                class="flex pb-1 pt-3 text-center md:px-2 border-gray-200 justify-center items-center text-[#000000] font-Satoshi text-sm font-medium leading-6 h-18"
+              >
+                <th class="w-[15%]">Order ID</th>
+                <th class="w-[25%]">Order Type</th>
+                <th class="w-[35%]">Status</th>
+                <th class="w-[25%]">Estimated Completion Time</th>
+              </tr>
+            </thead>
+            <tbody class="w-full text-center scrollable-table-body">
+              <ng-container *ngFor="let item of View; let i = index">
+                <tr class="flex text-xs">
+                  <td
+                    class="text-[#71717A] font-Satoshi text-base font-medium leading-6 w-[15%] h-14 px-2 py-4"
+                  >
+                    {{ item.orderId }}
+                  </td>
+                  <td
+                    class="w-[25%] h-14 py-4 font-Satoshi text-base font-normal leading-5"
+                  >
+                    {{ item.type }}
+                  </td>
+                  <td class="w-[35%]  h-14">
+                    <!-- when editor rejected the assignment the user only see the pending acceptance not rejected because admin can assign it to another editor -->
+                    <div
+                      class="h-14 py-2 px-1 font-Satoshi text-xs font-medium  leading-5"
+                    >
+                      <p
+                        *ngIf="item.status === 'Rejected'"
+                        class="flex py-2 px-1 sm-max:text-[10px] rounded-md"
+                        [ngClass]="getStatusClasses(item)"
+                      >
+                        <img
+                          [src]="getStatusImage(item.status)"
+                          alt="Image"
+                          class="w-3 mx-1 my-1 h-3"
+                        />
+                        PendingAcceptance
+                      </p>
+                      <p
+                        *ngIf="item.status !== 'Rejected'"
+                        class="flex py-2 px-1 sm-max:text-[10px] rounded-md"
+                        [ngClass]="getStatusClasses(item)"
+                      >
+                        <img
+                          [src]="getStatusImage(item.status)"
+                          alt="Image"
+                          class="w-3 mx-1 my-1 h-3"
+                        />
+                        {{ item.status }}
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    class="w-[25%] h-14 px-4 py-4 font-Satoshi text-base font-normal sm-max:text-[12px] leading-6"
+                  >
+                    {{ item.deliveryDate }}
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

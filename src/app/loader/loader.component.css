@@ -1,0 +1,31 @@
+/* html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } */
+
+  .loader {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    margin-left: 30%;
+    /* top: 0;
+    left: 0; */
+  }
+
+  .spinner {
+    border: 16px solid #f3f3f3 ;
+    border-top: 16px solid #FF565F;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

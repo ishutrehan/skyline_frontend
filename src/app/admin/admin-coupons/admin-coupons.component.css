@@ -1,0 +1,6 @@
+
+.hide-scrollbar {
+  overflow: scroll; /* Keep scrollable */
+  -ms-overflow-style: none; /* Hide scrollbar for Internet Explorer */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}

@@ -1,0 +1,106 @@
+<div class="w-full">
+  <app-header ></app-header>
+  <div class="max-sm:hidden">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div
+    class="w-[80%] lg-max:w-[100%] mt-[88px] h-auto lg:ml-[20%] overflow-hidden"
+  >
+    <!-- myscans search bar -->
+
+    <div class="w-full">
+      <div class="ml-[5%] my-5 flex items-center">
+        <h1 class="text-[20px] w-[85%] font-bold">My Notifications</h1>
+        <button
+          class="h-[2.5rem] w-auto px-4 rounded-md whitespace-nowrap bg-red-100 mx-3"
+          (click)="handleDeleteAll()"
+        >
+          Delete All
+        </button>
+      </div>
+      <div
+        *ngIf="items.length > 0"
+        class="h-[auto] w-[90%] min-w-[450px] mx-auto mt-5"
+      >
+        <!-- make a loop and put all the notification inside this contianer  -->
+        <!-- input  -->
+        <div
+          *ngFor="let item of items; let i = index"
+          class="h-[3rem] w-[100%] rounded-md my-1 flex"
+          [ngClass]="{
+            'bg-red-100': item.seen === 0,
+            'bg-slate-100': item.seen !== 0
+          }"
+        >
+          <div
+            class="h-full w-[5%] min-w-[30] flex justify-center items-center"
+          >
+            <h2>{{ i + 1 }}</h2>
+          </div>
+          <h2 class="h-full w-[85%] px-4 flex items-center justify-start">
+            {{ item.message }}
+          </h2>
+          <div class="h-[100%] w-[10%] flex justify-center items-center">
+            <img
+              class="h-[2rem] w-[2rem]"
+              src="{{ deleteSrc }}"
+              alt="..."
+              (click)="handleDeleteNotifications(item.notificationId)"
+            />
+          </div>
+        </div>
+        <!-- input  -->
+      </div>
+      <div *ngIf="items.length == 0" class="h-[auto] w-[90%] mx-auto mt-5">
+        <h1 class="w-full text-[2rem] text-red-400 text-center">
+          No Notifications Yet
+        </h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="justify-end mr-[4%] flex mt-[2%]">
+    <div class="justify-end mr-5 flex mt-6">
+      <div class="flex font-bold">
+        <ul class="inline-flex -space-x-px text-sm">
+          <!-- Previous Button -->
+          <li>
+            <a
+              href="javascript:void(0)"
+              (click)="onPrevious()"
+              class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-black bg-white border border-e-0 border-gray-300 rounded-s-lg"
+            >
+              Previous
+            </a>
+          </li>
+
+          <!-- Page Numbers -->
+          <li *ngFor="let page of getPagesToShow()">
+            <a
+              href="javascript:void(0)"
+              (click)="setPage(page)"
+              class="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white border border-gray-300"
+              [ngClass]="{
+                'bg-blue-500 text-red-400': currentPage === page,
+                'cursor-not-allowed': page === -1
+              }"
+            >
+              {{ page === -1 ? "..." : page }}
+            </a>
+          </li>
+
+          <!-- Next Button -->
+          <li>
+            <a
+              href="javascript:void(0)"
+              (click)="onNext()"
+              class="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white border border-gray-300 rounded-e-lg"
+            >
+              Next
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

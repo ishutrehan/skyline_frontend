@@ -1,0 +1,19 @@
+<div class="h-96">
+  <p class="mt-4 font-Satoshi text-lg font-semibold leading-6 px-2 text-red-500">Submission Insights</p>
+  <div class="mt-6 text-xs text-black font-semibold flex justify-between z-[1] ">
+
+    <button
+      class="  active:border rounded-md  py-2  px-2    gap-1 hover:bg-red-300 active:bg-red-500   ">Plagiarism
+      and Percentage</button>
+      <button
+      class="  active:border rounded-md py-2  px-2   gap-1 hover:bg-red-300 active:bg-red-500   ">
+      Readability Score</button>
+      <button
+      class="  active:border rounded-md active:rounded-md py-2  px-2  gap-1 hover:bg-red-300 active:bg-red-500  ">Grammar Errors</button>
+
+  </div>
+
+  <div class="my-3 custom-chart">
+    <p-chart type="bar" [data]="data" [options]="options" ></p-chart>
+  </div>
+</div>

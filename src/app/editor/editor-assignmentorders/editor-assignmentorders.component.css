@@ -1,0 +1,14 @@
+@media screen and (max-width:980px) {
+  .order-main-container{
+    flex-direction: column;
+  }
+  .order-section1{
+    width: 100%;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .order-section2{
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+}

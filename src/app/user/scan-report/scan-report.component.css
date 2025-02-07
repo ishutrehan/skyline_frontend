@@ -1,0 +1,26 @@
+#page-container {
+  max-height: 100vh; /* Set the maximum height to 100% of the viewport height */
+}
+
+.backdrop-blur-sm {
+  filter: blur(25px);
+}
+cr-copyleaks-report .mat-button.mat-button-base.mat-focus-indicator {
+  color: black;
+}
+
+cr-copyleaks-report button[aria-label="Click to share report."] {
+  color: black;
+
+}
+
+cr-copyleaks-report .mat-tooltip {
+  color: black;
+  font-size: 40px;
+}
+
+.mat-tooltip {
+  color: black !important;
+  background-color: white !important;
+  padding: 8px;
+}

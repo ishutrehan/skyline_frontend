@@ -1,0 +1,49 @@
+.scrollable-table-body {
+    display: block;
+    max-height: 400px; /* Set the desired max height */
+    overflow-y: auto; /* Enable vertical scrollbar */
+  }
+
+  .scrollable-table-body tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  thead, tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  .scrollable-table-body::-webkit-scrollbar {
+    width: 15px; /* Width of the scrollbar */
+  }
+
+  .scrollable-table-body::-webkit-scrollbar-track {
+    background: white; /* Background color of the track */
+  }
+
+  .scrollable-table-body::-webkit-scrollbar-thumb {
+    background: rgb(225, 85, 85); /* Color of the scroll thumb */
+    border-radius: 2px; /* Rounded corners for the thumb */
+
+  }
+
+  .scrollable-table-body::-webkit-scrollbar-thumb:hover {
+    background: red; /* Color of the thumb on hover */
+  }
+
+  @media screen and (max-width:1100px) {
+    .order-main-container{
+      flex-direction: column;
+    }
+    .order-section1{
+      width: 100%;
+    }
+    .order-section2{
+      width: 100%;
+    }
+  }
+
+

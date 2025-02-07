@@ -1,0 +1,105 @@
+<div class=" w-full">
+    <app-header></app-header>
+  <app-sidebar></app-sidebar>
+  
+  <div
+    class=" overflow-hidden  ml-[20%] w-[80%]  mt-[88px]"
+  >
+    <div class="ml-[2.33%] mt-[2.5%] border-2 overflow-hidden border-gray-200 w-[80%] rounded-md mx-[2%] h-[90%] py-10">
+  
+  
+      <div class="ml-[2.33%]">
+  
+      <div>
+        <img class="h-[8.89%] w-[5%]" [src]="tickframeSrc" alt="" />
+        <h1 class="font-bold font-satoshi text-[#000000] text-xl">Your Order Complete Successfully!</h1>
+      </div>
+  
+      <div class="mt-[2.5%]">
+        <h1 class="text-[#FF565F] font-satoshi font-semibold text-lg">Write review</h1>
+        <p class="text-[#71717A]">Give us the comments for our review</p>
+      </div>
+      <div>
+        <ng-container *ngIf="isLoading">
+            <app-loader></app-loader>
+          </ng-container>
+        <div class="w-full md:w-[90%] lg:w-[80%] xl:w-[70%]">
+  
+          <form (ngSubmit)="handleSubmit" #form="ngForm" action="">
+  
+            <div class="flex flex-col md:flex-row gap-3 mt-4 md:mt-[2%]">
+              <div class="w-full md:w-1/2">
+                <label class="font-semibold font-satoshi text-[#000000]" for="first_name">First Name</label>
+                <br />
+                <input
+                  id="first_name"
+                  class="border-2 border-gray-300 rounded-md w-full h-10 md:h-[90%] px-3"
+                  placeholder="Enter Your First Name"
+                  type="text"
+                  name="firstname"
+                  [(ngModel)]="firstname"
+                  required
+                />
+              </div>
+  
+              <div class="w-full md:w-1/2">
+                <label class="font-semibold font-satoshi text-[#000000]" for="lastname">Last Name</label
+                ><br />
+                <input
+                  id="last_name"
+                  class="border-2 border-gray-300 rounded-md w-full h-10 md:h-[90%] px-3"
+                  placeholder="Enter Your Last Name"
+                  type="text"
+                  name="lastname"
+                  [(ngModel)]="lastname"
+                  required
+                />
+              </div>
+            </div>
+  
+            <div class="mt-4 md:mt-[4%] w-full md:w-[100%]">
+              <label class="font-semibold font-satoshi text-[#000000]" for="email">Email Address</label><br />
+              <input
+                type="email"
+                id="email"
+                class="border-2 border-gray-300 rounded-md w-full h-10 px-3"
+                placeholder="Enter Your Email Address"
+                name="email"
+                [(ngModel)]="email"
+                required
+                email
+                #emailInput="ngModel"
+              />
+              <div class=" text-red-400" *ngIf="emailInput.errors?.['email']">Invalid email format</div>
+            </div>
+            
+            
+            <div class="mt-4 md:mt-[2%] w-full md:w-[100%]">
+              <label class="font-semibold font-satoshi text-[#000000]" for="feedback">Write Feedback</label
+              ><br />
+              <textarea
+                id="feedback"
+                class="border-2 border-gray-300 rounded-md w-full h-12 md:h-[20vh] px-3 resize-none mt-1 pt-1"
+                placeholder="Type Something...."
+                name="feedback"
+                [(ngModel)]="feedback"
+                required
+              ></textarea>
+            </div>
+  
+            <div class="mt-4">
+              <button
+                class="rounded-md border text-sm h-10 w-40 font-semibold bg-[#FF565F] text-white" (click)="handleSubmit()"
+              >
+                Submit Review
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  </div>
+  </div>
+  

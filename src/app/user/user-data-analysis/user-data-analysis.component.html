@@ -1,0 +1,224 @@
+<div class="w-full">
+  <app-header ></app-header>
+  <div class="max-sm:hidden">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div
+    class="w-[80%] max-sm:w-[100%] mt-[88px] h-auto md:ml-[20%] overflow-hidden"
+  >
+    <div class="w-full h-full">
+      <div
+        class="w-[95%] mx-auto mt-[1rem] bg-white border rounded-md border-gray-300"
+      >
+        <ng-container *ngIf="isLoading">
+          <app-loader></app-loader>
+        </ng-container>
+
+        <div class="my-[1rem]">
+          <div class="w-full justify-between px-5 py-2 bg-white mx- flex">
+            <p class="text-[#000000] font-satoshi text-lg font-bold">
+              <b>Select Services</b>
+            </p>
+            <p class="text-[#FF565F] font-bold font-satoshi text-base">
+              <!-- <a href="user/dataAnalysisPricing"> View Plan</a> -->
+            </p>
+          </div>
+          <div
+            class="w-full md:flex px-7 justify-between my-3 text-center mx-auto pb-8 gap-3"
+          >
+            <div
+              class="w-full md:w-1/6 h-[12rem] max-md:my-2 border rounded-md border-gray-300"
+            >
+              <img
+                class="w-[3rem] mx-auto my-6 h-[3rem]"
+                loading="lazy"
+                [alt]="avatarAlt"
+                [src]="da1Src"
+              />
+              <p
+                class="text-base font-satoshi font-bold text-[#000000] mx-2 my-2"
+              >
+                SPSS Tool Guidance
+              </p>
+            </div>
+            <div
+              class="w-full md:w-1/6 [12rem] max-md:my-2 border rounded-md border-gray-300"
+            >
+              <img
+                class="w-[3rem] mx-auto my-6 h-[3rem]"
+                loading="lazy"
+                [alt]="avatarAlt"
+                [src]="da2Src"
+              />
+              <p
+                class="text-base font-satoshi font-bold text-[#000000] mx-2 my-2"
+              >
+                State Command
+              </p>
+            </div>
+            <div
+              class="w-full md:w-1/6 [12rem] max-md:my-2 border rounded-md border-gray-300"
+            >
+              <img
+                class="w-[3rem] mx-auto my-6 h-[3rem]"
+                loading="lazy"
+                [alt]="avatarAlt"
+                [src]="da3Src"
+              />
+              <p
+                class="text-base font-satoshi font-bold text-[#000000] mx-1 my-2"
+              >
+                R Command Instructions
+              </p>
+            </div>
+            <div
+              class="w-full md:w-1/6 [12rem] max-md:my-2 border rounded-md border-gray-300"
+            >
+              <img
+                class="w-[3rem] mx-auto my-6 [3rem]"
+                loading="lazy"
+                [alt]="avatarAlt"
+                [src]="da4Src"
+              />
+              <p
+                class="text-base font-satoshi font-bold text-[#000000] mx-1 my-2"
+              >
+                AI-Powered Regression Analysis
+              </p>
+            </div>
+            <div
+              class="w-full md:w-1/6 [12rem] max-md:my-2 border rounded-md border-gray-300"
+            >
+              <img
+                class="w-[3rem] mx-auto my-6 h-[3rem]"
+                loading="lazy"
+                [alt]="avatarAlt"
+                [src]="da5Src"
+              />
+              <p
+                class="text-base font-satoshi font-bold text-[#000000] mx-2 my-2"
+              >
+                Chat with your Data
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="w-[95%] flex justify-between mx-auto h-[12rem] bg-gray-100 border rounded-md border-gray-300 cursor-pointer"
+          >
+            <div
+              class="w-[43%] mx-auto my-4 h-[10rem] text-center border rounded-md border-gray-300"
+            >
+              <div
+                class="relative"
+                (click)="browseFiles()"
+                [ngClass]="{ 'cursor-not-allowed': isLoading }"
+              >
+                <button
+                  class="text-[#FF565F] px-[30%] mt-[6%] rounded cursor-pointer h-[5%]"
+                  [disabled]="isLoading"
+                  [ngClass]="{ 'cursor-not-allowed': isLoading }"
+                >
+                  <img class="flex justify-center" [src]="dragSrc" alt="" />
+                </button>
+                <input
+                  class="absolute inset-0 opacity-0 cursor-pointer"
+                  type="file"
+                  accept=".csv,.xls,.xlsx"
+                  (change)="handleFileInput($event)"
+                  style="display: none"
+                  id="fileInput"
+                  [disabled]="isLoading"
+                  [ngClass]="{ 'cursor-not-allowed': isLoading }"
+                />
+                <p
+                  class="mr-2 text-[#FF565F] cursor-pointer"
+                  [ngClass]="{ 'cursor-not-allowed': isLoading }"
+                >
+                  Upload a file
+                </p>
+              </div>
+
+              <p
+                class="text-[#71717A] max-sm:text-sm font-medium font-satoshi mb-3"
+              >
+                Upload a file or start a conversation to get started.
+              </p>
+
+              <!-- <p class="text-[#000000] font-satoshi font-medium mb-2 text-xs">
+                <u> Download the Titanic Sample Data </u>
+              </p> -->
+            </div>
+
+            <!-- model div -->
+            <div
+              class="my-4 mx-auto w-[43%] border-2 border-gray-300 rounded-md h-[10rem]"
+            >
+              <button
+                (click)="toggleModal()"
+                class="h-24 mt-1 w-full text-[#FF565F] placeholder-[#FF565F] resize-none text-center py-8 border-none outline-none"
+              >
+                <p class="mt-6">Ask your question</p>
+              </button>
+
+              <!-- Modal -->
+              <div
+                *ngIf="showModal"
+                class="fixed inset-0 z-50 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
+                (click)="toggleModal()"
+              >
+                <div
+                  class="relative top-20 mx-auto p-5 border w-1/3 max-lg:w-[40%] max-md:w-[75%] shadow-lg rounded-md bg-white"
+                  (click)="$event.stopPropagation()"
+                >
+                  <div class="mt-3 text-center">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                      Write question
+                    </h3>
+                    <div class="mt-2 max-md:px-2 md:px-7 py-3">
+                      <textarea
+                        [(ngModel)]="textValue"
+                        class="w-full h-36 p-2 border rounded resize-none"
+                      ></textarea>
+                    </div>
+                    <div class="items-center px-4 py-3">
+                      <button
+                        class="bg-red-500 text-white px-4 z-50 py-2 rounded hover:bg-red-700"
+                        (click)="toggleModal(); submitData()"
+                      >
+                        Submit
+                      </button>
+                      <button
+                        class="ml-4 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"
+                        (click)="toggleModal1()"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <h1 class="ml-8">{{uploadedFile.name}}</h1> -->
+          <div class="">
+            <h1 class="ml-8 font-black text-black text-center text-xl">
+              {{ uploadedFile.name }}
+            </h1>
+          </div>
+
+          <div
+            class="w-[95%] mt-4 gap-4 mx-auto h-auto bg-gray-100 border rounded-md border-gray-300"
+          >
+            <h1 class="font-medium text-[20px] mx-2 text-green-600">Answer</h1>
+            <p
+              class="font-medium text-[16px] break-words w-[90%] h-auto py-2 mx-2"
+            >
+              {{ answerFromApi }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+<div class="w-full">
+    <app-header></app-header>
+    <div class="max-sm:hidden">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="w-[80%] lg-max:w-[100%] mt-[88px] h-auto lg:ml-[20%]  overflow-hidden ">
+
+      <div class="w-[100%] h-[32rem]  md-max:w-[95%] md-max:ml-[3%] overflow-x-scroll">
+        <table class="w-[95%] mt-5 mx-auto min-w-[950px] border-collapse border border-gray-300">
+          <thead class=" w-full  ">
+            <tr class=" w-full max-sm:flex max-sm:gap-[8%] bg-gray-100   text-[#000000] font-Satoshi max-sm:text-[12px] max-lg:text-xs text-base md:font-semibold leading-6 h-11 md:justify-between">
+                <th class="sm:w-[20%] pl-2 h-10">Feedback Id</th>
+              <th class="sm:w-[20%] h-10">FirstName</th>
+              <th class="sm:w-[20%] h-10">LastName</th>
+              <th class="sm:w-[20%] h-10">Emails</th>
+              <th class=" sm:w-[20%] h-10">Feedback Message</th>
+            </tr>
+          </thead>
+
+
+            <ng-container *ngIf="isLoading">
+              <app-loader></app-loader>
+          </ng-container>
+
+            <tbody class="  rounded-lg w-[100%] h-10 ">
+              <ng-container *ngFor="let item of items">
+              <tr class="w-full border max-sm:flex max-sm:gap-[8%]  max-lg:text-[12px] text-center">
+                <td class="w-[20%]  px-1 h-14">{{ item.feedbackId }}</td>
+                <!-- <td class="w-1/6 h-14">{{ item.Date }}</td> -->
+                <td class="w-[20%] truncate  h-14">{{ item.firstName }}</td>
+                <td class="w-[20%] truncate  h-14">{{ item.lastName }}</td>
+                <td class="w-[20%] truncate h-14">{{ item.email }}</td>
+                <td class="w-[20%] truncate h-14">{{ item.feedbackMessage }}</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+
+      </div>
+
+      <div class="justify-end mr-5 flex mt-6 md-max:my-[2rem] md-max:mb-[7rem]">
+        <div class="flex font-bold">
+          <ul class="inline-flex -space-x-px text-sm">
+            <!-- Previous Button -->
+            <li>
+              <a
+                href="javascript:void(0)"
+                (click)="onPrevious()"
+                class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-black bg-white border border-e-0 border-gray-300 rounded-s-lg"
+              >
+                Previous
+              </a>
+            </li>
+
+            <!-- Page Numbers -->
+            <li *ngFor="let page of getPagesToShow()">
+              <a
+                href="javascript:void(0)"
+                (click)="setPage(page)"
+                class="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white border border-gray-300"
+                [ngClass]="{
+                  'bg-blue-500 text-red-400': currentPage === page,
+                  'cursor-not-allowed': page === -1
+                }"
+              >
+                {{ page === -1 ? '...' : page }}
+              </a>
+            </li>
+
+            <!-- Next Button -->
+            <li>
+              <a
+                href="javascript:void(0)"
+                (click)="onNext()"
+                class="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white border border-gray-300 rounded-e-lg"
+              >
+                Next
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>

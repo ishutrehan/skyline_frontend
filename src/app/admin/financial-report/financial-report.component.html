@@ -1,0 +1,131 @@
+<div class="w-[100%]">
+  <app-header></app-header>
+  <div class="max-sm:hidden">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="w-[80%] lg-max:w-[100%] px-4  mt-[88px] h-auto  lg:ml-[20%] overflow-hidden ">
+    <div class="w-full ">
+
+      <div class="w-[98%] mx-auto mt-4 ">
+
+        <p class="text-red-500 px-2 font-Satoshi text-lg font-bold leading-6">
+          Financial Report
+        </p>
+        <div class="w-full lg:flex lg:flex-row lg:justify-between">
+          <div class="w-full lg:w-[62%]  ">
+
+            <div class="w-full bg-white border rounded-md border-gray-100 h-auto my-3  pt-3.5  text-left text-gray-700">
+              <p class="text-black px-2 font-Satoshi text-base font-bold ">
+                Monthly Revenue
+              </p>
+
+              <app-admin1barchart></app-admin1barchart>
+
+
+              <p class="text-black font-Satoshi px-[35%] text-base font-bold ">
+                Total Revenue :
+              </p>
+            </div>
+          </div>
+          <div class=" w-full">
+
+            <div
+              class="w-full    border rounded-md border-gray-100  py-[2rem] my-3 lg:h-[27.5rem]   text-left text-gray-700">
+              <p class="text-black px-2 font-Satoshi text-base font-bold ">
+                Annual Revenue
+              </p>
+
+              <app-admin1doughntchart></app-admin1doughntchart>
+
+            </div>
+
+
+          </div>
+
+        </div>
+        <div class="w-full h-auto   bg-white border md-max:w-[95%] overflow-x-scroll  rounded-md border-gray-100 my-3  pt-3.5  text-left text-gray-700">
+          <table class="table-auto w-full min-w-[900px] font-satoshi text-[#000000] rounded-md ">
+            <thead class="w-full max-sm:[98%] ">
+              <tr class="h-10 flex text-lg px-2 font-semibold justify-between py-4 max-sm:px-1  ">
+
+                Last Past 10 Transactions
+
+              </tr>
+              <tr
+                class="flex py-2 w-full justify-between max-sm:px-0  text-[#000000] font-Satoshi max-sm:text-[12px] text-sm font-medium leading-6  h-14  text-center ">
+                <th class="w-[10%]">User ID</th>
+                <th class="w-[20%]">Username</th>
+                <th class="w-[30%]">Email</th>
+                <th class="w-[20%]">Transaction for</th>
+                <th class="w-[20%]">Pay Amount/Credit</th>
+
+              </tr>
+            </thead>
+            <tbody class="w-full font-satoshi items-start scrollable-table-body">
+
+              <tr *ngFor="let user of users"
+                class="flex py-2 w-full justify-between max-sm:px-0 px-2 text-[#000000] font-Satoshi max-sm:text-[12px] text-sm font-medium leading-6  h-14  text-center">
+                <td class="w-[10%]">
+                  {{user.userId}}
+                </td>
+                <td class="w-[20%]">
+                  {{user.username}}
+                </td>
+                <td class="w-[30%]">
+                  {{user.email}}
+                </td>
+                <td class="w-[20%]">
+                  Plagiarsm + AI
+                </td>
+                <td class="w-[20%]">
+                  {{user.amountPaid===0?user.creditPaid+' Credit':'$ '+user.amountPaid}}
+                </td>
+
+
+
+              </tr>
+
+            </tbody>
+          </table>
+
+          <!-- pagination -->
+        </div>
+        <div class="justify-end mr-5 flex mt-6  md-max:my-[2rem] md-max:mb-[7rem]">
+          <div class="flex font-bold">
+            <ul class="inline-flex -space-x-px text-sm">
+              <!-- Previous Button -->
+              <li>
+                <a href="javascript:void(0)" (click)="onPrevious()"
+                  class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-black bg-white border border-e-0 border-gray-300 rounded-s-lg">
+                  Previous
+                </a>
+              </li>
+
+              <!-- Page Numbers -->
+              <li *ngFor="let page of getPagesToShow()">
+                <a href="javascript:void(0)" (click)="setPage(page)"
+                  class="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white border border-gray-300"
+                  [ngClass]="{
+                      'bg-blue-500 text-red-400': currentPage === page,
+                      'cursor-not-allowed': page === -1
+                    }">
+                  {{ page === -1 ? '...' : page }}
+                </a>
+              </li>
+
+              <!-- Next Button -->
+              <li>
+                <a href="javascript:void(0)" (click)="onNext()"
+                  class="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white border border-gray-300 rounded-e-lg">
+                  Next
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

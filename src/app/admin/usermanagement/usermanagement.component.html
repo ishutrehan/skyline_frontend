@@ -1,0 +1,264 @@
+<div class="w-[100%]">
+  <app-header></app-header>
+  <div class="max-sm:hidden">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div
+    class="w-[80%] lg-max:w-[100%] mt-[88px] h-auto lg:ml-[20%] overflow-hidden"
+  >
+    <div class="relative w-[100%] lg:w-[100%] md-max:w-[95%] md-max:ml-[3%] overflow-x-scroll">
+      <table class="w-[95%] min-w-[900px]  mt-5 mx-auto border-collapse border">
+        <thead class="bg-gray-100 rounded-lg w-[100%] h-10 text-center">
+          <tr
+            class="w-full max-sm:flex max-sm:gap-[8%] bg-gray-100 text-[#000000] font-Satoshi max-sm:text-[12px] max-lg:text-xs text-base md:font-semibold leading-6 h-11 md:justify-between"
+          >
+            <th class="sm:w-[20%] pl-2 h-10">Name</th>
+            <th class="sm:w-[20%] h-10">Email</th>
+            <th class="sm:w-[20%] h-10">City</th>
+            <th class="sm:w-[20%] h-10">Account Stats</th>
+            <th class="sm:w-[20%] h-10">Created At</th>
+          </tr>
+        </thead>
+
+        <!-- Modal -->
+        <!-- <div
+          *ngIf="showModal"
+          class="fixed inset-0 z-50 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
+          (click)="toggleModal()"
+        >
+          <div
+            class="relative top-20 mx-auto border w-[40%] min-w-[350px]  shadow-lg rounded-md bg-white"
+            (click)="$event.stopPropagation()"
+          >
+            <div
+              class="w-[100%]  flex justify-center flex-col mx-auto"
+            >
+              <h1
+                class="text-xl leading-6 text-center py-5 font-bold text-gray-900"
+              >
+                Update Your Status
+              </h1>
+
+              <div class="flex gap-9 w-[100%] mt-3" *ngIf="selectedUser">
+                <h1
+                  class="text-lg w-[45%] text-right text-[#000000] font-medium"
+                >
+                  Name
+                </h1>
+                <span class="w-[5%] text-center">:</span>
+                <h3 class="ml-0 pl-0 text-left">{{ selectedUser.name }}</h3>
+              </div>
+
+              <div class="flex gap-9 w-[100%] mt-3" *ngIf="selectedUser">
+                <h1
+                  class="text-lg w-[45%] text-right text-[#000000] font-medium"
+                >
+                  Email
+                </h1>
+                <span class="w-[5%] text-center">:</span>
+                <h3 class="ml-0 pl-0 text-left">{{ selectedUser.email }}</h3>
+              </div>
+
+              <div class="flex gap-9 w-[100%] mt-3" *ngIf="selectedUser">
+                <h1
+                  class="text-lg w-[45%] text-right text-[#000000] font-medium"
+                >
+                  City
+                </h1>
+                <span class="w-[5%] text-center">:</span>
+                <h3 class="ml-0 pl-0 text-left">{{ selectedUser.city }}</h3>
+              </div>
+
+              <div class="flex gap-9 w-[100%] mt-3" *ngIf="selectedUser">
+                <h1
+                  class="text-lg w-[45%] text-right text-[#000000] font-medium"
+                >
+                  Interest
+                </h1>
+                <span class="w-[5%] text-center">:</span>
+                <h3 class="ml-0 pl-0 text-left">{{ selectedUser.interest }}</h3>
+              </div>
+
+              <div class="flex gap-9 w-[100%] mt-3" *ngIf="selectedUser">
+                <h1
+                  class="text-lg w-[45%] text-right text-[#000000] font-medium"
+                >
+                  Academic Level
+                </h1>
+                <span class="w-[5%] text-center">:</span>
+                <h3 class="ml-0 pl-0 text-left">{{ selectedUser.academic_level }}</h3>
+              </div>
+
+              <div class="flex gap-9 w-[100%] mt-3" *ngIf="selectedUser">
+                <h1
+                  class="text-lg w-[45%] text-right text-[#000000] font-medium"
+                >
+                  Created At
+                </h1>
+                <span class="w-[5%] text-center">:</span>
+                <h3 class="ml-0 pl-0 text-left">{{ selectedUser.created_at.split('T')[0] }}</h3>
+              </div>
+
+              <div class="flex gap-6  mt-3" *ngIf="selectedUser">
+                <h1 class="text-lg w-[45%] text-right text-[#000000] font-medium">Status</h1>
+                <span class="w-[5%] text-center">:</span>
+                <select class="ml-2 px-4 text-left" [(ngModel)]="selectedStatus">
+                  <option value="active">active</option>
+                  <option value="deactivate">deactivate</option>
+                </select>
+              </div>
+
+
+              <div class="flex gap-8 text-center justify-center mt-3 py-5">
+                <button
+                  class="bg-red-500 text-white px-4 z-50 py-2 rounded hover:bg-red-700"
+                  (click)="updateStatus()"
+                >
+                  Update
+                </button>
+                <button
+                  class="ml-4 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"
+                  (click)="cancleButton()"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div> -->
+<div *ngIf="showModal"
+  class="fixed inset-0 z-50  bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center"
+  (click)="toggleModal()">
+  <div class="relative w-[90%] max-w-[600px] bg-white rounded-md shadow-lg p-5" (click)="$event.stopPropagation()">
+    <h1 class="text-xl font-bold text-gray-900 text-left mb-5">
+      Update Your Status
+    </h1>
+
+    <div *ngIf="selectedUser" class="overflow-hidden">
+      <div class="mb-4 flex justify-between items-center">
+        <h1 class="text-gray-700 font-medium w-1/3">Name</h1>
+        <span class="text-gray-500 w-1/12 text-center">:</span>
+        <h3 class="text-gray-800 w-1/2">{{ selectedUser.name }}</h3>
+      </div>
+
+      <div class="mb-4 flex justify-between items-center">
+        <h1 class="text-gray-700 font-medium w-1/3">Email</h1>
+        <span class="text-gray-500 w-1/12 text-center">:</span>
+        <h3 class="text-gray-800 w-1/2">{{ selectedUser.email }}</h3>
+      </div>
+
+      <div class="mb-4 flex justify-between items-center">
+        <h1 class="text-gray-700 font-medium w-1/3">City</h1>
+        <span class="text-gray-500 w-1/12 text-center">:</span>
+        <h3 class="text-gray-800 w-1/2">{{ selectedUser.city }}</h3>
+      </div>
+
+      <div class="mb-4 flex justify-between items-center">
+        <h1 class="text-gray-700 font-medium w-1/3">Interest</h1>
+        <span class="text-gray-500 w-1/12 text-center">:</span>
+        <h3 class="text-gray-800 w-1/2">{{ selectedUser.interest }}</h3>
+      </div>
+
+      <div class="mb-4 flex justify-between items-center">
+        <h1 class="text-gray-700 font-medium w-1/3">Academic Level</h1>
+        <span class="text-gray-500 w-1/12 text-center">:</span>
+        <h3 class="text-gray-800 w-1/2">{{ selectedUser.academic_level }}</h3>
+      </div>
+
+      <div class="mb-4 flex justify-between items-center">
+        <h1 class="text-gray-700 font-medium w-1/3">Created At</h1>
+        <span class="text-gray-500 w-1/12 text-center">:</span>
+        <h3 class="text-gray-800 w-1/2">{{ selectedUser.created_at.split('T')[0] }}</h3>
+      </div>
+
+      <div class="mb-6 flex justify-between items-center">
+        <h1 class="text-gray-700 font-medium w-1/3">Status</h1>
+        <span class="text-gray-500 w-1/12 text-center">:</span>
+        <select class="w-1/2 px-3 py-2 border rounded text-gray-700" [(ngModel)]="selectedStatus">
+          <option value="active">active</option>
+          <option value="deactivate">deactivate</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="flex justify-end gap-4 mt-4">
+      <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700" (click)="updateStatus()">
+        Update
+      </button>
+      <button class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700" (click)="cancleButton()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
+
+        <tbody class="w-[100%] text-center">
+          <tr
+            *ngFor="let user of users"
+            (click)="toggleModal(user)"
+            class="w-full border max-sm:flex max-sm:gap-[8%] max-lg:text-[12px] max-sm:text-center md:text-center"
+          >
+            <td class="w-[20%] px-1 h-14 cursor-pointer">{{ user.name }}</td>
+            <td class="w-[20%] truncate h-14 cursor-pointer">
+              {{ user.email }}
+            </td>
+            <td class="w-[20%] h-14 cursor-pointer">{{ user.city }}</td>
+            <td class="w-[20%] h-14 cursor-pointer"
+            [ngClass]="{
+              ' text-green-500': user.accountStatus === 'active',
+              ' text-red-500': user.accountStatus !== 'active'
+            }"
+            >
+              {{ user.accountStatus }}
+            </td>
+            <td class="w-[20%] h-14 cursor-pointer">{{ user.created_at.split('T')[0] }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="w-full my-3"></div>
+    </div>
+
+    <div class="justify-end mr-5 flex mt-6">
+      <div class="flex font-bold">
+        <ul class="inline-flex -space-x-px text-sm">
+          <!-- Previous Button -->
+          <li>
+            <a
+              href="javascript:void(0)"
+              (click)="onPrevious()"
+              class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-black bg-white border border-e-0 border-gray-300 rounded-s-lg"
+            >
+              Previous
+            </a>
+          </li>
+
+          <!-- Page Numbers -->
+          <li *ngFor="let page of getPagesToShow()">
+            <a
+              href="javascript:void(0)"
+              (click)="setPage(page)"
+              class="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white border border-gray-300"
+              [ngClass]="{
+                'bg-blue-500 text-red-400': currentPage === page,
+                'cursor-not-allowed': page === -1
+              }"
+            >
+              {{ page === -1 ? "..." : page }}
+            </a>
+          </li>
+
+          <!-- Next Button -->
+          <li>
+            <a
+              href="javascript:void(0)"
+              (click)="onNext()"
+              class="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white border border-gray-300 rounded-e-lg"
+            >
+              Next
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

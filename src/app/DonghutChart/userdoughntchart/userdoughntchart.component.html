@@ -1,0 +1,33 @@
+<div class="h-48">
+  <p class="ml-2  my-4 text-red-500 font-Satoshi text-lg font-semibold leading-6">
+    Data Analysis Credit Counter
+  </p>
+  <!-- <p class="text-xs mx-2  text-gray-400">From 24 May 2024</p> -->
+
+  <div class="flex my-10 mx-[30%] justify-content-center">
+    <p-chart
+      style="width: 150px; height: 140px; "
+      type="doughnut"
+      [data]="data"
+      [options]="options"
+    ></p-chart>
+  </div>
+  <div class="flex py-4 lg:px-10 px-4 text-center justify-between">
+    <div class="flex gap-1 text-xs text-black">
+      <img
+        class="w-4 h-4 my-auto relative z-[1]"
+        loading="lazy"
+        [src]="notifSrc"
+      />
+      <p>Used Credits<br /><span class="text-gray-400">{{creditUsed}}</span></p>
+    </div>
+    <div class="text-xs flex gap-1 text-black">
+      <img
+        class="w-4 h-4 my-auto relative z-[1]"
+        loading="lazy"
+        [src]="mailSrc"
+      />
+      <p>Remaining Credits<br /><span class="text-gray-400">{{creditRemaining}}</span></p>
+    </div>
+  </div>
+</div>

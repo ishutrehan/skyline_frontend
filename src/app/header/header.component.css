@@ -1,0 +1,40 @@
+.icon {
+    width:30px;
+    height:30px;
+    position: relative;
+}
+.txt{
+    background-color:red;
+    color: white;
+    font-size:16px;
+    position: absolute;
+    font-weight: 700;
+    padding:2px;
+    top: -40%;
+    height: fit-content;
+    padding: 0 3px;
+    display: grid;
+    place-items: center;
+    margin: 0;
+    left: 50% ;
+    border-radius: 15px;
+}
+
+
+.scrollable-table-body {
+    display: block;
+    max-height: 400px; /* Set the desired max height */
+    overflow-y: auto; /* Enable vertical scrollbar */
+  }
+
+  .scrollable-table-body tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  thead, tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }

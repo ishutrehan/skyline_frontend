@@ -1,0 +1,171 @@
+<div class="w-full">
+  <app-header ></app-header>
+  <div class="max-sm:hidden">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div
+    class="w-[80%] max-sm:w-[100%] mt-[88px] h-auto md:ml-[20%] overflow-hidden"
+  >
+    <div
+      class="border-2 border-gray-200 rounded-md mx-auto w-[95%] h-[90%] mb-[2%] mt-4"
+    >
+      <div class="w-full py-[4%]">
+        <h1 class="font-bold font-satoshi text-xl text-[#000000] pl-[1%]">
+          Free Services:
+        </h1>
+
+        <div class="mt-[2.5%] mx-auto w-[98%] md:flex justify-between">
+          <div
+            class="border-2 rounded-md border-gray-200 py-[2%] w-full md:w-[30%] overflow-hidden"
+          >
+            <img class="ml-[37%]" [src]="frameSrc" alt="" />
+            <h1
+              class="text-center font-bold font-satoshi text-lg text-[#000000] mt-[1%]"
+            >
+              AI Humanizer
+            </h1>
+          </div>
+
+          <div
+            class="border-2 rounded-md border-gray-200 py-[2%] w-full md:w-[30%] overflow-hidden"
+          >
+            <img class="ml-[36%]" [src]="frame1Src" alt="" />
+            <h1
+              class="text-center font-bold font-satoshi text-lg text-[#000000] mt-[1%]"
+            >
+              Citation Generator
+            </h1>
+          </div>
+
+          <div
+            class="border-2 rounded-md border-gray-200 py-[2%] w-full md:w-[30%] overflow-hidden"
+          >
+            <img class="ml-[37%]" [src]="frame2Src" alt="" />
+            <h1
+              class="text-center font-bold font-satoshi text-lg text-[#000000] mt-[1%] mr-[2%]"
+            >
+              AI Grammar and spell Check
+            </h1>
+          </div>
+        </div>
+
+        <!-- main second div -->
+        <div
+          class="border-gray-200 border-2 h-[80%] py-2 w-[98%] rounded bg-gray-50 mx-auto mt-[2%]"
+        >
+          <div class="ml-[2%] w-full mt-[2.5%] md:flex gap-2">
+            <div class="w-full md:w-[40%]">
+              <div class="flex gap-2 mt-1">
+                <img class="mt-2 w-7 h-7" [src]="BlackSrc" alt="" />
+                <h1
+                  class="font-medium font-satoshi text-lg text-[#000000] mt-1"
+                >
+                  AI GPT/Detector
+                </h1>
+              </div>
+              <div class="flex gap-2 mt-1">
+                <img class="mt-[2%] w-7 h-7" [src]="Black1Src" alt="" />
+                <h1
+                  class="font-medium font-satoshi text-lg text-[#000000]mt-[1%]"
+                >
+                  ZeroCHAT-4&5
+                </h1>
+              </div>
+
+              <div class="flex gap-2 mt-1">
+                <img class="mt-[2%] w-7 h-7" [src]="Black2Src" alt="" />
+                <h1
+                  class="font-medium font-satoshi text-lg text-[#000000] mt-[1%]"
+                >
+                  AI Summarizer
+                </h1>
+              </div>
+
+              <div class="flex gap-2 mt-1">
+                <img class="mt-[2%] w-7 h-7" [src]="Black3Src" alt="" />
+                <h1
+                  class="font-medium font-satoshi text-lg text-[#000000] mt-[1%]"
+                >
+                  AI Paraphraser
+                </h1>
+              </div>
+
+              <div class="flex gap-2 mt-1">
+                <img class="mt-[1%] w-7 h-7" [src]="Black4Src" alt="" />
+                <h1
+                  class="font-medium font-satoshi text-lg text-[#000000] mt-[1%]"
+                >
+                  AI Grammar & spell Check
+                </h1>
+              </div>
+
+              <div class="flex gap-2 mt-1">
+                <img class="mt-[2%] w-7 h-7" [src]="Black5Src" alt="" />
+                <h1
+                  class="font-medium font-satoshi text-lg text-[#000000] mt-[1%]"
+                >
+                  AI Translator
+                </h1>
+              </div>
+
+              <div class="flex gap-2 mt-1">
+                <img class="mt-[2%] w-7 h-7" [src]="Black6Src" alt="" />
+                <h1
+                  class="font-medium font-satoshi text-lg text-[#000000] mt-[1%]"
+                >
+                  Word counter
+                </h1>
+              </div>
+
+              <div class="flex gap-2 mt-1">
+                <img class="mt-[2%] w-7 h-7" [src]="Black7Src" alt="" />
+                <h1
+                  class="font-medium font-satoshi text-lg text-[#000000] mt-[1%]"
+                >
+                  Citation
+                </h1>
+              </div>
+            </div>
+
+            <!-- textarea div -->
+            <div class="w-full md:w-[60%]">
+              <textarea
+                class="xl:w-[96%] w-[90%] h-[70%] border-none px-[2%] resize-none bg-gray-50"
+                name=""
+                id=""
+                cols="30"
+                rows="10"
+                placeholder="Enter text to check for AI and ChatGPT Plagiarism"
+              ></textarea>
+
+              <div class="flex mt-[2%] my-1 gap-4">
+                <button class="h-12 w-32 rounded-md bg-[#FF565F] text-white">
+                  Detech Text
+                </button>
+
+                <div class="flex gap-3 mt-3">
+                  <img class="h-6 w-7" [src]="Black8Src" alt="" />
+                  <p
+                    class="font-medium font-satoshi max-lg:text-xs text-sm text-[#000000]"
+                  >
+                    Choose Your level of study
+                  </p>
+                </div>
+                <div class="max-lg:ml-[5%] ml-[4%] mr-1 mb-[1%]">
+                  <p
+                    class="font-normal font-satoshi pr-2 text-[#000000] max-lg:text-xs text-sm"
+                  >
+                    0/15,000 charcters <br /><span class="pr-2"
+                      >(Get upto 100,000 here)</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- last div -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

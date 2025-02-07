@@ -1,0 +1,130 @@
+<!-- signup.component.html -->
+<div class="h-auto min-h-[100dvh] relative flex flex-col pb-6 items-center bg-black  px-5 lg:px-0 ">
+
+  <div class="w-[100%] pl-[15%] h-[70%] flex  items-center absolute  "  *ngIf="isLoading" >
+    <app-loader></app-loader>
+  </div>
+  <!-- header for auth page start  -->
+  <div class=" h-[6rem] mt-2 w-full flex items-center justify-between px-[2rem]">
+    <div class="logo w-[15%] min-w-[10rem] mb-0 flex flex-col items-center justify-center  ">
+      <a href="https://skylineacademic.com">
+        <div class=" w-[5rem] h-[5rem] imageadjuster bg-center bg-no-repeat"
+          [ngStyle]="{ 'background-image': logoImage }"></div>
+      </a>
+      <p class="text-xl mt-0 pt-0 font-bold text-white whitespace-nowrap"> Skyline Academic</p>
+    </div>
+    <div class="btns  w-auto  bg-black">
+      <!-- <a href="/signup">
+        <button class=" bg-white rounded-full whitespace-nowrap mx-2 font-bold h-[3rem] px-6 ">Sign Up</button>
+      </a> -->
+      <a href="/signin">
+        <button class=" bg-white rounded-full whitespace-nowrap  mx-2 font-bold h-[3rem] px-6 ">Sign In</button>
+      </a>
+    </div>
+  </div>
+  <!-- header for auth page end  -->
+  <div class="w-[35%] min-w-[400px] h-auto mt-6  bg-white border shadow rounded-lg flex">
+
+    <div class="w-full h-auto p-6">
+
+      <h1 class="text-4xl xl:text-4xl  text-center font-extrabold text-[#f76871]">Sign Up</h1>
+      <p class="text-lg text-center mt-1 text-gray-500">Hey enter your details to create your account</p>
+
+
+      <div class="mx-auto mt-6 flex flex-col gap-4">
+          <label class="block text-black text-sm font-bold ">Full Name</label>
+
+        <input class="text-gray-700 border border-gray-300 outline-none rounded py-2 px-4 block w-full focus:outline-2"
+          type="text" placeholder="Enter your name" [(ngModel)]="formData.name" name="name" required />
+          <label class="block text-black text-sm font-bold ">Email Address</label>
+
+        <input class="text-gray-700 border border-gray-300 outline-none rounded py-2 px-4 block w-full focus:outline-2"
+          type="email" placeholder="Enter your email" [(ngModel)]="formData.email" name="email" required />
+
+        <!-- <input class="text-gray-700 border border-gray-300 outline-none rounded py-2 px-4 block w-full focus:outline-2"
+          type="text" placeholder="Academic level" [(ngModel)]="formData.academicLevel" name="academicLevel" required />
+        <input class="text-gray-700 border border-gray-300 outline-none rounded py-2 px-4 block w-full focus:outline-2"
+          type="text" placeholder="Enter Interest" [(ngModel)]="formData.interest" name="interest" required /> -->
+
+          <label class="block text-black text-sm font-bold ">Password</label>
+        <div class="flex border border-gray-300 rounded w-full focus:outline-2">
+          <input matInput class="text-gray-700 w-[90%] outline-none py-2 px-4 block" [type]="show ? 'text' : 'password'"
+            name="password" [(ngModel)]="formData.password" placeholder="Password" />
+          <button mat-icon-button type="button" (click)="togglePasswordVisibility()"
+            [attr.aria-label]="show ? 'Hide password' : 'Show password'">
+            <mat-icon class="mt-2">{{
+              show ? "visibility_off" : "visibility"
+              }}</mat-icon>
+          </button>
+        </div>
+        <!-- <div
+        class="g-recaptcha"
+        [attr.data-sitekey]="siteKey"
+        (captchaResponse)="onCaptchaResolved($event)"
+      ></div> -->
+
+        <button type="submit" (click)="onSubmit()"
+          class="bg-[#FF565F] text-white font-bold h-12 py-2 px-4 w-full rounded-3xl ">
+
+          <span class="ml-3">Sign Up</span>
+        </button>
+
+      </div>
+
+
+      <h1 class="flex justify-center font-medium text-lg mt-3">or</h1>
+      <div class="w-[100%] flex flex-row mt-3 gap-4 items-center justify-center">
+        <!-- Google Login Button -->
+
+        <button type="button" class=" w-1/2 h-12 py-2 px-4  bg-[#ededed] rounded-3xl flex items-center justify-center"
+          (click)="googleSignup()">
+          <div class="flex items-center">
+            <svg width="30px" height="30px" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M30.0014 16.3109C30.0014 15.1598 29.9061 14.3198 29.6998 13.4487H16.2871V18.6442H24.1601C24.0014 19.9354 23.1442 21.8798 21.2394 23.1864L21.2127 23.3604L25.4536 26.58L25.7474 26.6087C28.4458 24.1665 30.0014 20.5731 30.0014 16.3109Z"
+                fill="#4285F4"></path>
+              <path
+                d="M16.2863 29.9998C20.1434 29.9998 23.3814 28.7553 25.7466 26.6086L21.2386 23.1863C20.0323 24.0108 18.4132 24.5863 16.2863 24.5863C12.5086 24.5863 9.30225 22.1441 8.15929 18.7686L7.99176 18.7825L3.58208 22.127L3.52441 22.2841C5.87359 26.8574 10.699 29.9998 16.2863 29.9998Z"
+                fill="#34A853"></path>
+              <path
+                d="M8.15964 18.769C7.85806 17.8979 7.68352 16.9645 7.68352 16.0001C7.68352 15.0356 7.85806 14.1023 8.14377 13.2312L8.13578 13.0456L3.67083 9.64746L3.52475 9.71556C2.55654 11.6134 2.00098 13.7445 2.00098 16.0001C2.00098 18.2556 2.55654 20.3867 3.52475 22.2845L8.15964 18.769Z"
+                fill="#FBBC05"></path>
+              <path
+                d="M16.2864 7.4133C18.9689 7.4133 20.7784 8.54885 21.8102 9.4978L25.8419 5.64C23.3658 3.38445 20.1435 2 16.2864 2C10.699 2 5.8736 5.1422 3.52441 9.71549L8.14345 13.2311C9.30229 9.85555 12.5086 7.4133 16.2864 7.4133Z"
+                fill="#EB4335"></path>
+            </svg>
+
+          </div>
+        </button>
+
+        <!-- Facebook Login Button -->
+
+        <button type="button"
+          class="bg-[#ededed] w-1/2 text-white h-12 py-2  rounded-3xl flex items-center justify-center"
+          (click)="facebookSignup()">
+          <div class="flex items-center">
+            <svg width="40px" height="40px" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="20" fill="#3B5998"></circle>
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M29.315 16.9578C28.6917 16.8331 27.8498 16.74 27.3204 16.74C25.8867 16.74 25.7936 17.3633 25.7936 18.3607V20.1361H29.3774L29.065 23.8137H25.7936V35H21.3063V23.8137H19V20.1361H21.3063V17.8613C21.3063 14.7453 22.7708 13 26.4477 13C27.7252 13 28.6602 13.187 29.8753 13.4363L29.315 16.9578Z"
+                fill="white"></path>
+            </svg>
+
+          </div>
+        </button>
+
+      </div>
+
+      <p class="mt-6 text-lg text-gray-600 text-center">
+        Already have an account?
+        <a href="/signin">
+          <span class="text-[#f76871] font-semibold">Sign In</span>
+        </a>
+      </p>
+
+
+
+
+    </div>
+  </div>
+</div>

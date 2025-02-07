@@ -1,0 +1,316 @@
+<div class=" w-[100%]">
+    <app-header></app-header>
+    <div class="max-sm:hidden">
+      <app-sidebar></app-sidebar>
+    </div>
+      <div class="w-[80%] max-sm:w-[100%] mt-[88px] h-auto  md:ml-[20%] overflow-hidden">
+       <div
+        class="w-[98%] h-full "
+      >
+        <div
+          class="w-[96%] mx-auto mt-[1rem] bg-white border rounded-md border-gray-300 "
+        >
+          <div class="my-[1rem]">
+            <div class="w-full h-auto px-5 py-2 bg-white mx-">
+              <a
+                href="user/dashboard"
+                class="text-red-500 ml-9 my-6 flex gap-2 text-bold text-base"
+              >
+                <img
+                  class="w-5 mt-2 h-5"
+                  loading="lazy"
+                  [alt]="avatarAlt"
+                  [src]="cs0Src"
+                /><b class="text-[#FF565F] font-bold font-satoshi mt-1"
+                  >Dashboard</b
+                >
+              </a>
+              <div class="w-full mx-auto lg:flex my-2 gap-2 text-center">
+                <div
+                  [ngClass]="{
+                    'border-green-500': Basic,
+                    border: !Basic
+                  }"
+                  class="w-[33%] max-lg:w-[70%] mx-auto h-auto border rounded-md"
+                >
+                  <div class="w-[80%] py-2 mx-auto h-auto">
+                    <p
+                      class="mt-6 mb-2 text-[#FF565F] font-bold font-satoshi text-2xl"
+                    >
+                      $5
+                      <span
+                        class="mt-6 mb-2 text-base font-medium font-satoshi text-[#9F9F9F]"
+                        >/mo</span
+                      >
+                    </p>
+                    <p class="text-[#000000] font-satoshi text-lg font-bold mt-2">
+                      Basic Plan
+                    </p>
+                    <p
+                    class=" text-xs  text-gray-600 font-satoshi font-bold"
+                  >
+                  Cancel Anytime
+                  </p>
+                    <p
+                      class="mt-6 text-xs my-2 text-[#8C8C8C] font-satoshi font-normal"
+                    >
+                      Ideal for individual users or small projects. Provides basic
+                      access to core services
+                    </p>
+                    <div class="w-[100%] mx-auto mt-2 h-38">
+                      <p
+                        class="text-sm text-left w-full gap-2 h-8 flex font-satoshi text-[#000000] font-medium"
+                      >
+                        <img
+                          class="w-5  h-5"
+                          loading="lazy"
+                          [alt]="avatarAlt"
+                          [src]="cs1Src"
+                        />Access to proofreading
+                      </p>
+                      <p
+                        class="text-sm text-left w-full gap-2 h-10 flex font-satoshi text-[#000000] font-medium"
+                      >
+                        <img
+                          class="w-5  h-5"
+                          loading="lazy"
+                          [alt]="avatarAlt"
+                          [src]="cs1Src"
+                        />editing services.
+                      </p>
+                      <p
+                        class="text-sm w-full text-left gap-2 h-8 flex font-satoshi text-[#000000] font-medium"
+                      >
+                        <img
+                          class="w-5  h-5"
+                          loading="lazy"
+                          [alt]="avatarAlt"
+                          [src]="cs1Src"
+                        />Basic plagiarism checks
+                      </p>
+                      <p
+                        class="text-sm text-left w-full gap-2 h-10 flex font-satoshi text-[#000000] font-medium"
+                      >
+                        <img
+                          class="w-5  h-5"
+                          loading="lazy"
+                          [alt]="avatarAlt"
+                          [src]="cs1Src"
+                        />Limited access to data analysis tools.
+                      </p>
+                      <p
+                        class="text-sm text-left w-full gap-2 h-10 flex font-satoshi text-[#000000] font-medium"
+                      >
+                        <img
+                          class="w-5  h-5"
+                          loading="lazy"
+                          [alt]="avatarAlt"
+                          [src]="cs1Src"
+                        />Standard support
+                      </p>
+                    </div>
+
+                    <button
+                    type="submit"
+                    (click)="currentPlan?.amount === 5 ? null : (currentPlan?.amount===15 || currentPlan?.amount===10)?updatePlan(1):getStart(1)"
+                    [class.bg-gray-400]="currentPlan?.amount === 5"
+                    [class.text-white-400]="currentPlan?.amount === 5"
+                    [class.bg-red-500]="currentPlan?.amount !== 5"
+                    [class.text-white]="currentPlan?.amount !== 5"
+                    class="w-full h-10 rounded-md text-base"
+                    [disabled]="currentPlan?.amount === 5"
+                >
+                {{(currentPlan?.amount===15 || currentPlan?.amount===10)? 'Update Plan':(currentPlan?.amount === 5)?'Current Plan':'Get Started'}}
+                </button>
+
+                  </div>
+                </div>
+
+                <div
+                  [ngClass]="{
+                    'border-green-500': Premium,
+                    border: !Premium
+                  }"
+                  class="w-[33%] max-lg:w-[70%] mx-auto h-auto border rounded-md"
+                >
+                  <div class="w-[80%] mx-auto h-auto">
+                    <p
+                      class="mt-6 mb-2 text-[#FF565F] font-bold font-satoshi text-2xl"
+                    >
+                      $10<span
+                        class="mt-6 mb-2 text-base font-medium font-satoshi text-[#9F9F9F]"
+                        >/mo</span
+                      >
+                    </p>
+                    <p class="text-lg text-[#000000] font-satoshi font-bold mt-2">
+                      Premium Plan
+                    </p>
+                    <p
+                    class=" text-xs text-gray-600 font-satoshi font-bold"
+                  >
+                  Cancel Anytime
+                  </p>
+                    <p
+                      class="mt-6 mb-2 my-2 text-[#8C8C8C] font-satoshi font-normal text-xs"
+                    >
+                      Designed for professionals and frequent users. Offers a
+                      wider range of features and enhanced support.
+                    </p>
+                    <div class="w-[100%] mx-auto my-4 h-38">
+                      <p
+                        class="text-sm text-left w-full gap-2 h-10 flex font-satoshi text-[#000000] font-medium"
+                      >
+                        <img
+                          class="w-5 py-auto h-5" 
+                          loading="lazy"
+                          [alt]="avatarAlt"
+                          [src]="cs1Src"
+                        />Unlimited proofreading and editing.
+                      </p>
+                      <p
+                        class="text-sm text-left w-full gap-2 h-10 flex font-satoshi text-[#000000] font-medium"
+                      >
+                        <img
+                          class="w-5 py-auto h-5"
+                          loading="lazy"
+                          [alt]="avatarAlt"
+                          [src]="cs1Src"
+                        />
+                        <span class="text-left"
+                          >Advanced plagiarism checks (unlimited).</span
+                        >
+                      </p>
+                      <p
+                        class="text-sm text-left w-full gap-2 h-10 flex font-satoshi text-[#000000] font-medium"
+                      >
+                        <img
+                          class="w-5  h-5"
+                          loading="lazy"
+                          [alt]="avatarAlt"
+                          [src]="cs1Src"
+                        />Full access to data analysis tools.
+                      </p>
+                      <p
+                        class="text-sm text-left w-full gap-2 h-10 flex font-satoshi text-[#000000] font-medium"
+                      >
+                        <img
+                          class="w-5  h-5"
+                          loading="lazy"
+                          [alt]="avatarAlt"
+                          [src]="cs1Src"
+                        />Priority support (email and phone)
+                      </p>
+                    </div>
+                    <button
+                    type="submit"
+                    (click)="currentPlan?.amount === 10 ? null :(currentPlan?.amount===15 || currentPlan?.amount===5)?updatePlan(2): getStart(2)"
+                    [class.bg-gray-400]="currentPlan?.amount === 10"
+                    [class.text-white-400]="currentPlan?.amount === 10"
+                    [class.bg-red-500]="currentPlan?.amount !== 10"
+                    [class.text-white]="currentPlan?.amount !== 10"
+                    class="w-full h-10 rounded-md mb-2 text-base"
+                    [disabled]="currentPlan?.amount === 10"
+                >
+                {{currentPlan?.amount===5 || currentPlan?.amount===15 ? 'Update Plan':(currentPlan?.amount === 10)?'Current Plan':'Get Started'}}
+
+                </button>
+
+                  </div>
+                </div>
+
+                <div
+                  [ngClass]="{
+                    'border-green-500': Advance,
+                    border: !Advance
+                  }"
+                  class="w-[33%] max-lg:w-[70%] mx-auto h-auto border rounded-md"
+                >
+                  <div class="w-[80%] mx-auto h-auto">
+                    <p
+                      class="mt-6 mb-2 text-[#FF565F] font-bold font-satoshi text-2xl"
+                    >
+                      $15<span
+                        class="mt-6 mb-2 text-base font-medium font-satoshi text-[#9F9F9F]"
+                        >/mo</span
+                      >
+                    </p>
+                    <p class="text-lg text-[#000000] font-satoshi font-bold mt-2">
+                      Advance Plan
+                    </p>
+                    <p
+                    class=" text-xs text-gray-600 font-satoshi font-bold"
+                  >
+                  Cancel Anytime
+                  </p>
+                    <p
+                      class="mt-6 mb-2 my-2 text-[#8C8C8C] font-satoshi font-normal text-xs"
+                    >
+                      Designed for professionals and frequent users. Offers a
+                      wider range of features and enhanced support.
+                    </p>
+                    <div class="w-[100%] mx-auto my-4 h-38">
+                      <p
+                        class="text-sm text-left w-full gap-2 h-10 flex font-satoshi text-[#000000] font-medium"
+                      >
+                        <img
+                          class="w-5  h-5"
+                          loading="lazy"
+                          [alt]="avatarAlt"
+                          [src]="cs1Src"
+                        />Unlimited proofreading and editing.
+                      </p>
+                      <p
+                        class="text-sm text-left w-full gap-2 h-10 flex font-satoshi text-[#000000] font-medium"
+                      >
+                        <img
+                          class="w-5  h-5"
+                          loading="lazy"
+                          [alt]="avatarAlt"
+                          [src]="cs1Src"
+                        /><span class="text-left"
+                          >Advanced plagiarism checks (unlimited).</span
+                        >
+                      </p>
+                      <p
+                        class="text-sm text-left w-full gap-2 h-10 flex font-satoshi text-[#000000] font-medium"
+                      >
+                        <img
+                          class="w-5  h-5"
+                          loading="lazy"
+                          [alt]="avatarAlt"
+                          [src]="cs1Src"
+                        />Full access to data analysis tools.
+                      </p>
+                      <p
+                        class="text-sm text-left w-full gap-2 h-10 flex font-satoshi text-[#000000] font-medium"
+                      >
+                        <img
+                          class="w-5  h-5"
+                          loading="lazy"
+                          [alt]="avatarAlt"
+                          [src]="cs1Src"
+                        />Priority support (email and phone)
+                      </p>
+                    </div>
+                    <button
+                    type="submit"
+                    (click)="currentPlan?.amount === 15 ? null :(currentPlan?.amount===5 || currentPlan?.amount===10)?updatePlan(3): getStart(3)"
+                    [class.bg-gray-400]="currentPlan?.amount === 15"
+                    [class.text-white-400]="currentPlan?.amount === 15"
+                    [class.bg-red-500]="currentPlan?.amount !== 15"
+                    [class.text-white]="currentPlan?.amount !== 15"
+                    class="w-full h-10 rounded-md mb-2 text-base"
+                    [disabled]="currentPlan?.amount === 15"
+                >
+                {{(currentPlan?.amount===5 || currentPlan?.amount===10)? 'Update Plan':(currentPlan?.amount === 15)?'Current Plan':'Get Started'}}
+                </button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

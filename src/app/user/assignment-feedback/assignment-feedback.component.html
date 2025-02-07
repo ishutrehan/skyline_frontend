@@ -1,0 +1,614 @@
+<div class="w-[100%]">
+  <app-header></app-header>
+  <div class="max-sm:hidden">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="w-[80%] lg-max:w-[100%] mt-[88px] h-auto lg:ml-[20%] overflow-hidden">
+    <div class="w-full h-auto border-t border-r border-l rounded-md border-gray-300">
+      <p class="text-red-500 ml-9 my-6 text-bold font-medium text-base">
+        <a href="user/assignmentAid" class="flex gap-2">
+          <img class="w-5 mt-1 h-5" loading="lazy" [alt]="avatarAlt" [src]="cs0Src" />
+          Back</a>
+      </p>
+      <div class="w-[95%] mx-auto h-auto mt-[1rem] bg-white border rounded-md border-gray-300">
+        <div class="my-[1rem] h-auto">
+          <div>
+            <div class="w-[90%] h-auto mx-auto bg-white">
+              <ng-container *ngIf="isLoading">
+                <app-loader></app-loader>
+              </ng-container>
+
+              <div class="w-full h-auto mt-6 border rounded-md bg-[#F7F7F8] border-gray-300">
+                <div class="my-4 ml-4 text-white gap-3 flex">
+                  <p
+                    class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500">
+                    1
+                  </p>
+                  <span [ngClass]="{
+                      'text-red-500': checkvalid && !form.selectedLevel
+                    }" class="text-[#000000] font-satoshi font-semibold w-full">
+                    Choose Your level of study *
+                  </span>
+                </div>
+
+                <div class="my-4 ml-[6%] text-white gap-4 md:flex flex-row">
+                  <ng-container *ngFor="let studyLevel of studyLevels">
+                    <div class="flex items-center mr-4">
+                      <input id="{{ 'levelOfStudy-' + studyLevel.id }}" type="radio" [value]="studyLevel.value"
+                        name="levelOfStudy" [(ngModel)]="form.selectedLevel" (change)="levelChanged()"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-0 dark:bg-gray-700 dark:border-gray-600" />
+                      <label [for]="'levelOfStudy-' + studyLevel.id" class="ms-2 text-sm font-medium text-black">
+                        {{ studyLevel.label }}
+                      </label>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+
+              <div class="w-full h-auto mt-6 border rounded-md font-medium bg-[#F7F7F8] border-gray-300">
+                <div class="my-4 ml-4 text-white gap-3 flex">
+                  <p
+                    class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500">
+                    2
+                  </p>
+                  <span [ngClass]="{ 'text-red-500': checkvalid && !form.subject }"
+                    class="text-[#000000] font-satoshi font-semibold w-full">
+                    Which Subject? *</span>
+                </div>
+
+                <div class="my-4 ml-[6%]">
+                  <p class="text-sm text-black">
+                    If you can’t find the subject on this list, please enter
+                    your own.
+                  </p>
+                  <div class="w-[50%] md-max:w-[80%]  mt-4 h-8">
+                    <input id="countries" type="text" [(ngModel)]="form.subject" name="subject" required
+                      class="bg-[#F7F7F8] outline-none border rounded-md border-gray-300 text-gray-900 text-sm focus:border-gray-300 block w-full p-2.5 dark:placeholder-gray-300" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="w-full h-auto mt-6 rounded-md border bg-[#F7F7F8] border-gray-300">
+                <div class="my-4 ml-4 text-white gap-3 flex">
+                  <p
+                    class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500">
+                    3
+                  </p>
+                  <span [ngClass]="{
+                                  ' text-red-500': checkvalid && !form.workRequired
+                                }" class="text-[#000000] font-satoshi font-semibold w-full">
+                    Work Required *</span>
+                </div>
+
+                <div class="my-2 mb-8 text-white gap-2 flex flex-wrap px-[3rem] ">
+                  <div class="flex  items-center  w-[170px]">
+                    <input id="workRequired-1" type="radio" value="Essay" name="workRequired"
+                      [(ngModel)]="form.workRequired"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-0 dark:bg-gray-700 dark:border-gray-600" />
+                    <label for="workRequired-1" class="ms-2 text-xs font-medium text-black">Essay</label>
+                  </div>
+                  <div class="flex  items-center  w-[170px]">
+                    <input checked id="workRequired-2" type="radio" value="Essay Plan" name="workRequired"
+                      (change)="workRequiredChanged()" [(ngModel)]="form.workRequired"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-0 dark:bg-gray-700 dark:border-gray-600" />
+                    <label for="workRequired-2" class="ms-2 text-xs font-medium text-black">Essay Plan</label>
+                  </div>
+                  <div class="flex  items-center  w-[170px] ">
+                    <input id="workRequired-3" type="radio" value="Dissertation title creation" name="workRequired"
+                      [(ngModel)]="form.workRequired" (change)="workRequiredChanged()"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-0 dark:bg-gray-700 dark:border-gray-600" />
+                    <label for="workRequired-3" class="ms-2 text-xs font-medium text-black">Dissertation title
+                      creation</label>
+                  </div>
+
+                  <div class="flex  items-center  w-[170px]">
+                    <input id="workRequired-4" type="radio" value="Reflective" name="workRequired"
+                      (change)="workRequiredChanged()" [(ngModel)]="form.workRequired"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-0 dark:bg-gray-700 dark:border-gray-600" />
+                    <label for="workRequired-4" class="ms-2 text-xs font-medium text-black">Reflective</label>
+                  </div>
+                  <div class="flex  items-center  w-[170px]">
+                    <input checked id="workRequired-5" type="radio" value="Systematic review" name="workRequired"
+                      (change)="workRequiredChanged()" [(ngModel)]="form.workRequired"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-0 dark:bg-gray-700 dark:border-gray-600" />
+                    <label for="workRequired-5" class="ms-2 text-xs font-medium text-black">Systematic
+                      review</label>
+                  </div>
+                  <div class="flex  items-center  w-[170px]">
+                    <input id="workRequired-6" type="radio" value="Coursework" name="workRequired"
+                      (change)="workRequiredChanged()" [(ngModel)]="form.workRequired"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-0 dark:bg-gray-700 dark:border-gray-600" />
+                    <label for="workRequired-6" class="ms-2 text-xs font-medium text-black">Coursework</label>
+                  </div>
+
+                  <div class="flex  items-center  w-[170px]">
+                    <input id="workRequired-7" type="radio" value="Model exam answer" name="workRequired"
+                      (change)="workRequiredChanged()" [(ngModel)]="form.workRequired"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-0 dark:bg-gray-700 dark:border-gray-600" />
+                    <label for="workRequired-7" class="ms-2 text-xs font-medium text-black">Model exam
+                      answer</label>
+                  </div>
+                  <div class="flex  items-center  w-[170px]">
+                    <input checked id="workRequired-8" type="radio" value="Presentation" name="workRequired"
+                      [(ngModel)]="form.workRequired" (change)="workRequiredChanged()"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-0 dark:bg-gray-700 dark:border-gray-600" />
+                    <label for="workRequired-8" class="ms-2 text-xs font-medium text-black">Presentation</label>
+                  </div>
+                  <div class="flex  items-center  w-[170px]">
+                    <input id="workRequired-9" type="radio" value="Dissertation Proposal" name="workRequired"
+                      [(ngModel)]="form.workRequired" (change)="workRequiredChanged()"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-0 dark:bg-gray-700 dark:border-gray-600" />
+                    <label for="workRequired-9" class="ms-2 text-xs font-medium text-black">Dissertation
+                      Proposal</label>
+                  </div>
+
+                  <div class="flex  items-center  w-[170px]">
+                    <input id="workRequired-10" type="radio" value="Literature review" name="workRequired"
+                      [(ngModel)]="form.workRequired" (change)="workRequiredChanged()"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-0 dark:bg-gray-700 dark:border-gray-600" />
+                    <label for="workRequired-10" class="ms-2 text-xs font-medium text-black">Literature
+                      review</label>
+                  </div>
+                  <div class="flex  items-center  w-[170px]">
+                    <input checked id="workRequired-11" type="radio" value="Full dissertation" name="workRequired"
+                      (change)="workRequiredChanged()" [(ngModel)]="form.workRequired"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-0 dark:bg-gray-700 dark:border-gray-600" />
+                    <label for="workRequired-11" class="ms-2 text-xs font-medium text-black">Full
+                      dissertation</label>
+                  </div>
+                  <div class="flex  items-center  w-[170px]">
+                    <input id="workRequired-12" type="radio" value="Report" name="workRequired"
+                      [(ngModel)]="form.workRequired" (change)="workRequiredChanged()"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-0 dark:bg-gray-700 dark:border-gray-600" />
+                    <label for="workRequired-12" class="ms-2 text-xs font-medium text-black">Report</label>
+                  </div>
+
+                  <div class="flex  items-center  w-[170px]">
+                    <input id="workRequired-13" type="radio" value="Critical review" name="workRequired"
+                      [(ngModel)]="form.workRequired" (change)="workRequiredChanged()"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-0 dark:bg-gray-700 dark:border-gray-600" />
+                    <label for="workRequired-13" class="ms-2 text-xs font-medium text-black">Critical review</label>
+                  </div>
+                  <div class="flex  items-center  w-[170px]">
+                    <input checked id="workRequired-14" type="radio" value="Dissertation chapter" name="workRequired"
+                      [(ngModel)]="form.workRequired" (change)="workRequiredChanged()"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-0 dark:bg-gray-700 dark:border-gray-600" />
+                    <label for="workRequired-14" class="ms-2 text-xs font-medium text-black">Dissertation
+                      chapter</label>
+                  </div>
+                </div>
+              </div>
+              <!-- <div
+                class="w-full h-[7rem] mt-6 border rounded-md font-medium bg-[#F7F7F8] border-gray-300"
+              >
+                <div class="my-4 ml-4 text-white gap-3 flex">
+                  <p
+                    class="w-[1.5rem] h-[1.5rem] text-center text-sm rounded-full bg-red-200 text-red-500"
+                  >
+                    3
+                  </p>
+                  <span
+                    [ngClass]="{
+                      'text-red-500': checkvalid && !form.urgenecyofassignments
+                    }"
+                    class="text-[#000000] font-satoshi font-semibold w-full"
+                  >
+                    Urgenecy of Assignment *
+                  </span>
+                </div>
+
+                <div class="mt-3 ml-16">
+                  <select
+                    class="text-[#000000] bg-gray-200 rounded-md p-1"
+                    name="timestatus"
+                    id="status"
+                    (change)="handlePricing($event)"
+                    [(ngModel)]="form.urgenecyofassignments"
+                  >
+                    <option class="text-[#000000] rounded-md" value="Urgent">
+                      Urgent (12 Hours)
+                    </option>
+                    <option class="text-[#000000] rounded-md" value="Express">
+                      Express (24 Hours)
+                    </option>
+                    <option class="text-[#000000] rounded-md" value="Standard">
+                      Standard (72 Hours)
+                    </option>
+                  </select>
+                </div>
+              </div> -->
+
+              <!-- progress bar -->
+
+              <div *ngIf="showModal1"
+                class="fixed inset-0 z-50 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+                <div
+                  class="relative top-20 mx-auto px-5 pt-3 pb-5 border h-[15rem] w-[50%] shadow-lg rounded-xl bg-white">
+                  <span class="text-red-600 font-extrabold cursor-pointer" (click)="closeProgressBar()">X</span>
+
+                  <div class="mt-[3rem]">
+                    <div class="mt-[2rem] flex justify-center">
+                      <h3 class="text-lg mt-3 leading-6 font-medium text-black">
+                        {{ progressValue }}% Completed
+                      </h3>
+                    </div>
+
+                    <mat-progress-bar class="h-6 mt-[2rem] rounded-lg bg-red-100" color="warn"
+                      style="height: 20px; background-color: #f59fa4" mode="determinate" *ngIf="isUploading"
+                      [value]="uploadProgress">
+                    </mat-progress-bar>
+
+                    <div class="mt-3 flex justify-between">
+                      <h3 class="text-lg leading-6 font-medium text-gray-900">
+                        File Name -{{ fileName }}
+                      </h3>
+                      <h3 class="text-lg leading-6 font-medium text-gray-900">
+                        Word Count-
+                        {{ noOFWord }}
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="w-full h-auto mt-6 rounded-md border font-medium bg-[#F7F7F8] border-gray-300">
+                <div class="my-4 ml-4 text-white gap-3 flex">
+                  <p
+                    class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500">
+                    4
+                  </p>
+                  <span [ngClass]="{ 'text-red-500': checkvalid && !fileName }"
+                    class="text-[#000000] font-satoshi font-semibold w-full">Upload Document for review *</span>
+                </div>
+
+                <div class=" py-4 flex md-max:flex-col  ">
+                  <!-- google drive and drag and drop -->
+                  <div (dragover)="handleDragOver($event)" (dragleave)="handleDragLeave($event)"
+                    (drop)="handleFileDrop($event)"
+                    class="w-[40%] relative md-max:w-[80%] mx-[2rem] border-2 border-gray-200 rounded-md h-[10]">
+                    <div class="my-4 mx-auto w-[92%] border-dashed border-2 border-[#FF565F] rounded-md h-[8rem]">
+                      <div class="relative flex justify-center items-center h-full">
+                        <button
+                          class="text-[#FF565F] w-full flex flex-col items-center  justify-center rounded cursor-pointer h-full"
+                          (click)="fileInput.click()">
+                          <img class="" [src]="dragSrc" alt="" />
+                          Browse or drag and drop
+                        </button>
+                        <input #fileInput class="absolute inset-0 opacity-0 cursor-pointer" type="file"
+                          (change)="handleFileInput($event)" accept=".pdf,.docx,.doc,.txt,.xlsx,.jpg,.jpeg,.png"
+                          style="display: none" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="my-6 md-max:my-3 md-max:mx-auto md-max:w-[80%]">
+                    <h1 class="break-words ">Filename - {{ fileName }}</h1>
+                    <h1 class="mt-4">Word count - {{ noOFWord }}</h1>
+                    <button *ngIf="fileName" (click)="handleClearFile()"
+                      class="px-4 mt-3 py-1 tracking-wide hover:text-red-600 shadow-md text-red-400 bg-red-200 rounded-md border">Clear</button>
+                  </div>
+                </div>
+              </div>
+              <div class="w-full h-[auto] py-2 mt-6 pb-4 border rounded-md font-medium bg-[#F7F7F8] border-gray-300">
+                <div class="my-4 ml-4 text-white gap-3 flex">
+                  <p class="w-[1.5rem] h-[1.5rem] text-center text-sm rounded-full bg-red-200 text-red-500">
+                    5
+                  </p>
+                  <span [ngClass]="{
+                      ' text-red-500': checkvalid && !form.urgenecyofassignments
+                    }" class="text-[#000000] font-satoshi font-semibold w-full">
+                    Urgenecy of Assignment
+                  </span>
+                </div>
+
+                <div class="mt-3">
+                  <!-- <select
+                    class="text-[#000000] p-2 rounded-md outline-none border w-[300px] border-gray-300 px-4 flex justify-between"
+                    name="timestatus"
+                    id="status"
+                    (change)="handlePricing($event)"
+                    [(ngModel)]="form.urgenecyofassignments"
+                  >
+                    <option class="text-[#000000] rounded-md" value="">
+                      None
+                    </option>
+                    <option class=" rounded-md " value="Urgent">
+                      Urgent(12 Hours)
+                      <span>
+                        {{ urgencyPrice + 40 }}
+                      </span>
+
+                    </option>
+                    <option class="text-[#000000] rounded-md" value="Express">
+                      Express(24 Hours)
+                      <p>
+                        {{ urgencyPrice + 20 }}
+                      </p>
+                    </option>
+                    <option class="text-[#000000] rounded-md" value="Standard">
+                      Standard(72 Hours)
+                      <p>
+                        {{ urgencyPrice + 0 }}
+                      </p>
+                    </option>
+                  </select> -->
+                  <div class="flex  gap-5 ml-[2rem]  flex-wrap">
+                    <label
+                      class="flex flex-col items-center relative justify-center w-auto min-w-[12rem] px-2 h-24 border border-gray-300 rounded-md cursor-pointer"
+                      [ngClass]="{
+                        'bg-blue-200': form.urgenecyofassignments === 'Urgent',
+                        'bg-white': form.urgenecyofassignments === '',
+                        'text-gray-400':
+                          current_day == 'Sat' ||
+                          current_day == 'Sun' ||
+                          noOFWord >= 3000,
+                        'bg-gray-100':
+                          current_day == 'Sat' ||
+                          current_day == 'Sun' ||
+                          noOFWord >= 3000
+                      }">
+                      <input *ngIf="
+                          current_day !== 'Sat' &&
+                          current_day !== 'Sun' &&
+                          noOFWord <= 3000
+                        " type="radio" name="timestatus" value="Urgent" [(ngModel)]="form.urgenecyofassignments"
+                        (ngModelChange)="chargeForScan()" class="hidden" />
+                      <span class="text-center whitespace-nowrap">Urgent (12 Hours)</span>
+                      <span class="text-center whitespace-nowrap font-bold text-xl text-red-400" [ngClass]="{
+                          'text-red-200':
+                            current_day == 'Sat' ||
+                            current_day == 'Sun' ||
+                            noOFWord >= 3000
+                        }">$ {{ urgencyPrice }}</span>
+                    </label>
+
+                    <label
+                      class="flex flex-col items-center justify-center w-auto min-w-[12rem] px-2 h-24 border border-gray-300 rounded-md cursor-pointer"
+                      [ngClass]="{
+                        'bg-blue-200': form.urgenecyofassignments === 'Express',
+                        'bg-white': form.urgenecyofassignments === '',
+                        'text-gray-400':
+                          current_day == 'Sat' ||
+                          current_day == 'Sun' ||
+                          noOFWord >= 3000,
+                        'bg-gray-100':
+                          current_day == 'Sat' ||
+                          current_day == 'Sun' ||
+                          noOFWord >= 3000
+                      }">
+                      <input *ngIf="
+                          current_day !== 'Sat' &&
+                          current_day !== 'Sun' &&
+                          noOFWord <= 3000
+                        " type="radio" name="timestatus" value="Express" [(ngModel)]="form.urgenecyofassignments"
+                        (ngModelChange)="chargeForScan()" class="hidden" />
+                      <span class="text-center whitespace-nowrap">Express (24 Hours)</span>
+                      <span [ngClass]="{
+                          'text-red-200':
+                            current_day == 'Sat' ||
+                            current_day == 'Sun' ||
+                            noOFWord >= 3000
+                        }" class="text-center whitespace-nowrap font-bold text-xl text-red-400">$ {{ expressPrice
+                        }}</span>
+                    </label>
+                    <label
+                      class="flex flex-col items-center justify-center w-[auto] min-w-[12rem]   px-2 h-24 border border-gray-300 rounded-md cursor-pointer"
+                      [ngClass]="{
+                        'bg-blue-200':
+                          form.urgenecyofassignments === 'Standard',
+                        'bg-white': form.urgenecyofassignments === ''
+                      }">
+                      <input type="radio" name="timestatus" value="Standard" [(ngModel)]="form.urgenecyofassignments"
+                        (ngModelChange)="chargeForScan()" class="hidden" />
+                      <span class="text-center whitespace-nowrap">Standard</span>
+                      <span class="text-center whitespace-nowrap font-bold text-xl text-red-400">$ {{ standardPrice
+                        }}</span>
+                    </label>
+                  </div>
+                  <!-- <div>
+                    <span class="text-[#000000] font-satoshi font-semibold w-full" name="calendar"
+                      [(ngModel)]="form.calendar" (ngModelChange)="workRequiredChanged()">
+
+                    </span>
+                    <div class="w-full h-auto mx-auto mt-6">
+                      <app-user-google-calender (dateClicked)="handleDateClicked($event)"></app-user-google-calender>
+                    </div>
+                  </div> -->
+                  <!-- <div class="flex space-x-4 ml-[2rem]">
+                  <label
+                    class="flex flex-col items-center justify-center w-[15rem] ml-[2rem] px-2 h-24 border border-gray-300 rounded-md cursor-pointer"
+                    [ngClass]="{
+                    'bg-blue-200':
+                      form.urgenecyofassignments === 'standard',
+                      'bg-white':
+                      form.urgenecyofassignments === ''
+                  }">
+                    <input type="radio" name="timestatus" value="standard" [(ngModel)]="form.urgenecyofassignments"
+                      (ngModelChange)="chargeForScan()" class="hidden" />
+                    <span class="text-center whitespace-nowrap">Standard (within 60 Days)</span>
+                    <span class="text-center whitespace-nowrap font-bold text-xl text-red-400">$ {{ standardPrice
+                      }}</span>
+                  </label>
+                  <label
+                  class="flex flex-col items-center justify-center w-[15rem] ml-[2rem] px-2 h-24 border border-gray-300 rounded-md cursor-pointer"
+                  [ngClass]="{
+                  'bg-blue-200':
+                    form.urgenecyofassignments === 'Standard',
+                    'bg-white':
+                    form.urgenecyofassignments === ''
+                }">
+                  <input type="radio" name="timestatus" value="Standard" [(ngModel)]="form.urgenecyofassignments"
+                    (ngModelChange)="chargeForScan()" class="hidden" />
+                  <span class="text-center whitespace-nowrap">Standard (within 90 Days)</span>
+                  <span class="text-center whitespace-nowrap font-bold text-xl text-red-400">$ {{ standardPrice
+                      }}</span>
+                </label>
+                </div> -->
+                </div>
+              </div>
+
+              <div class="w-full h-[9rem] mt-6 border rounded-md font-medium bg-[#F7F7F8] border-gray-300">
+                <div class="my-4 ml-4 text-white gap-3 flex">
+                  <p
+                    class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500">
+                    6
+                  </p>
+                  <span [ngClass]="{ 'text-red-500': checkvalid && !form.tellUs }"
+                    class="text-[#000000] font-satoshi font-semibold w-full">
+                    Title of Project *</span>
+                </div>
+                <div class="my-4 ml-[6%]">
+                  <div class="w-[50%] mt-4 md-max:w-[80%] h-8">
+                    <input id="countries" type="text" [(ngModel)]="form.tellUs" name="subject" required
+                      class="bg-[#F7F7F8] outline-none border rounded-md border-gray-300 text-gray-900 text-sm focus:border-gray-300 block w-full p-2.5 dark:placeholder-gray-300" />
+                  </div>
+                </div>
+              </div>
+              <div class="w-full h-auto mt-6 rounded-md border font-medium bg-[#F7F7F8] border-gray-300">
+                <div class="my-4 ml-4 text-white gap-3 flex">
+                  <p
+                    class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500">
+                    7
+                  </p>
+                  <span [ngClass]="{ 'text-red-500': checkvalid && !fileName }"
+                    class="text-[#000000] font-satoshi font-semibold w-full">Additional Document for review </span>
+                </div>
+
+                <div class="ml-6 py-4 flex gap-12">
+                  <div
+                    class="w-[90%] relative md:w-[50%] border-2 border-gray-200 rounded-md h-[10]">
+                    <div class="my-4 mx-auto w-[92%] border-dashed border-2 border-[#FF565F] rounded-md h-[8rem]">
+                      <div class="relative flex justify-center items-center">
+                        <button
+                          class="text-[#FF565F] flex justify-center items-center flex-col mt-[6%]  rounded cursor-pointer h-[5%]"
+                          (click)="fileInput1.click()">
+                          <img class=" " [src]="dragSrc" alt="" />
+                          {{
+                          addtionalFileName ? addtionalFileName : "Browse File"
+                          }}
+                        </button>
+                        <input #fileInput1 class="absolute inset-0 opacity-0 cursor-pointer" type="file" (change)="handleFileInputForAdditionalFile($event)" accept=".pdf,.docx,.doc,.txt,.xlsx,.jpg,.jpeg,.png"
+                          style="display: none" />
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="w-full h-[9rem] mt-6 border rounded-md font-medium bg-[#F7F7F8] border-gray-300">
+                <div class="my-4 ml-4 text-white gap-3 flex">
+                  <p
+                    class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500">
+                    8
+                  </p>
+                  <span [ngClass]="{ 'text-red-500': checkvalid && !form.tellUs }"
+                    class="text-[#000000] font-satoshi font-semibold w-[80%]">
+                    Comments (note : You can enter only 5 comment at max )</span>
+                </div>
+
+                <div class="my-4 ml-[6%]">
+                  <div class="w-[90%] mt-4 h-8">
+                    <input id="userComments" type="text" [(ngModel)]="form.userComments" name="userComments" required
+                      placeholder="comment1, comment2, comment3, comment4, comment5"
+                      class="w-full px-2 py-2 outline-none my-[1rem] bg-[#F7F7F8] rounded-md border border-gray-300 text-gray-500" />
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="w-full h-auto mt-6 border rounded-md font-medium bg-[#F7F7F8] border-gray-300">
+                <div class="my-4 ml-4 text-white gap-3 flex">
+                  <p
+                    class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500">
+                    9
+                  </p>
+                  <span class="text-[#000000] font-satoshi font-semibold w-full">Your Contact details *</span>
+                </div>
+                <div class="my-6 ml-[6%] w-[90%] h-auto bg-[#F7F7F8] rounded-md border border-gray-300">
+                  <div class="mt-4 mx-2 w-[95%] h-auto text-white">
+                    <div class="md:flex gap-8">
+                      <div class="w-[50%] min-w-[200px] md:w-[30%] my-6">
+                        <label class="text-[#000000] font-satoshi font-semibold w-full ml-2 my-4">First Name</label>
+
+                        <input type="text"
+                          class="ms-2 outline-none pl-2 text-xs h-10 rounded-md border w-full bg-[#F7F7F8] border-gray-300 font-medium text-gray-500"
+                          placeholder="Enter your First name " value="" [(ngModel)]="form.firstName" name="firstName"
+                          required />
+                      </div>
+                      <div class="w-[50%] min-w-[200px] md:w-[30%] my-6">
+                        <label class="text-[#000000] font-satoshi font-semibold w-full ml-2 my-4">Last Name</label>
+                        <input type="text"
+                          class="ms-2 pl-2 outline-none text-xs h-10 border rounded-md w-full bg-[#F7F7F8] border-gray-300 font-medium text-gray-500"
+                          placeholder="Enter your Last name " value="" [(ngModel)]="form.lastName" name="lastName"
+                          required />
+                      </div>
+                    </div>
+
+                    <div class="md:flex gap-10">
+                      <div class="w-[50%] min-w-[200px] md:w-[30%] mb-6">
+                        <label class="text-[#000000] font-satoshi font-semibold w-full ml-2 my-4">Email address</label>
+
+                        <input type="email"
+                          class="ms-2 pl-2 outline-none text-xs h-10 border rounded-md w-full bg-[#F7F7F8] border-gray-300 font-medium text-gray-500"
+                          placeholder="Enter your email address " value="" [(ngModel)]="form.email" name="email"
+                          required #emailInput="ngModel" email />
+                        <div class="text-red-400" *ngIf="emailInput.errors?.['email']">
+                          Invalid email format
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="ml-4  w-[60%] md-max:w-[90%] flex items-center">
+                    <div class="w-[80%] whitespace-nowrap py-1 text-[#000000]">
+                      <input class="rounded py-2 w-full bg-slate-200  text-[#000000] outline-none border-spacing-0 px-4"
+                        [(ngModel)]="couponCode" type="text" placeholder="Coupon code" />
+                    </div>
+                    <div class=" whitespace-nowrap py-1">
+                      <button class="bg-red-500  text-white px-5 py-2 rounded" (click)="validateCoupon()">
+                        Apply Code
+                      </button>
+                    </div>
+                  </div>
+                  <span *ngIf="CouponValidator">
+                    <p *ngIf="applied ==true" class=" ml-4 text-green-400 text-[18px] font-medium">Coupon is Applied
+                    </p>
+                    <p *ngIf="applied==false" class="ml-4 text-red-400 text-[18px] font-medium">Coupon is Invalid </p>
+                  </span>
+
+                  <div class="my-2 mx-2 w-[60%] border-gray-300 h-auto text-[20px] text-white">
+                    <button type="submit" (click)="onSubmit()" *ngIf="formSubmitted && !formPay"
+                      class="mt-4 px-3 ml-2 h-auto min-h-12 rounded-md mb-2 text-white  bg-red-500">
+                      Submit ${{ pay }}
+                    </button>
+
+                    <button *ngIf="!formSubmitted && formPay" (click)="handleOneTimePayment()"
+                      class="mt-4 px-3 ml-2 h-auto min-h-12 rounded-md mb-2 text-white  bg-red-500">
+                      Pay ${{ pay }}
+                    </button>
+                    <!-- assignment
+                      ? handleSubscriptionPayment()
+                      : -->
+                  </div>
+
+                  <div class="my-4 w-[100%] h-auto text-white">
+                    <div class="w-[60%] border-gray-300 my-8"></div>
+                    <div
+                      class="text-black text-xs my-6 text-center rounded-md border border-gray-300 w-[95%] mx-auto px-auto py-4">
+                      The information you provide will be processed as described
+                      and fully explained in the Privacy Policy
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="w-[100%]">
+  <app-header ></app-header>
+
+    <div class="max-sm:hidden">
+      <app-sidebar></app-sidebar>
+    </div>
+      <div class="w-[80%] lg-max:w-[100%] mt-[88px] h-auto  lg:ml-[20%] overflow-hidden">
+       <div class="w-full flex justify-center">
+        <h1 class="text-[#000000] font-bold text-4xl mt-5">
+          {{ typeOfuser === "user" ? "My Orders" : "Assignments" }}
+        </h1>
+      </div>
+      <table class="w-[96%] mx-auto mt-5 border-collapse border border-gray-300">
+        <thead class="bg-gray-100 rounded-lg w-[100%] h-10 text-center">
+          <tr>
+            <th class="w-[25%] h-10">Order Id</th>
+
+            <th class="w-[25%] h-10">Title</th>
+
+            <th class="w-[25%] h-10">Type of Assignment</th>
+
+            <th class="w-[25%] h-10">Action</th>
+          </tr>
+        </thead>
+
+        <ng-container *ngIf="isLoading">
+            <app-loader></app-loader>
+        </ng-container>
+
+        <tbody class="w-[100%] text-center">
+          <ng-container *ngFor="let item of items">
+            <tr class="border sm:text-sm text-base">
+              <td class="w-[25%] h-14">{{ item.orderId }}</td>
+
+              <td class="w-[25%] h-14">{{ item.titleOfProject }}</td>
+
+              <td class="w-[25%] max-sm:ml-5 h-14">{{ item.typeOfAssignment }}</td>
+
+
+              <div class="mt-4 max-sm:ml-9 max-sm:w-[25%] " (click)="onClick()">
+                <a
+                  href="{{ typeOfuser }}/{{ item.typeOfAssignment }}/{{ item.orderId }}"
+                  class="rounded-md p-1 border-2 bg-green-200 cursor-pointer"
+                >
+                <td class="max-sm:w-[95%] w-[35%] md:ml-5 h-7">Review</td>
+                </a>
+              </div>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>

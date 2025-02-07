@@ -1,0 +1,490 @@
+<div class="w-[100%]">
+  <app-header></app-header>
+  <div class="max-sm:hidden">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div
+    class="w-[80%] lg-max:w-[100%] mt-[88px] h-auto lg:ml-[20%] overflow-hidden"
+  >
+    <div
+      class="w-full h-auto border-t border-r border-l rounded-md border-gray-300"
+    >
+      <p class="text-red-500 ml-9 my-6 text-bold font-medium text-base">
+        <a href="editor/assignments" class="flex gap-2">
+          <img
+            class="w-5 mt-1 h-5"
+            loading="lazy"
+            [alt]="avatarAlt"
+            [src]="cs0Src"
+          />
+          Back</a
+        >
+      </p>
+      <div
+        class="w-[95%] pb-[2rem] mx-auto px-[1rem] h-auto mt-[1rem] bg-white border flex flex-row rounded-md border-gray-300 order-main-container"
+      >
+        <!-- <ng-container *ngFor="let item of items"> -->
+        <div class="w-1/2 p-2 px-4 order-section1">
+          <!-- input1 -->
+          <div class="w-full h-[4rem] mt-8 rounded-md font-semibold">
+            <div class="mt-4 mb-2 ml-4 text-white gap-3 flex">
+              <p
+                class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+              >
+                1
+              </p>
+              <span class="text-[#000000] font-satoshi font-semibold w-full">
+                Title of Project</span
+              >
+            </div>
+
+            <div class="w-[100%] ml-4 px-[2.1rem]">
+              <h1 class="text-[#000000] result-height font-medium">
+                {{ tellUs }}
+              </h1>
+            </div>
+          </div>
+
+          <div
+            class="w-full h-[4rem] mt-8 rounded-md font-semibold border-gray-300"
+          >
+            <div class="mt-4 mb-2 ml-4 text-white gap-3 flex">
+              <p
+                class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+              >
+                2
+              </p>
+              <span class="text-[#000000] font-satoshi font-semibold w-full">
+                Study Level</span
+              >
+            </div>
+
+            <div class="w-[100%] ml-4 px-[2.1rem]">
+              <h1 class="text-[#000000] result-height font-medium">
+                {{ selectedLevel }}
+              </h1>
+            </div>
+          </div>
+          <div
+            class="w-full h-[4rem] mt-8 rounded-md font-semibold border-gray-300"
+          >
+            <div class="mt-4 mb-2 ml-4 text-white gap-3 flex">
+              <p
+                class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+              >
+                3
+              </p>
+              <span class="text-[#000000] font-satoshi font-semibold w-full">
+                Document for review</span
+              >
+            </div>
+
+            <div class="w-[100%] ml-4 px-[2.1rem]">
+              <h1
+                class="text-[#000000] pr-4 result-height font-medium whitespace-nowrap overflow-hidden"
+              >
+                <a class="text-red-500" [href]="FullPath" target="_blank">
+                  {{ docForReview }}
+                </a>
+              </h1>
+              <div></div>
+            </div>
+          </div>
+
+          <div
+            class="w-full h-[4rem] mt-8 rounded-md font-semibold border-gray-300"
+          >
+            <div class="mt-4 mb-2 ml-4 text-white gap-3 flex">
+              <p
+                class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+              >
+                4
+              </p>
+              <span class="text-[#000000] font-satoshi font-semibold w-full"
+                >EditorId</span
+              >
+            </div>
+            <div class="w-[100%] ml-4 px-[2.1rem]">
+              <h1 class="text-[#000000] font-medium result-height">
+                {{ ediotrs }}
+              </h1>
+            </div>
+          </div>
+        </div>
+        <div class="w-1/2 p-2 px-4 order-section2">
+          <!-- input1 -->
+          <div
+            class="w-full h-[4rem] mt-8 rounded-md font-semibold border-gray-300"
+          >
+
+            <div class="mt-4 mb-2 ml-4 text-white gap-3 flex">
+              <p
+                class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+              >
+                5
+              </p>
+              <span class="text-[#000000] font-satoshi font-semibold w-full">
+                Which Subject?</span
+              >
+            </div>
+
+            <div class="w-[100%] ml-4 px-[2.1rem]">
+              <h1 class="text-[#000000] font-medium result-height">
+                {{ subject }}
+              </h1>
+            </div>
+          </div>
+          <!-- input1 -->
+
+          <div
+            class="w-full h-[4rem] mt-8 rounded-md font-semibold border-gray-300"
+          >
+            <div class="mt-4 mb-2 ml-4 text-white gap-3 flex">
+              <p
+                class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+              >
+                6
+              </p>
+              <span class="text-[#000000] font-satoshi font-semibold w-full">
+                Urgenecy of Assignment</span
+              >
+            </div>
+
+            <div class="w-[100%] ml-4 px-[2.1rem]">
+              <h1 class="text-[#000000] result-height font-medium">
+                {{ urgenecyForAssignment }}
+              </h1>
+            </div>
+          </div>
+
+          <!-- input1 -->
+          <div
+            class="w-full h-[4rem] mt-8 rounded-md font-semibold border-gray-300"
+          >
+            <div class="mt-4 mb-2 ml-4 text-white gap-3 flex">
+              <p
+                class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+              >
+                7
+              </p>
+              <span
+                class="text-[#000000] font-satoshi font-semibold w-full"
+                name="calendar"
+                (change)="workRequiredChanged()"
+              >
+                Delivery Date & Time
+              </span>
+            </div>
+
+            <div class="w-[100%] ml-4 px-[2.1rem]">
+              <!-- <app-google-calender
+                       name="calendar"
+                      [(ngModel)]="calendar"
+                      (change)="workRequiredChanged()">
+                    </app-google-calender> -->
+              <h1 class="text-[#000000] result-height font-medium">
+                {{ calendar }}
+              </h1>
+            </div>
+          </div>
+          <div class="w-full h-[4rem] mt-8 rounded-md border-gray-300">
+            <div class="mt-4 mb-2 ml-4 text-white gap-3 flex">
+              <p
+                class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+              >
+                8
+              </p>
+              <span class="text-[#000000] font-satoshi font-semibold w-full">
+                Work Required</span
+              >
+            </div>
+
+            <div class="w-[100%] ml-4 px-[2.1rem]">
+              <h1 class="text-[#000000] result-height font-medium">
+                {{ workRequired }}
+              </h1>
+            </div>
+          </div>
+          <!-- input -->
+        </div>
+      </div>
+
+      <div
+        class="w-[95%] mx-auto h-auto mt-[1rem] bg-white border border-gray-300 rounded-md px-4"
+      >
+        <div class="w-100 h-[auto] min-h-[12rem] mt-6 rounded-md border-gray-300">
+          <div class="my-4 ml-4 text-white max-sm:gap-2 gap-3 flex">
+            <p
+              class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+            >
+              9
+            </p>
+            <span class="text-[#000000] font-satoshi font-semibold w-full">
+              Reviewed of Assignment
+            </span>
+          </div>
+
+          <div
+            class="ml-[3rem] md-max:flex-col flex md:items-center justify-between content-center"
+          >
+            <!-- <h1 class="text-[#000000] font-medium result-height w-[50%]">
+              {{this.uploadedFilesName || reviewOfAssignment }}
+            </h1> -->
+            <div class="w-[50%] md-max:w-[80%]">
+              <div *ngFor="let doc of reviewOfAssignment" class="w-[100%]">
+                <h1
+                  *ngIf="doc"
+                  class="text-[#000000] my-1 result-height font-medium whitespace-nowrap"
+                >
+                  <a
+                    class="text-red-500 overflow-hidden whitespace-nowrap"
+                    [href]="basePathOfFile + doc"
+                    target="_blank"
+                  >
+                    {{ doc }}
+                  </a>
+                </h1>
+              </div>
+              <div *ngIf="reviewOfAssignment[0] == null" class="w-[100%] mb-4">
+              <h1 class="text-[#000000]  result-height"></h1>
+              </div>
+            </div>
+
+            <!-- drag drop and google  -->
+
+            <div
+              (dragover)="handleDragOver($event)"
+              (dragleave)="handleDragLeave($event)"
+              (drop)="handleFileDrop($event)"
+              class="w-[43%] mt-[-2.5rem] md-max:my-2 min-w-[300px] h-auto min-h-[7rem] text-center rounded-md"
+            >
+              <div
+                class="my-4 mx-auto w-[92%]   border-dashed border-2 border-[#FF565F] rounded-md h-[8rem]"
+              >
+                <div class="relative h-full flex flex-col items-center justify-center ">
+                  <button
+                    class="text-[#FF565F]  rounded cursor-pointer h-[full]"
+                    (click)="fileInput.click()"
+                  >
+                    <img class="mx-auto" [src]="dragSrc" alt="" />
+                    Browse or drag and drop
+                  </button>
+                  <input
+                    #fileInput
+                    multiple
+                    class="absolute inset-0 opacity-0 cursor-pointer"
+                    type="file"
+                    (change)="handleFileInput($event)"
+                    accept=".pdf,.docx,.doc,.txt,.xlsx"
+                    style="display: none"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="w-[95%] px-[2rem] mx-auto h-auto my-[1rem] bg-white border rounded-md border-gray-300 order-main-container"
+      >
+        <div
+          class="w-full h-auto mt-6 mb-6 rounded-md font-semibold border-gray-300"
+        >
+          <div class="my-4 md:ml-4 text-white gap-3 flex">
+            <p
+              class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+            >
+              10
+            </p>
+            <span class="text-[#000000] font-satoshi font-semibold w-full"
+              >User's Comments</span
+            >
+          </div>
+          <div
+            *ngFor="let comment of userComments"
+            class="w-[100%] ml-4 my-1 px-[2.1rem]"
+          >
+            <h1 class="text-[#000000] font-medium result-height">
+              {{ comment }}
+            </h1>
+          </div>
+        </div>
+      </div>
+      <div
+        class="w-[95%] px-[2rem] mx-auto h-auto my-[1rem] bg-white border rounded-md border-gray-300 order-main-container"
+      >
+        <div
+          class="w-full h-auto mt-6 mb-6 rounded-md font-semibold border-gray-300"
+        >
+          <div class="my-4 md:ml-4 text-white gap-3 flex">
+            <p
+              class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+            >
+              11
+            </p>
+            <span class="text-[#000000] font-satoshi font-semibold w-full"
+              >Additional Document For Review</span
+            >
+          </div>
+          <div class="w-[100%] ml-4 px-[2.1rem]">
+            <h1
+              class="text-[#000000] pr-4 result-height font-medium whitespace-nowrap overflow-hidden"
+            >
+              <a class="text-red-500" [href]="FullPath" target="_blank">
+                {{ additionalDocforReview }}
+              </a>
+            </h1>
+            <div></div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="w-[95%] px-[2rem] mx-auto h-auto my-[1rem] bg-white border rounded-md border-gray-300 order-main-container"
+      >
+        <div
+          class="w-full h-auto mt-6 mb-6 rounded-md font-semibold border-gray-300"
+        >
+          <div class="my-4 md:ml-4 text-white gap-3 flex">
+            <p
+              class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+            >
+              12
+            </p>
+            <span class="text-[#000000] font-satoshi font-semibold w-full"
+              >Your Comments (note : You can enter only 5 comment at max )</span
+            >
+          </div>
+
+          <input
+            id="editorComments"
+            type="text"
+            [(ngModel)]="editorComments"
+            name="editorComments"
+            placeholder="comment1, comment2, comment3, comment4, comment5"
+            class=" md-max:w-[80%] w-[95%] px-2 py-2 ml-[3rem] outline-none my-[1rem] bg-[#F7F7F8] rounded-md border border-gray-300 text-gray-500"
+          />
+        </div>
+      </div>
+
+      <div
+        class="w-[95%] px-[2rem] mx-auto h-auto my-[1rem] bg-white border rounded-md border-gray-300 order-main-container"
+      >
+        <div
+          class="w-full h-auto mt-6 mb-6 rounded-md font-semibold border-gray-300"
+        >
+          <div class="my-4 md:ml-4 text-white gap-3 flex">
+            <p
+              class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+            >
+              13
+            </p>
+            <span class="text-[#000000] font-satoshi font-semibold w-full"
+              >User's Contact details</span
+            >
+          </div>
+          <div
+            class="my-6 mx-auto px-[1rem] w-[90%] h-auto rounded-md result-height-content"
+          >
+            <div class="my-4 mx-2 w-[95%] h-auto text-white">
+              <div class="md:flex gap-8">
+                <div class="w-[30%] my-2">
+                  <label
+                    class="text-[#000000] font-satoshi whitespace-nowrap font-semibold w-full my-4"
+                    >First Name</label
+                  >
+
+                  <p class="text-[#000000] size14text">
+                    {{ firstName }}
+                  </p>
+                </div>
+                <div class="w-[30%] my-2">
+                  <label
+                    class="text-[#000000] font-satoshi whitespace-nowrap font-semibold w-full my-4"
+                    >Last Name</label
+                  >
+
+                  <h1 class="text-[#000000] size14text">
+                    {{ lastName }}
+                  </h1>
+                </div>
+              </div>
+
+              <div class="md:flex gap-8">
+                <div class="w-[30%] mt-6">
+                  <label
+                    class="text-[#000000] whitespace-nowrap font-satoshi font-semibold w-full my-4"
+                    >Email address</label
+                  >
+                  <h1 class="text-[#000000] size14text">{{ email }}</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- contianer -->
+      <div
+        class="w-[95%] px-[2rem] mx-auto h-auto my-[1rem] bg-white border rounded-md border-gray-300 order-main-container"
+      >
+        <div
+          class="w-full mb-6 h-[4rem] mt-8 rounded-md font-medium border-gray-300"
+        >
+          <div class="mt-4 mb-2 md:ml-4 text-white gap-3 flex">
+            <p
+              class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+            >
+              14
+            </p>
+            <span class="text-[#000000] font-satoshi font-semibold w-full"
+              >Select Progress of order</span
+            >
+          </div>
+
+          <div
+            class="w-[98%] ml-2 px-[2.1rem] text-[#000000] font-satoshi font-semibold"
+          >
+            <select
+              id="status"
+              [(ngModel)]="selectedOption"
+              name="status"
+              class="border rounded-md border-red-300 text-gray-900 text-sm focus:border-gray-300 block w-full p-2.5 dark:placeholder-gray-300"
+            >
+              <option
+                class="text-[#000000] rounded-md"
+                value="PendingAcceptance"
+              >
+                Pending Acceptance
+              </option>
+              <option class="text-[#000000] rounded-md" value="Rejected">
+                Rejected
+              </option>
+              <option class="text-[#000000] rounded-md" value="workInProgress">
+                Work In Progress
+              </option>
+              <option class="text-[#000000] rounded-md" value="UnderQAReview">
+                UnderQAReview
+              </option>
+              <option class="text-[#000000] rounded-md" value="Completed">
+                Completed
+              </option>
+            </select>
+          </div>
+        </div>
+        <div
+          class="my-4 mx-1 md:w-[60%] w-[100%] border-gray-300 h-auto text-white"
+        >
+          <button
+            type="submit"
+            class="mt-4 w-[24%] max-md:[50%] ml-[7%] h-[3rem] rounded-md mb-2 text-white text-sm bg-red-500"
+            (click)="handleSelection()"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

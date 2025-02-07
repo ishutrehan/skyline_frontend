@@ -1,0 +1,214 @@
+<div class="w-full">
+  <app-header></app-header>
+  <div class="max-sm:hidden">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="w-[80%] lg-max:w-[100%] mt-[88px] h-auto lg:ml-[20%] overflow-hidden">
+    <!-- myscans search bar -->
+
+    <div class="w-full ">
+      <div class="ml-5 mt-3 md-max:hidden">
+        <h1 class="text-[20px] font-bold">My Scans</h1>
+      </div>
+
+      <div
+        class="w-[96%]  mx-auto mt-4 md:gap-3 md-max:px-[10px]  flex md-max:flex-col-reverse md-max:items-start  items-center">
+        <div class="flex md-max:w-[100%] w-[50%] h-10 px-2  items-center" [ngClass]="{
+            border: showIcons,
+            'border-gray-300': showIcons,
+            'rounded-lg': showIcons,
+            'overflow-hidden': showIcons,
+            'border-none': !showIcons
+          }">
+          <input class="w-full h-full px-2 border-none outline-none" placeholder="Search" type="text" *ngIf="showIcons"
+            [(ngModel)]="searchText" (keyup.enter)="onEnterKeyPress()" />
+          <img class="h-7 w-7 mx-2 bg-black border-none cursor-pointer" [src]="searchSrc" alt="......" *ngIf="showIcons"
+            (click)="onEnterKeyPress()" />
+        </div>
+
+        <div class="max-sm:w-[90%] max-lg:w-[50%]  md-max:w-[100%] md-max:mb-[2rem]   w-[50%] md:ml-[5%] h-auto gap-5 flex md:justify-end items-center">
+          <div class="  w-full whitespace-nowrap md:hidden">
+            <h1 class="text-[20px] font-bold">My Scans</h1>
+          </div>
+          <img *ngIf="showIcons" class="h-7 w-7 cursor-pointer" (click)="downloadData()" [src]="downloadSrc" alt="" />
+
+          <span *ngIf="showIcons" [innerHTML]="lightsharesvg" class="cursor-pointer"
+            (click)="onShareBtnClick($event)"></span>
+          <span *ngIf="showIcons" [innerHTML]="lightdeletesvg" class="cursor-pointer"
+            (click)="onDeleteFunctionality($event)"></span>
+
+          <div
+            class="flex gap-2 py-1  items-center justify-center px-6 h-10    bg-red-200 border-2 border-red-200 rounded-lg">
+            <a href="user/plagiarism" class="flex items-center justify-center  gap-2">
+              <img class="h-6 w-6 cursor-pointer" [src]="uploadSrc" alt="Upload Icon" />
+              <span class=" ">Upload</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class=" h-auto min-h-[28rem] md-max:w-[95%] md-max:ml-[3%] overflow-x-scroll  ">
+        <table class="w-[96%] min-w-[690px] mx-auto mt-5 border-collapse border border-gray-300">
+          <thead class="bg-gray-100 rounded-lg w-[100%] h-10 text-center">
+            <tr class="max-sm:text-[10px] text-base">
+              <th class="w-[16%] h-10">Select</th>
+              <th class="w-[16%] h-10">Type</th>
+              <th class="w-[32%] h-10">Name</th>
+              <th class="w-[18%] h-10">Date</th>
+              <th class="w-[18%] h-10">Plagiarism Score</th>
+            </tr>
+          </thead>
+          <ng-container *ngIf="isLoading ">
+            <app-loader></app-loader>
+          </ng-container>
+          <tbody class="rounded-lg w-[100%] text-center">
+            <ng-container *ngFor="let item of items">
+              <tr *ngIf="item.scanId !== null" class="border max-sm:text-[9px] h-16 cursor-pointer text-base">
+                <td class="w-[16%] h-14">
+                  <input type="checkbox" id="myscandata" [checked]="item.isSelected"
+                    (change)="onCheckboxChange($event, item.scanId, item)" />
+                </td>
+                <td class="w-[16%] h-14">
+                  <a [href]="'user/scanreport/' + item.scanId" class="w-[16%]" (click)="onClick()">
+                    <img [src]="
+                        item.Type === 'pdf'
+                          ? pdfSrc
+                          : item.Type === 'jpeg'
+                          ? OrcSrc
+                          : item.Type === 'jpg'
+                          ? OrcSrc
+                          : item.Type === 'png'
+                          ? OrcSrc
+                          : item.Type ===
+                            'vnd.openxmlformats-officedocument.wordprocessingml.document'
+                          ? docxSrc
+                          : item.Type === 'msword'
+                          ? docSrc
+                          : item.Type ===
+                            'vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                          ? xlsxSrc
+                          : item.Type ===
+                            'vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                          ? xlsSrc
+                          : textSrc
+                      " class="h-8 w-8 mx-auto my-auto" alt="" />
+                  </a>
+                </td>
+
+                <td class="w-[32%] h-14">
+                  <a [href]="'user/scanreport/' + item.scanId" (click)="onClick()">{{ item.Name }}</a>
+                </td>
+                <td class="w-[18%] h-14">
+                  <a [href]="'user/scanreport/' + item.scanId" (click)="onClick()">{{ item.Date }}</a>
+                </td>
+
+                <td class="w-[18%] h-14">
+                  <a [href]="'user/scanreport/' + item.scanId" (click)="onClick()">{{ item.Plagiarism_Score }}</a>
+                </td>
+              </tr>
+
+              <tr *ngIf="item.scanId === null" class="w-full loading-row h-14">
+                <td class="w-[15px]"></td>
+                <td class="w-[15px]"></td>
+                <td>{{loading_text}}</td>
+                <td class="w-[10px]"></td>
+                <td class="w-[10px]"></td>
+                <td class="w-[10px]"></td>
+              </tr>
+            </ng-container>
+          </tbody>
+
+          <div *ngIf="showModal1" class="fixed inset-0 z-50 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+            <div
+              class="relative top-20 mx-auto p-5 border w-1/3 max-lg:w-[40%] max-md:w-[75%] shadow-lg rounded-md bg-white"
+              (click)="$event.stopPropagation()">
+              <div class="mt-3">
+                <div class="flex gap-[5%]">
+                  <h3 class="text-lg pl-2 leading-6 font-medium text-gray-900">
+                    Share
+                  </h3>
+                  <h3 class="text-lg leading-6 font-medium text-gray-900">
+                    {{ fileName }}
+                  </h3>
+                </div>
+                <div class="mt-2 max-md:px-2 md:px-7 py-3">
+                  <input class="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-1"
+                    type="email" [formControl]="recipientEmail" placeholder="Enter Email Address" />
+                  <div *ngIf="
+                      recipientEmail.invalid &&
+                      (recipientEmail.dirty || recipientEmail.touched)
+                    " class="text-red-500">
+                    <div *ngIf="recipientEmail?.errors?.['required']">
+                      Email is required.
+                    </div>
+                    <div *ngIf="recipientEmail?.errors?.['email']">
+                      Invalid email address.
+                    </div>
+                  </div>
+                </div>
+                <div class="flex justify-between max-md:mx-2 md:mx-8 py-3">
+                  <button class="bg-red-400 text-white px-4 z-50 py-2 rounded hover:bg-red-700"
+                    (click)="showModal1 = false; cancleModal()">
+                    Cancel
+                  </button>
+                  <button class="bg-blue-400 text-white px-4 z-50 py-2 rounded hover:bg-blue-700"
+                    (click)="showModal1 = false; sendMailTo()" [disabled]="recipientEmail.invalid">
+                    Send to
+                  </button>
+                </div>
+
+                <div *ngFor="let item of arrayOfLinks" class="mt-2 max-md:px-2 md:px-7 py-3">
+                  <div class="text-gray-700 flex h-auto border border-gray-300 rounded py-2 px-4 w-full">
+                    <div class="w-[95%] h-auto">
+                      <input class="outline-none text-sm h-auto w-[100%]" value="{{ item }}" />
+                    </div>
+                    <div class="w-[5%] h-auto">
+                      <button [cdkCopyToClipboard]="item" (cdkCopyToClipboardCopied)="onCopySuccess()">
+                        <svg width="24px" height="20px" viewBox="0 0 24 24" fill="none"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                          <g id="SVGRepo_iconCarrier">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z"
+                              fill="#0F0F0F"></path>
+                            <path
+                              d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z"
+                              fill="#0F0F0F"></path>
+                          </g>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </table>
+      </div>
+      <div class="justify-end mr-5 flex md-max:my-[2rem] md-max:mb-[7rem]">
+        <div class="flex font-bold">
+          <ul class="inline-flex -space-x-px text-sm">
+            <li>
+              <a href="javascript:void(0)" (click)="onPrevious()"
+                class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-black bg-white border border-e-0 border-gray-300 rounded-s-lg">Previous</a>
+            </li>
+            <li *ngFor="let page of getPagesToShow()">
+              <a href="javascript:void(0)" (click)="setPage(page)"
+                class="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white border border-gray-300"
+                [ngClass]="{
+                  'bg-blue-500 text-red-400': currentPage === page,
+                  'cursor-not-allowed': page === -1
+                }">
+                {{ page === -1 ? "..." : page }}
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" (click)="onNext()"
+                class="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white border border-gray-300 rounded-e-lg">Next</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

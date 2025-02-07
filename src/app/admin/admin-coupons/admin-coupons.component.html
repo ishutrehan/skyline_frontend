@@ -1,0 +1,206 @@
+<div class="w-full">
+  <app-header></app-header>
+  <div class="max-sm:hidden">
+    <app-sidebar></app-sidebar>
+  </div>
+
+  <div
+    class="w-[80%] px-[2rem] lg-max:w-[100%] mt-[88px] lg:ml-[20%] h-auto overflow-hidden"
+  >
+    <div class="w-full mt-[1rem] h-[5rem] flex justify-between items-center">
+      <h2 class="font-semibold text-[2rem]">My Coupons</h2>
+      <button
+        class="text-white bg-red-400 py-3 px-3 font-semibold border rounded-lg"
+      (click)="toggleModalOpen()"
+
+      >
+        + ADD COUPONS
+      </button>
+    </div>
+    <div
+      *ngIf="CreateModal"
+      class="fixed inset-0 z-50 bg-gray-600 bg-opacity-50 flex justify-center items-center overflow-y-auto h-full w-full"
+    >
+      <div
+        class="relative mx-auto p-2 border w-[50%] min-w-[480px] max-lg:w-[50%] max-sm:w-[82%] shadow-lg rounded-md bg-white"
+        (click)="$event.stopPropagation()"
+      >
+        <h3
+          class="text-lg leading-6 mx-auto flex justify-center mr-3 my-4 font-medium text-gray-900"
+        >
+          Create Coupon
+        </h3>
+
+        <div class="w-full mx-auto flex flex-wrap justify-evenly">
+          <div class="w-[45%] flex mt-3 flex-col">
+            <label
+              for="name"
+              class="block mt-1 mb-2 text-sm font-medium text-[#202142]"
+            >
+              Coupon Name*
+            </label>
+            <div class="w-full gap-9 mt-2">
+              <input
+                type="text"
+                name="name"
+                [(ngModel)]="Coupon.name"
+                class="bg-red-50 border outline-none border-red-100 text-[#202142] text-sm rounded-lg block w-full p-2.5"
+                placeholder="name"
+                required
+              />
+            </div>
+          </div>
+          <div class="w-[45%] flex mt-3 flex-col">
+            <label
+              for="email"
+              class="block mt-1 mb-2 text-sm font-medium text-[#202142]"
+            >
+              Percentage Off*
+            </label>
+            <div class="w-full gap-9 mt-2">
+              <input
+                type="number"
+                name="off"
+                [(ngModel)]="Coupon.off"
+                class="bg-red-50 border outline-none border-red-100 text-[#202142] text-sm rounded-lg block w-full p-2.5"
+                placeholder="Percentage Off"
+                required
+              />
+            </div>
+          </div>
+          <div class="w-[45%] flex mt-3 flex-col">
+            <label
+              for="email"
+              class="block mt-1 mb-2 text-sm font-medium text-[#202142]"
+            >
+            Promotion Code*
+            </label>
+            <div class="w-full gap-9 mt-2">
+              <input
+                type="text"
+                name="Promotion_code"
+                [(ngModel)]="Coupon.Promotion_code"
+                class="bg-red-50 border outline-none border-red-100 text-[#202142] text-sm rounded-lg block w-full p-2.5"
+                placeholder="Promotion_code"
+                (input)="transformToUppercase($event)"
+                required
+              />
+            </div>
+          </div>
+          <div class="w-[45%] flex mt-3 flex-col">
+            <label
+              for="email"
+              class="block mt-1 mb-2 text-sm font-medium text-[#202142]"
+            >
+              Expiry On
+            </label>
+            <div class="w-full gap-9 mt-2">
+              <input
+                type="date"
+                name="Expiry"
+                [(ngModel)]="Coupon.expiry"
+                class="bg-red-50 border outline-none border-red-100 text-[#202142] text-sm rounded-lg block w-full p-2.5"
+                placeholder="interest"
+                [min]="minDate"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-center gap-8 text-center mt-3 py-3">
+          <button
+            class="bg-red-500 text-white px-4 z-50 py-2 rounded hover:bg-red-700"
+            (click)="createCoupon()"
+          >
+            Create
+          </button>
+          <button
+            class="ml-4 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"
+            (click)="cancleButton()"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="w-full mt-[1rem] min-w-[80%] overflow-x-scroll overflow-y-scroll h-[60dvh] hide-scrollbar"
+    >
+      <div
+        class="w-full flex items-center  justify-start min-w-[900px] text-[18px] h-[3rem] font-semibold bg-slate-100"
+      >
+        <p class="text-center pl-6 w-[24%]">Name</p>
+        <p class="text-center pl-6 w-[10%]">% Off</p>
+        <p class="text-center pl-6 w-[29%]">Promotion Code</p>
+        <p class="text-center pl-6 w-[14%]">Expiry On</p>
+        <p class="text-center pl-6 w-[16%]">Created On</p>
+        <p class="text-center pl-6 w-[9%] bg-red-500"></p>
+      </div>
+      <div
+      *ngFor = "let coupon of allPromoCode"
+        class="w-full flex items-center justify-start min-w-[900px]   text-[16px] h-[3rem] border border-gray-200"
+      >
+        <p class=" text-center pl-6 w-[24%] overflow-hidden">{{coupon.coupon.id}}</p>
+        <p class=" text-center pl-6 w-[10%]">{{coupon.coupon.percent_off}}%</p>
+        <p class=" text-center pl-6 w-[29%] overflow-hidden">{{coupon.code}}</p>
+        <p class=" text-center pl-6 w-[14%]">{{getFormattedDate(coupon.coupon.redeem_by)}}</p>
+        <p class=" text-center pl-6 w-[16%]">{{getFormattedDate(coupon.coupon.created)}}</p>
+        <button (click)="deleteCoupon(coupon.coupon.id)" class=" flex pl-[1.8rem] items-center w-[9%]">
+          <svg
+            width="25px"
+            height="25px"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M10 12V17"
+                stroke="#FF565F"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+              <path
+                d="M14 12V17"
+                stroke="#FF565F"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+              <path
+                d="M4 7H20"
+                stroke="#FF565F"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+              <path
+                d="M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10"
+                stroke="#FF565F"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+              <path
+                d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
+                stroke="#FF565F"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </g>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+
+.fadeanimation {
+  animation: fadeBackground 4s infinite; /* Animation with 5s duration, repeats infinitely */
+}
+
+@keyframes fadeBackground {
+  0% {
+    background-color: white; /* Start with white background */
+  }
+  50% {
+    background-color: rgb(255, 200, 200); /* Change to red at the halfway point */
+  }
+  100% {
+    background-color: white; /* Return to white */
+  }
+}
+
+@keyframes loading-animation {
+  0% {
+    background-position: -100%;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
+
+/* Style the loading row */
+.loading-row {
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    rgba(220, 220, 220, 0.2) 25%,
+    rgba(200, 200, 200, 0.5) 50%,
+    rgba(220, 220, 220, 0.2) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading-animation 1.5s infinite;
+  color: black; /* Text color for visibility */
+  text-align: center;
+}

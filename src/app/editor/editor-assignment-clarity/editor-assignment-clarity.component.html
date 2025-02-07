@@ -1,0 +1,618 @@
+<div class="w-[100%]">
+  <app-header></app-header>
+  <div class="max-sm:hidden">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div
+    class="w-[80%] lg-max:w-[100%] mt-[88px] h-auto lg:ml-[20%] overflow-hidden"
+  >
+    <div
+      class="w-full h-auto border-t border-r border-l rounded-md border-gray-300"
+    >
+      <p
+        class="text-red-500 ml-2 md:ml-9 my-6 text-bold font-semibold text-base"
+      >
+        <a href="editor/assignments" class="flex gap-2">
+          <img
+            class="w-5 mt-1 h-5"
+            loading="lazy"
+            [alt]="avatarAlt"
+            [src]="cs0Src"
+          />
+          Back</a
+        >
+      </p>
+      <div
+        class="w-[95%] mx-auto h-auto mt-[1rem] bg-white border flex flex-row rounded-md border-gray-300 order-main-container"
+      >
+        <div class="w-1/2 p-2 px-4 order-section1">
+          <div
+            class="w-full h-[4rem] mt-8 rounded-md font-semibold border-gray-300"
+          >
+            <div class="mt-4 mb-2 ml-4 text-white gap-3 flex">
+              <p
+                class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+              >
+                1
+              </p>
+              <span class="text-[#000000] font-satoshi font-semibold w-full">
+                Study Level</span
+              >
+            </div>
+
+            <div class="w-[100%] ml-4 px-[2.1rem]">
+              <h1 class="text-[#000000] result-height font-medium">
+                {{ selectedLevel }}
+              </h1>
+            </div>
+          </div>
+
+          <div
+            class="w-full h-[4rem] mt-8 rounded-md font-semibold border-gray-300"
+          >
+            <div class="mt-4 mb-2 ml-4 text-white gap-3 flex">
+              <p
+                class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+              >
+                2
+              </p>
+              <span class="text-[#000000] font-satoshi font-semibold w-full">
+                Which Subject?</span
+              >
+            </div>
+
+            <div class="w-[100%] ml-4 px-[2.1rem]">
+              <h1 class="text-[#000000] result-height font-medium">
+                {{ subject }}
+              </h1>
+            </div>
+          </div>
+          <div
+            class="w-full h-[4rem] mt-8 rounded-md font-semibold border-gray-300"
+          >
+            <div class="mt-4 mb-2 ml-4 text-white gap-3 flex">
+              <p
+                class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+              >
+                3
+              </p>
+              <span class="text-[#000000] font-satoshi font-semibold w-full">
+                Words for Assignments
+              </span>
+            </div>
+
+            <div class="w-[100%] ml-4 px-[2.1rem]">
+              <h1 class="text-[#000000] result-height font-medium">
+                {{ wordsforassignments }}
+              </h1>
+            </div>
+          </div>
+
+          <div
+            class="w-full h-[4rem] mt-8 rounded-md font-semibold border-gray-300"
+          >
+            <div class="mt-4 mb-2 ml-4 text-white gap-3 flex">
+              <p
+                class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+              >
+                4
+              </p>
+              <span class="text-[#000000] font-satoshi font-semibold w-full">
+                Urgenecy of Assignment</span
+              >
+            </div>
+
+            <div class="w-[100%] ml-4 px-[2.1rem]">
+              <h1 class="text-[#000000] result-height font-medium">
+                {{ urgenecyForAssignment }}
+              </h1>
+            </div>
+          </div>
+
+          <div class="w-full h-[4rem] mt-8 rounded-md border-gray-300">
+            <div class="mt-4 mb-2 ml-4 text-white gap-3 flex">
+              <p
+                class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+              >
+                5
+              </p>
+              <span class="text-[#000000] font-satoshi font-semibold w-full">
+                Work Required</span
+              >
+            </div>
+
+            <div class="w-[100%] ml-4 px-[2.1rem]">
+              <h1 class="text-[#000000] result-height font-medium">
+                {{ workRequired }}
+              </h1>
+            </div>
+          </div>
+
+          <div
+            class="w-full h-[4rem] mt-8 rounded-md font-semibold border-gray-300"
+          >
+            <div class="mt-4 mb-2 ml-4 text-white gap-3 flex">
+              <p
+                class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+              >
+                6
+              </p>
+              <span
+                class="text-[#000000] font-satoshi font-semibold w-full"
+                name="calendar"
+                (change)="workRequiredChanged()"
+              >
+                Delivery Date & Time
+              </span>
+            </div>
+
+            <div class="w-[100%] ml-4 px-[2.1rem]">
+              <!-- <app-google-calender
+                     name="calendar"
+                    [(ngModel)]="calendar"
+                    (change)="workRequiredChanged()">
+                  </app-google-calender> -->
+              <h1 class="text-[#000000] font-medium result-height">
+                {{ calendar }}
+              </h1>
+            </div>
+          </div>
+
+          <div
+            class="w-full h-[11rem] mt-6 rounded-md font-semibold border-gray-300"
+          >
+            <div class="mt-4 mb-2 ml-4 text-white gap-3 flex">
+              <p
+                class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+              >
+                7
+              </p>
+              <span class="text-[#000000] font-satoshi font-semibold w-full"
+                >Assigned Editor</span
+              >
+            </div>
+
+            <div
+              class="mt-3 w-[100%] ml-4 px-[2.1rem] text-[#000000] font-satoshi font-semibold"
+            >
+              <div class="">
+                <h1 *ngIf="!editorExist" class="text-red-700 result-height">
+                  Editor Does Not Assigned
+                </h1>
+                <div *ngIf="editorExist" class="flex result-height my-6">
+                  <h1>Name :-</h1>
+                  <p class="font-medium ml-2">
+                    {{ assignedEditorDetails?.name }}
+                  </p>
+                </div>
+
+                <div *ngIf="editorExist" class="flex result-height mt-2">
+                  <h1 class="">Expertise In :-</h1>
+                  <p class="font-medium ml-2">
+                    {{ assignedEditorDetails?.expertise }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-1/2 p-2 px-4 order-section2">
+          <div class="w-full h-auto mt-8 rounded-md border-gray-300">
+            <div class="mt-4 mb-2 ml-4 text-white gap-3 flex">
+              <p
+                class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+              >
+                8
+              </p>
+              <span class="text-[#000000] font-satoshi font-semibold w-full">
+                Project Descripiton
+              </span>
+            </div>
+
+            <div class="my-3 ml-[6%] w-[95%] h-auto">
+              <div class="flex content-center gap-3 items-center">
+                <p class="font-medium">I.</p>
+                <label class="text-[#000000] font-satoshi font-semibold my-2">
+                  Title of Project</label
+                >
+              </div>
+              <div class="w-[100%] pr-[2rem]">
+                <h1 class="text-[#000000] result-height font-medium ml-4">
+                  {{ tellUs }}
+                </h1>
+              </div>
+
+              <div class="flex content-center gap-3 items-center">
+                <p class="font-medium">II.</p>
+                <label class="text-[#000000] font-satoshi font-semibold my-2">
+                  Additional Information</label
+                >
+              </div>
+              <div class="w-[100%] pr-[2rem]">
+                <h1
+                  class="text-[#000000] result-height break-words font-medium ml-4"
+                >
+                  {{ additionalInfo }}
+                </h1>
+              </div>
+
+              <div class="flex content-center gap-3 items-center">
+                <p class="font-medium">III.</p>
+                <label class="text-[#000000] font-satoshi font-semibold my-2"
+                  >Refrence</label
+                >
+              </div>
+              <div class="w-[100%] pr-[2rem]">
+                <h1 class="text-[#000000] result-height font-medium ml-4">
+                  {{ referenceStyle }}
+                </h1>
+              </div>
+              <div class="flex content-center gap-3 items-center">
+                <p class="font-medium">IV.</p>
+                <label class="text-[#000000] font-satoshi font-semibold my-2">
+                  Structure</label
+                >
+              </div>
+              <div class="w-[100%] pr-[2rem]">
+                <h1 class="text-[#000000] result-height font-medium ml-4">
+                  {{ structure }}
+                </h1>
+              </div>
+
+              <div class="flex content-center gap-4 items-center">
+                <p class="font-medium">V.</p>
+                <label class="text-[#000000] font-satoshi font-semibold my-2"
+                  >Module / Course</label
+                >
+              </div>
+              <div class="w-[100%] pr-[2rem]">
+                <h1
+                  class="break-words result-height text-[#000000] font-medium ml-4"
+                >
+                  {{ moduleCourse }}
+                </h1>
+              </div>
+
+              <div class="flex content-center gap-3 items-center">
+                <p class="font-medium">VI.</p>
+                <label class="text-[#000000] font-satoshi font-semibold my-2"
+                  >Style / Approach</label
+                >
+              </div>
+              <div class="w-[100%] pr-[2rem]">
+                <h1 class="text-[#000000] result-height font-medium ml-4">
+                  {{ styleApproach }}
+                </h1>
+              </div>
+
+              <div class="flex content-center gap-3 items-center">
+                <p class="font-medium">VII.</p>
+                <label class="text-[#000000] font-satoshi font-semibold my-2"
+                  >Essential Sources</label
+                >
+              </div>
+              <div class="w-[100%] pr-[2rem]">
+                <h1 class="text-[#000000] result-height font-medium ml-4">
+                  {{ essentialSources }}
+                </h1>
+              </div>
+
+              <div class="flex content-center gap-2 items-center">
+                <p class="font-medium">VIII.</p>
+                <label class="text-[#000000] font-satoshi font-semibold my-2"
+                  >Preferred Sources</label
+                >
+              </div>
+              <div class="w-[100%] pr-[2rem]">
+                <h1 class="text-[#000000] result-height font-medium ml-4">
+                  {{ preferredSources }}
+                </h1>
+              </div>
+
+              <div class="flex content-center gap-3 items-center">
+                <p class="font-medium">IX.</p>
+                <label class="text-[#000000] font-satoshi font-semibold my-2"
+                  >Other information</label
+                >
+              </div>
+              <div class="w-[100%] pr-[2rem]">
+                <h1
+                  class="break-words result-height text-[#000000] font-medium ml-4"
+                >
+                  {{ otherInformation }}
+                </h1>
+              </div>
+              <div class="flex content-center gap-3 items-center">
+                <p class="font-medium">X.</p>
+                <label class="text-[#000000] font-satoshi font-semibold my-2">
+                  Additional Document</label
+                >
+              </div>
+              <div class="w-[100%] pr-[2rem]">
+                <a
+                  [href]="basePathOfFile+additionalDocforReview"
+                  target="_blank"
+                  class="text-red-500 review result-height font-medium ml-4"
+                  >{{ additionalDocforReview }}</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="w-[95%] mx-auto h-auto mt-[1rem] border border-gray-300 rounded-md px-4 bg-white"
+      >
+        <div class="w-full mb-4 rounded-md font-medium">
+          <div class="mt-4 mb-2 ml-4 text-white gap-3 flex">
+            <p
+              class="w-[1.5rem] h-[1.5rem] text-center rounded-full text-sm bg-red-200 text-red-500"
+            >
+              9
+            </p>
+            <span class="text-[#000000] font-satoshi font-semibold w-full"
+              >File Path/Name
+            </span>
+          </div>
+
+          <div class="w-[100%] ml-4 px-[2.1rem]">
+            <h1
+              class="text-[#000000] pt-1 result-height whitespace-nowrap overflow-hidden"
+            >
+              <a class="text-red-500" [href]="FullPath" target="_blank">
+                {{ filePath }}
+              </a>
+            </h1>
+          </div>
+        </div>
+
+        <div class="w-100 h-auto min-h-[12rem] mt-6 rounded-md border-gray-300">
+          <div class="my-4 ml-4 text-white max-sm:gap-2 gap-3 flex">
+            <p
+              class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+            >
+              10
+            </p>
+            <span class="text-[#000000] font-satoshi font-semibold w-full">
+              Reviewed ProofReading Data
+            </span>
+          </div>
+
+          <div
+            class=" md-max:flex-col  flex md:items-center h-auto justify-between content-center"
+          >
+            <div class="w-[50%] min-w-[300px]  h-auto">
+              <!-- <h1  class="text-[#000000] my-1 font-medium result-height w-[100%]">
+            hello
+          </h1> -->
+              <div *ngFor="let doc of reviewOfAssignment" class="w-[100%]">
+                <h1
+                  *ngIf="doc"
+                  class="text-[#000000] my-1 result-height font-medium whitespace-nowrap"
+                >
+                  <a
+                    class="text-red-500 overflow-hidden whitespace-nowrap"
+                    [href]="basePathOfFile + doc"
+                    target="_blank"
+                  >
+                    {{ doc }}
+                  </a>
+                </h1>
+              </div>
+              <div
+                *ngIf="reviewOfAssignment[0] == null"
+                class="w-[100%] ml-4 mb-4 px-[2.1rem]"
+              >
+                <h1 class="text-[#000000] result-height"></h1>
+              </div>
+            </div>
+
+            <!-- drag drop and google  -->
+
+            <div
+              (dragover)="handleDragOver($event)"
+              (dragleave)="handleDragLeave($event)"
+              (drop)="handleFileDrop($event)"
+              class="w-[43%] min-w-[250px] mr-10 mt-[-2.5rem] my-4 md-max:my-3 md-max:ml-[3rem] h-auto min-h-[7rem] bg-blue-200 text-center rounded-md"
+            >
+              <div
+                class="my-4 mx-auto w-[92%] border-dashed border-2 border-[#FF565F] rounded-md h-[8rem]"
+              >
+                <div class="relative h-full ">
+                  <button
+                    class="text-[#FF565F]  bg-red-500 flex-col items-center justify-center rounded cursor-pointer h-full"
+                    (click)="fileInput.click()"
+                  >
+                    <img class="mx-auto" [src]="dragSrc" alt="" />
+                    Browse or drag and drop
+                  </button>
+                  <input
+                    #fileInput
+                    multiple
+                    class="absolute inset-0 opacity-0 cursor-pointer"
+                    type="file"
+                    (change)="handleFileInput($event)"
+                    accept=".pdf,.docx,.doc,.txt,.xlsx"
+                    style="display: none"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="w-[95%] px-[2rem] mx-auto h-auto my-[1rem] bg-white border rounded-md border-gray-300 order-main-container"
+      >
+        <div
+          class="w-full h-auto mt-6 mb-6 rounded-md font-semibold border-gray-300"
+        >
+          <div class="my-4  text-white gap-3 flex">
+            <p
+              class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+            >
+              11
+            </p>
+            <span class="text-[#000000] font-satoshi font-semibold w-full"
+              >User's Comments</span
+            >
+          </div>
+          <div
+            *ngFor="let comment of userComments"
+            class="w-[100%] ml-4 my-1 px-[2.1rem]"
+          >
+            <h1 class="text-[#000000] font-medium result-height">
+              {{ comment }}
+            </h1>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="w-[95%] px-[2rem] mx-auto h-auto my-[1rem] bg-white border rounded-md border-gray-300 order-main-container"
+      >
+        <div
+          class="w-full h-auto mt-6 mb-6 rounded-md font-semibold border-gray-300"
+        >
+          <div class="my-4 text-white gap-3 flex">
+            <p
+              class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+            >
+              12
+            </p>
+            <span class="text-[#000000] font-satoshi font-semibold w-full"
+              >Your Comments (note : You can enter only 5 comment at max )</span
+            >
+          </div>
+
+          <input
+            id="editorComments"
+            type="text"
+            [(ngModel)]="editorComments"
+            name="editorComments"
+            placeholder="comment1, comment2, comment3, comment4, comment5"
+            class="w-[95%] px-2 py-2 lg:ml-[2rem] outline-none my-[1rem] bg-[#F7F7F8] rounded-md border border-gray-300 text-gray-500"
+          />
+        </div>
+      </div>
+
+      <div
+        class="w-[95%] px-[1rem] mx-auto h-auto mt-[1rem] bg-white border flex flex-row rounded-md border-gray-300 order-main-container"
+      >
+        <div
+          class="w-full h-auto mt-6 mb-6 rounded-md font-semibold border-gray-300"
+        >
+          <div class="my-4 ml-4 text-white gap-3 flex">
+            <p
+              class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+            >
+              13
+            </p>
+            <span class="text-[#000000] font-satoshi font-semibold w-full"
+              >User's Contact details</span
+            >
+          </div>
+          <div
+            class="my-6 mx-auto px-[1rem] w-[90%] h-auto rounded-md border border-red-300"
+          >
+            <div class="my-4 mx-2 w-[95%] h-auto text-white">
+              <div class="md:flex gap-8">
+                <div class="w-[30%] my-2">
+                  <label
+                    class="text-[#000000] whitespace-nowrap font-satoshi font-semibold w-full my-4"
+                    >First Name</label
+                  >
+
+                  <p class="text-[#000000] size14text">
+                    {{ firstName }}
+                  </p>
+                </div>
+                <div class="w-[30%] my-2">
+                  <label
+                    class="text-[#000000] whitespace-nowrap font-satoshi font-semibold w-full my-4"
+                    >Last Name</label
+                  >
+
+                  <h1 class="text-[#000000] size14text">
+                    {{ lastName }}
+                  </h1>
+                </div>
+              </div>
+
+              <div class="md:flex gap-8">
+                <div class="w-[30%] mt-6">
+                  <label
+                    class="text-[#000000] font-satoshi whitespace-nowrap font-semibold w-full my-4"
+                    >Email address</label
+                  >
+                  <h1 class="text-[#000000] size14text">{{ email }}</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10 -->
+      <div
+        class="w-[95%] px-[1rem] mb-4 mx-auto h-auto mt-[1rem] bg-white border flex flex-row rounded-md border-gray-300 order-main-container"
+      >
+        <div class="w-full mt-6 rounded-md font-medium border-gray-300">
+          <div class="mt-4 mb-2 ml-4 text-white gap-3 flex">
+            <p
+              class="w-[1.5rem] h-[1.5rem] text-center rounded-full border border-gray-100 text-sm bg-red-200 text-red-500"
+            >
+              14
+            </p>
+            <span class="text-[#000000] font-satoshi font-semibold w-full"
+              >Update order of Status</span
+            >
+          </div>
+
+          <div class="my-4 mt-4 gap-3 w-[60%] min-w-[250px] h-auto text-white">
+            <div class="w-[100%] ml-4 px-[1.8rem]">
+              <select
+                class="text-[#000000] result-height w-[100%] rounded-md"
+                [(ngModel)]="selectedOption"
+                name="status"
+                id="status"
+              >
+                <option
+                  class="text-[#000000] rounded-md"
+                  value="PendingAcceptance"
+                >
+                  Pending Acceptance
+                </option>
+                <option class="text-[#000000] rounded-md" value="Rejected">
+                  Rejected
+                </option>
+                <option
+                  class="text-[#000000] rounded-md"
+                  value="workInProgress"
+                >
+                  Work In Progress
+                </option>
+                <option class="text-[#000000] rounded-md" value="UnderQAReview">
+                  UnderQAReview
+                </option>
+                <option class="text-[#000000] rounded-md" value="Completed">
+                  Completed
+                </option>
+              </select>
+            </div>
+
+            <button
+              type="submit"
+              class="mt-4 px-4 ml-[8%] h-[2.5rem] rounded-md mb-2 text-white text-sm bg-red-500"
+              (click)="handleSelection()"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- 10 -->
+    </div>
+  </div>
+</div>

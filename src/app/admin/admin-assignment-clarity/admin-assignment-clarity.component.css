@@ -1,0 +1,18 @@
+@media screen and (max-width:1000px) {
+  .order-main-container{
+    flex-direction: column;
+  }
+  .order-section1{
+    width: 100%;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .order-section2{
+    width: 100%;
+    margin-top: 0;
+    padding-top: 0;
+  }
+}
+.additionalfile{
+  color: rgb(238, 67, 67);
+}
